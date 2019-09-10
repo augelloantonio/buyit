@@ -1,14 +1,37 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
 {% block content %}
 <!-- Page Header-->
-<img src="..." class="img-fluid" alt="Responsive image">
+<div class="full-width-header"
+    style="background: url('{% static "images/fullWidthLogo.png" %}') no-repeat center center fixed;">
+
+    <!--Callout-->
+    <div class="container-fluid logo-container">
+        <div class="opaque-overlay">&nbsp;</div>
+        <!-- Callout -->
+        <div class="row callout-row">
+            <div class="col-xs-12">
+                <section class="callout jumbotron text-center">
+                    <hr class='block-divider block-divider--orange'>
+                    <p><button class="btn btn-lg btn--cta btn--red" data-toggle='modal'>
+                        </button>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- /.callout -->
+    <div>
+        <a href="#bestsellers"><i class="fa fa-angle-double-down ico-narrow-down"></i></a>
+    </div>
+</div>
 
 <!-- Page Content -->
 <div class="container">
     <div class="row">
 
         <!-- Carousel Latest Product -->
-        <div class="col-lg-12">
+        <div id="bestsellers" class="col-lg-12">
 
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                 <ol class="carousel-indicators">
