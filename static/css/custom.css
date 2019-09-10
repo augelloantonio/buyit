@@ -1,0 +1,12 @@
+/*...........................Homepage ................*/
+
+.full-width-logo,
+.full-width-header {
+    height: 100vh;
+    text-align: center;
+}
+
+.ico-narrow-down {
+    font-size: 4rem;
+    color: black;
+}
