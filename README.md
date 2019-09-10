@@ -1,0 +1,1 @@
+Template taken from https://startbootstrap.com/templates/shop-homepage/
