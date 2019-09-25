@@ -11,7 +11,6 @@ def index(request):
     """A view that displays the index page"""
     return render(request, "index.html")
 
-
 def logout(request):
     """A view that logs the user out and redirects back to the index page"""
     auth.logout(request)
