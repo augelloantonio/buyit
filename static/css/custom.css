@@ -24,3 +24,14 @@
 #navbar {
     transition: top 0.2s ease-in-out;
 }
+
+
+/*........................Products.............*/
+.product {
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
