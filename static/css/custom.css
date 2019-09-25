@@ -18,3 +18,9 @@
     bottom: 0;
     width: 100%;
 }
+
+
+/*....................NavBar..................*/
+#navbar {
+    transition: top 0.2s ease-in-out;
+}
