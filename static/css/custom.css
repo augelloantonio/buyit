@@ -4,9 +4,17 @@
 .full-width-header {
     height: 100vh;
     text-align: center;
+    position: block;
+    overflow: hidden
 }
 
 .ico-narrow-down {
     font-size: 4rem;
     color: black;
+}
+
+.narrow-down-display {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
