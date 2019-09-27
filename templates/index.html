@@ -36,208 +36,57 @@
         <!-- Carousel bestsellers Product -->
         <div id="bestsellers" class="col-lg-12">
             <h2>Bestsellers</h2>
-            <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
+            <div id="bestsellers-carousel" class="carousel slide my-4" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                    <li data-target="#bestsellers-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#bestsellers-carousel" data-slide-to="1"></li>
+                    <li data-target="#bestsellers-carousel" data-slide-to="2"></li>
                 </ol>
-                <div class="carousel-inner" role="listbox">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <!-- Fisrt carousel-->
                         <div class="row">
+                            {% for product in products %}
+                            <!--card-->
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+                                    <a href="#"><img class="card-img-top"
+                                            src="{{ MEDIA_URL }}{{ product.image }}"" alt=" {{ product.name }}"></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
-                                            <a href="#">Item One</a>
+                                            <a href="#">{{ product.name }}</a>
                                         </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
+                                        <h5>{{ product.price }}</h5>
+                                        <p class="card-text">{{ product.description }}</p>
                                     </div>
                                     <div class="card-footer">
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Two</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                            Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Three</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
+                            <!--./card-->
+                            {% if forloop.counter|divisibleby:3 and not forloop.last %}
                         </div>
-                        <!-- /End first carousel-->
                     </div>
                     <div class="carousel-item">
-                        <!-- Second carousel-->
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item One</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Two</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                            Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Three</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endif %}
+                            {% endfor %}
                         </div>
-                        <!-- /End second carousel-->
                     </div>
-                    <div class="carousel-item">
-                        <!-- Third carousel-->
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item One</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Two</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                            Lorem ipsum dolor sit amet.</p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card h-100">
-                                    <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-                                    <div class="card-body">
-                                        <h4 class="card-title">
-                                            <a href="#">Item Three</a>
-                                        </h4>
-                                        <h5>$24.99</h5>
-                                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                            Amet numquam
-                                            aspernatur!
-                                        </p>
-                                    </div>
-                                    <div class="card-footer">
-                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /End third carousel-->
-                    </div>
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#bestsellers-carousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#bestsellers-carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                <!--/.Carousel Wrapper-->
             </div>
             <!-- / End Latest Product Carousel -->
 
@@ -245,58 +94,120 @@
         <!-- ./Carousel bestsellers Product -->
 
         <!-- Carousel Latest Product -->
-        <div id="latestcarousel" class="carousel slide my-4" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#latestcarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#latestcarousel" data-slide-to="1"></li>
-                <li data-target="#latestcarousel" data-slide-to="2"></li>
-            </ol>
+        <div id="latest" class="col-lg-12">
+            <h2>Our Latest Products</h2>
+            <div id="latestcarousel" class="carousel slide my-4" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#latestcarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#latestcarousel" data-slide-to="1"></li>
+                    <li data-target="#latestcarousel" data-slide-to="2"></li>
+                </ol>
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row">
-                        {% for product in products %}
-                        <!--card-->
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="card h-100">
-                                <a href="#"><img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}"" alt="
-                                        {{ product.name }}"></a>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="#">{{ product.name }}</a>
-                                    </h4>
-                                    <h5>{{ product.price }}</h5>
-                                    <p class="card-text">{{ product.description }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            {% for product in products %}
+                            <!--card-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <a href="#"><img class="card-img-top"
+                                            src="{{ MEDIA_URL }}{{ product.image }}"" alt=" {{ product.name }}"></a>
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="#">{{ product.name }}</a>
+                                        </h4>
+                                        <h5>{{ product.price }}</h5>
+                                        <p class="card-text">{{ product.description }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    </div>
                                 </div>
                             </div>
+                            <!--./card-->
+                            {% if forloop.counter|divisibleby:3 and not forloop.last %}
                         </div>
-                        <!--./card-->
-                        {% if forloop.counter|divisibleby:3 and not forloop.last %}
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row">
-                        {% endif %}
-                        {% endfor %}
+                    <div class="carousel-item">
+                        <div class="row">
+                            {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
-                </div>
 
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#latestcarousel" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#latestcarousel" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#latestcarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#latestcarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--/.Carousel Wrapper-->
             </div>
-            <!--/.Carousel Wrapper-->
         </div>
+        <!-- ,/Carousel Latest Product -->
+
+        <!-- Carousel Latest Product 2 -->
+        <div id="latest" class="col-lg-12">
+            <h2>Our Latest Products 2</h2>
+            <div id="latestcarousel2" class="carousel slide my-4" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#latestcarousel2" data-slide-to="0" class="active"></li>
+                    <li data-target="#latestcarousel2" data-slide-to="1"></li>
+                    <li data-target="#latestcarousel2" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            {% for product in products %}
+                            <!--card-->
+                            <div class="col-lg-4 col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <a href="#"><img class="card-img-top"
+                                            src="{{ MEDIA_URL }}{{ product.image }}"" alt=" {{ product.name }}"></a>
+                                    <div class="card-body">
+                                        <h4 class="card-title">
+                                            <a href="#">{{ product.name }}</a>
+                                        </h4>
+                                        <h5>{{ product.price }}</h5>
+                                        <p class="card-text">{{ product.description }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--./card-->
+                            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#latestcarousel2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#latestcarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--/.Carousel Wrapper-->
+            </div>
+        </div>
+        <!-- ./Carousel Latest Product 2 -->
     </div>
     <!-- /End first carousel-->
 
