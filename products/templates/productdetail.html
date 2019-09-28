@@ -34,6 +34,9 @@
             </div>
         </div>
     </div>
+    <form action="{% url 'remove_product' product.id %}">
+        <input type="submit" value="Delete">
+    </form>
 </div>
 
 {% endblock %}
