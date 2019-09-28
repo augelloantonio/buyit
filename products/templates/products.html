@@ -1,23 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row row-flex">
-    {% for product in products %}
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}"></a>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="#">{{ product.name }}</a>
-                </h4>
-                <h5>{{ product.price }}</h5>
-                <p class="card-text">{{ product.description }}</p>
-            </div>
-            <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+
+    <div class="row row-flex">
+        {% for product in products %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <a href="#"><img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}"
+                        alt="{{ product.name }}"></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#">{{ product.name }}</a>
+                    </h4>
+                    <h5>{{ product.price }}</h5>
+                    <div>
+                        <form method="post" action="{% url 'add_to_cart' product.id %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <input name="quantity" type="number" min="1" max="999" class="form-control"
+                                    placeholder="Quantity">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success" type="submit">Add</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
+
 {% endblock %}
