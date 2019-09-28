@@ -43,6 +43,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
+          {% if request.user.is_superuser %}
+          <li class="nav-item active"><a class="nav-link" href="{% url 'all_orders' %}"><i class="fa fa-user"></i>
+              Orders</a></li>
+          {% endif %}
           <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i>
               Profile</a></li>
           <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log
