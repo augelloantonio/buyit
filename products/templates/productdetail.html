@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<div class="container_pages">
+    <h3>{{ product.name }}</h3>
+    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+
+    <div class="row">
+        <div class="col-md-6">
+            <img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Product Description</h4>
+                    <p>{{ product.description }}</p>
+                </div>
+                <div class="col-12">
+                    <p>Price: {{ product.price }} €</p>
+                </div>
+                <div>
+                    <form method="post" action="{% url 'add_to_cart' product.id %}">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input name="quantity" type="number" min="1" max="999" class="form-control"
+                                placeholder="Quantity">
+                            <span class="input-group-btn">
+                                <button class="btn btn-success" type="submit">Add</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
