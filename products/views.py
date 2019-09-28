@@ -18,11 +18,7 @@ def all_products(request):
 
 def product_detail(request, pk):
     """
-    Create a view that returns a single
-    Post object based on the post ID (pk) and
-    render it to the 'postdetail.html' template.
-    Or return a 404 error if the post is
-    not found
+    Product view
     """
     product = get_object_or_404(Product, pk=pk)
     return render(request, "productdetail.html", {'product': product})
@@ -51,6 +47,7 @@ def edit_product(request, id):
     else:
         form = ItemForm(instance=item)
     return render(request, "item_form.html", {'form': form})
+
 
 def remove_product(request, pk):
     item = get_object_or_404(Product, pk=pk)
