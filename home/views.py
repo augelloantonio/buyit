@@ -7,3 +7,6 @@ from products.views import all_products
 def index(request):
     products = Product.objects.all()
     return render(request, "index.html", {"products": products})
+
+
+
