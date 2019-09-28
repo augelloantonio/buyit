@@ -54,9 +54,11 @@
               In</a></li>
           {% endif %}
           <li class="nav-item active">
-            <a href="#">
-              <i class="fa fa-shipping-cart"></i> Cart
-              <label class="badge badge-warning">product count label</label>
+            <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fa fa-shipping-cart"></i>
+              Cart
+              {% if product_count > 0 %}
+              <label class="badge badge-warning">2</label>
+              {% endif %}
             </a>
           </li>
         </ul>
