@@ -18,6 +18,7 @@ from django.urls import path, include
 from accounts import urls as urls_accounts
 from products import urls as urls_products
 from cart import urls as urls_cart
+from orders import urls as urls_orders
 from django.conf import settings
 from django.conf.urls.static import static
 from home.views import index
@@ -28,5 +29,6 @@ urlpatterns = [
     path('accounts/', include(urls_accounts)),
     path('products/', include(urls_products)),
     path('cart/', include(urls_cart)),
+    path('order/', include(urls_orders)),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
