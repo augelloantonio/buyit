@@ -1,0 +1,14 @@
+{% extends "dashboardbase.html" %}
+{% load staticfiles %}
+
+{%block content%}
+
+<h1>Are you sure you want to delete this product?</h1>
+<form action="{% url 'remove_product' product.id %}">
+    <input type="submit" value="Yes, Delete!">
+</form>
+<form action="{% url 'dashboard_product' %}">
+    <input type="submit" value="Go Back!">
+</form>
+
+{% endblock %}
