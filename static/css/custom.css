@@ -46,3 +46,12 @@ html, body{
     height: 150px;
     margin: 0 auto;
 }
+
+/*........................Carousel Slide......................*/
+.slider_bar{
+    height: 20px;
+}
+
+.carousel-indicators li{
+    background-color: black;
+}
