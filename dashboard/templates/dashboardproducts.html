@@ -22,10 +22,22 @@
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                             aria-labelledby="dropdownMenuLink">
                             <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="{% url 'confirm_delete_product' product.id %}">Delete Product</a>
+                            <a class="dropdown-item" href="{% url 'confirm_delete_product' product.id %}">Delete
+                                Product</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+
+                            <form method="POST" action="toggle_status/{{product.id}}" class="form-inline">
+                                {% csrf_token %}
+                                <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Stock Status</label>
+                                <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                                    <option selected>Stock Status</option>
+                                    <option value="1">In Stock</option>
+                                    <option value="2">Not Stock</option>
+                                </select>
+
+                                <button type="submit" class="btn btn-primary my-1">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -35,7 +47,7 @@
                         <p>Product Id: {{product.id}}</p>
                         <p>Product Price: {{product.price}}</p>
                         <p>Product Category: {{product.category}}</p>
-                        <p>Product in stock: 
+                        <p>Product in stock:
                             {% if product.in_stock == True %}
                             Yes
                             {% else %}
