@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
 from products.models import Product
 from django.db.models import Count
-
+from products.forms import ProductForm
 
 @login_required
 def dashboard(request):
@@ -51,6 +51,21 @@ def dashboard_product(request):
 
     return render(request, "dashboardproducts.html", {"products": products})
 
+def confirm_delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, "confirmdeleteproduct.html", {"product":product})
+
+
+def add_a_product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(dashboard_product)
+    else:
+        form = ProductForm()
+
+    return render(request, "dashboardaddproduct.html", {'form': form})
 
 
     
