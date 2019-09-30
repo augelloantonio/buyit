@@ -35,6 +35,13 @@
                         <p>Product Id: {{product.id}}</p>
                         <p>Product Price: {{product.price}}</p>
                         <p>Product Category: {{product.category}}</p>
+                        <p>Product in stock: 
+                            {% if product.in_stock == True %}
+                            Yes
+                            {% else %}
+                            No
+                            {% endif %}
+                        </p>
                     </div>
                 </div>
             </div>
