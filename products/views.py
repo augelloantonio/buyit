@@ -45,7 +45,7 @@ def remove_product(request, pk):
 
 
 def toggle_status(request, id):
-    item = get_object_or_404(Product, pk=id)
-    item.done = not item.done
-    item.save()
-    return redirect(get_todo_list)
+    product = get_object_or_404(Product, id=id)
+    product.in_stock = not product.in_stock
+    product.save()
+    return redirect(dashboard_product)
