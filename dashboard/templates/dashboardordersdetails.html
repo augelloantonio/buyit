@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th scope="col">Order ID</th>
+                <th scope="col">Total Order Cost</th>
                 <th scope="col">Order Date</th>
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
@@ -18,6 +19,7 @@
         <tbody>
             <tr>
                 <td>{{order.id}}</td>
+                <td>{{total_order_price}}€</td>
                 <td>{{order.date}}</td>
                 <td>{{order.full_name}}</td>
                 <td>{{order.phone_number}}</td>
@@ -32,7 +34,8 @@
             <tr>
                 <th scope="col">Product ID</th>
                 <th scope="col">Product Name</th>
-                <th scope="col">Product Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price Each Product</th>
             </tr>
         </thead>
         <tbody>
@@ -41,14 +44,13 @@
             <tr>
                 <td>{{orderitems.product.id}}</td>
                 <td>{{orderitems.product.name}}</td>
-                <td>{{orderitems.product.price}}</td>
+                <td>{{orderitems.quantity}}</td>
+                <td>{{orderitems.product.price}}€</td>
             </tr>
             {%endif%}
             {% endfor %}
         </tbody>
     </table>
-
-
 
 
     <h4>Shipping Address </h4>
