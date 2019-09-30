@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import ProductForm
 from home.views import index
+from dashboard.views import dashboard_product
 
 # Create your views here.
 
@@ -24,18 +25,6 @@ def product_detail(request, pk):
     return render(request, "productdetail.html", {'product': product})
 
 
-def add_a_product(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(index)
-    else:
-        form = ProductForm()
-
-    return render(request, "productform.html", {'form': form})
-
-
 def edit_product(request, id):
     item = get_object_or_404(Item, pk=id)
 
@@ -52,7 +41,7 @@ def edit_product(request, id):
 def remove_product(request, pk):
     item = get_object_or_404(Product, pk=pk)
     item.delete()
-    return redirect(index)
+    return redirect(dashboard_product)
 
 
 def toggle_status(request, id):
