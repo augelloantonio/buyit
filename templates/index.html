@@ -37,23 +37,18 @@
         <div id="bestsellers" class="col-lg-12">
             <h2>Bestsellers</h2>
             <div id="bestsellers-carousel" class="carousel slide my-4" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#bestsellers-carousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#bestsellers-carousel" data-slide-to="1"></li>
-                    <li data-target="#bestsellers-carousel" data-slide-to="2"></li>
-                </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            {% for product in products|slice:":7"  %}
+                            {% for product in products|slice:":8"  %}
                             {% if product.category == "bestseller" %}
                             <!--card-->
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
                                     <a href="{% url 'product_detail' product.id %}"><img class=" card-img-top"
-                                        src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"></a>
+                                            src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
                                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
@@ -79,7 +74,7 @@
                                 </div>
                             </div>
                             <!--./card-->
-                            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                            {% if forloop.counter|divisibleby:4 and not forloop.last %}
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -89,17 +84,16 @@
                             {% endfor %}
                         </div>
                     </div>
-
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#bestsellers-carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#bestsellers-carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
+                <!-- Left and right controls -->
+                <div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#bestsellers-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#bestsellers-carousel" data-slide-to="1"></li>
+                        <li data-target="#bestsellers-carousel" data-slide-to="2"></li>
+                    </ol>
+                </div>
+
                 <!--/.Carousel Wrapper-->
             </div>
             <!-- / End Latest Product Carousel -->
@@ -111,17 +105,12 @@
         <div id="latest" class="col-lg-12">
             <h2>Our Latest Products</h2>
             <div id="latestcarousel" class="carousel slide my-4" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#latestcarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#latestcarousel" data-slide-to="1"></li>
-                    <li data-target="#latestcarousel" data-slide-to="2"></li>
-                </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            {% for product in products %}
+                            {% for product in products|slice:":8" %}
                             {% if product.category == "latest" %}
                             <!--card-->
                             <div class="col-lg-4 col-md-6 mb-4">
@@ -153,7 +142,7 @@
                                 </div>
                             </div>
                             <!--./card-->
-                            {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                            {% if forloop.counter|divisibleby:4 and not forloop.last %}
                         </div>
                     </div>
                     <div class="carousel-item">
@@ -163,17 +152,16 @@
                             {% endfor %}
                         </div>
                     </div>
-
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#latestcarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#latestcarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </div>
+                <!-- Left and right controls -->
+                <div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#latestcarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#latestcarousel" data-slide-to="1"></li>
+                        <li data-target="#latestcarousel" data-slide-to="2"></li>
+                    </ol>
+                </div>>
+
                 <!--/.Carousel Wrapper-->
             </div>
         </div>
@@ -184,11 +172,6 @@
             <h2>Our Products</h2>
             <a href="{% url 'products' %}">See all our products</a>
             <div id="latestcarousel2" class="carousel slide my-4" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#latestcarousel2" data-slide-to="0" class="active"></li>
-                    <li data-target="#latestcarousel2" data-slide-to="1"></li>
-                    <li data-target="#latestcarousel2" data-slide-to="2"></li>
-                </ol>
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
@@ -234,16 +217,14 @@
                             {% endfor %}
                         </div>
                     </div>
-
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#latestcarousel2" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#latestcarousel2" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                </div>
+                <!-- Left and right controls -->
+                <div>
+                    <ol class="carousel-indicators">
+                        <li data-target="#latestcarousel2" data-slide-to="0" class="active"></li>
+                        <li data-target="#latestcarousel2" data-slide-to="1"></li>
+                        <li data-target="#latestcarousel2" data-slide-to="2"></li>
+                    </ol>
                 </div>
                 <!--/.Carousel Wrapper-->
             </div>
