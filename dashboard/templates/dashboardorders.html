@@ -33,15 +33,7 @@
                 <div class="card-body">
                     <div class="chart-area">
                         <p>Order Date: {{order.date}}</p>
-                        {% for orderitems in order_info.all %}
-                        {%if order.id == orderitems.order_id %}
-                        <p>Product Ordered:
-                            {{orderitems.product}}
-                        </p>
-                        <p>Total Order: {{orderitems.total}}</p>
-
-                        {%endif%}
-                        {% endfor %}
+                        <p>Order Status:</p>
                     </div>
                 </div>
             </div>
