@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load bootstrap_tags %}
 {% load staticfiles %}
 
 {% block content %}
@@ -34,9 +35,24 @@
             </div>
         </div>
     </div>
-    <form action="{% url 'remove_product' product.id %}">
-        <input type="submit" value="Delete">
-    </form>
+
+    <h2>{{ product.name }}</h2>
+
+    <h3>Recent reviews</h3>
+
+    <div>
+        {% for review in review_list %}
+        <div>
+            <em>{{ review.comment }}</em>
+            <h6>Rated {{ review.rating }} of 5 by {{ review.user_name }}</h6>
+        </div>
+        {% endfor %}
+    </div>
+    <p>No reviews for this product yet.</p>
+
+    <p><a href="{% url 'add_review' product.id%}">Add a Review</a></p>
+
+
 </div>
 
 {% endblock %}
