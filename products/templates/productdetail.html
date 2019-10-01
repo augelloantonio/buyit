@@ -40,6 +40,7 @@
 
     <h3>Recent reviews</h3>
 
+    {% if review_list%}
     <div>
         {% for review in review_list %}
         <div>
@@ -48,7 +49,9 @@
         </div>
         {% endfor %}
     </div>
+    {% else %}
     <p>No reviews for this product yet.</p>
+    {% endif %}
 
     <p><a href="{% url 'add_review' product.id%}">Add a Review</a></p>
 
