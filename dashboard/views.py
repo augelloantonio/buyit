@@ -4,13 +4,15 @@ from orders.models import OrderLineItem, Order
 from products.models import Product
 from django.db.models import Count
 from products.forms import ProductForm
-
+from reviews.models import Review
 
 @login_required
 def dashboard(request):
     orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
     products = Product.objects.all()
+    reviews = Review.objects.all()
+
     total_orders_earning = sum(items.total for items in order_info)
     monthly_orders_earning = (total_orders_earning / 12)
     total_orders = 0
@@ -18,6 +20,7 @@ def dashboard(request):
     total_products = 0
     total_products_in_stock = 0
     total_products_not_stock = 0
+    total_reviews = 0
 
     for items in order_info:
         total_orders += 1
@@ -31,6 +34,9 @@ def dashboard(request):
             total_products_in_stock += 1
         else:
             total_products_not_stock += 1
+    
+    for review in reviews:
+        total_reviews += 1
 
     order_by_date = order_info.filter(order__date__year='2019').values_list(
         'order__date__month').annotate(total_order_price=Count('total'))
@@ -38,7 +44,7 @@ def dashboard(request):
     return render(request, "dashboard.html", {"orders": orders, "total_orders_earning": total_orders_earning,
                                               "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
                                               "total_products": total_products, "total_products_in_stock": total_products_in_stock,
-                                              "total_products_not_stock": total_products_not_stock})
+                                              "total_products_not_stock": total_products_not_stock, "total_reviews":total_reviews})
 
 
 @login_required
