@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from .forms import ReviewForm
 from products.models import Product
@@ -10,7 +11,7 @@ def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     return render(request, 'reviews/review_detail.html', {'review': review})
 
-
+@login_required()
 def add_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm(request.POST)
