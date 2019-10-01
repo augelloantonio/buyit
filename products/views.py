@@ -3,6 +3,7 @@ from .models import Product
 from .forms import ProductForm
 from home.views import index
 from dashboard.views import dashboard_product
+from reviews.models import Review
 
 # Create your views here.
 
@@ -22,7 +23,13 @@ def product_detail(request, pk):
     Product view
     """
     product = get_object_or_404(Product, pk=pk)
-    return render(request, "productdetail.html", {'product': product})
+    reviews = Review.objects.all()
+
+    for review in reviews:
+        review_list = Review.objects.all().order_by(
+            '-pub_date').filter(product__name=product.name)[:9]
+
+    return render(request, "productdetail.html", {'product': product, 'reviews': reviews, 'review_list': review_list})
 
 
 def edit_product(request, id):
