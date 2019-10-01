@@ -6,15 +6,6 @@ from .models import Review
 import datetime
 
 
-def review_list(request):
-    reviews = Review.objects.all()
-    product = Product.objects.all()
-    for review in reviews:
-        if review.product_id == product.id:
-            review_list = Review.objects.all().order_by('-pub_date')[:9]
-    return ({"review_list": review_list})
-
-
 def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
     return render(request, 'reviews/review_detail.html', {'review': review})
