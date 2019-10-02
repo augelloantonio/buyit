@@ -1,9 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 from .views import dashboard, dashboard_orders, dashboard_order_details, confirm_delete_product, add_a_product
 from products.views import toggle_status
+from charts import urls as urls_charts
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
@@ -15,6 +16,7 @@ urlpatterns = [
          views.confirm_delete_product, name='confirm_delete_product'),
     path('dashboardaddproduct', views.add_a_product, name='add_a_product'),
     path('toggle_status/<int:id>', toggle_status),
+    path('charts/', include(urls_charts)),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
