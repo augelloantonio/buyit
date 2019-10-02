@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'orders',
     'dashboard',
     'reviews',
+    'charts',
     
 ]
 
