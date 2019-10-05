@@ -50,6 +50,8 @@ def checkout(request):
                 messages.error(request, "You have successfully paid")
                 request.session['cart'] = {}
                 return redirect(reverse('products'))
+                product.quantity_sold == quantity
+                product.save()
             else:
                 messages.error(request, "Unable to take payment")
         else:
