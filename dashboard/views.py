@@ -2,9 +2,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
 from products.models import Product
-from django.db.models import Count
+from django.db.models import Count, Sum
 from products.forms import ProductForm
 from reviews.models import Review
+from django.db.models.functions import TruncMonth, TruncYear
+
 
 @login_required
 def dashboard(request):
@@ -41,10 +43,14 @@ def dashboard(request):
     order_by_date = order_info.filter(order__date__year='2019').values_list(
         'order__date__month').annotate(total_order_price=Count('total'))
 
+    dataset = OrderLineItem.objects.annotate(month=TruncMonth(
+    'date')).values('total').annotate(order_sum=(Sum('total')))
+
     return render(request, "dashboard.html", {"orders": orders, "total_orders_earning": total_orders_earning,
                                               "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
                                               "total_products": total_products, "total_products_in_stock": total_products_in_stock,
-                                              "total_products_not_stock": total_products_not_stock, "total_reviews":total_reviews})
+                                              "total_products_not_stock": total_products_not_stock, "total_reviews":total_reviews,
+                                              'dataset': dataset})
 
 
 @login_required
