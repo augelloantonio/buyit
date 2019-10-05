@@ -36,7 +36,7 @@ def dashboard(request):
             total_products_in_stock += 1
         else:
             total_products_not_stock += 1
-    
+
     for review in reviews:
         total_reviews += 1
 
@@ -44,12 +44,12 @@ def dashboard(request):
         'order__date__month').annotate(total_order_price=Count('total'))
 
     dataset = OrderLineItem.objects.annotate(month=TruncMonth(
-    'date')).values('total').annotate(order_sum=(Sum('total')))
+        'date')).values('total').annotate(order_sum=(Sum('total')))
 
     return render(request, "dashboard.html", {"orders": orders, "total_orders_earning": total_orders_earning,
                                               "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
                                               "total_products": total_products, "total_products_in_stock": total_products_in_stock,
-                                              "total_products_not_stock": total_products_not_stock, "total_reviews":total_reviews,
+                                              "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
                                               'dataset': dataset})
 
 
