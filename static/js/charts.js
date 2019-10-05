@@ -1,15 +1,17 @@
 $(document).ready(function() {
   var endpoint = "charts/chart/data";
-  var defaultData = [];
-  var labels = [];
 
   $.ajax({
     method: "GET",
     url: endpoint,
     success: function(data) {
-      (labels = data.labels), (defaultData = data.default);
-      console.log(defaultData);
-      //console.log(data.customers);
+      label_months = data.months_in_earning;
+      earning_data = data.earning;
+      label_orders_by_months = data.months_in_orders;
+      label_product_name = data.product_name;
+      orders_by_months = data.orders_by_months;
+      quantity_product_sold = data.quantity_product_sold;
+
       setChart();
     },
     error: function(error_data) {
@@ -19,15 +21,100 @@ $(document).ready(function() {
   });
 
   function setChart() {
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myChart = new Chart(ctx, {
-      type: "line",
+    //Revenue Chart
+    var ctx = document.getElementById("chartRevenue").getContext("2d");
+    var chartRevenue = new Chart(ctx, {
+      type: "bar",
       data: {
-        labels: labels,
+        labels: label_months,
         datasets: [
           {
-            label: "# of Votes",
-            data: defaultData,
+            label: "€ Earned",
+            data: earning_data,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    });
+    // Order Chart
+    var ctx2 = document.getElementById("chartOrders").getContext("2d");
+    var chartOrder = new Chart(ctx2, {
+      type: "bar",
+      data: {
+        labels: label_orders_by_months,
+        datasets: [
+          {
+            label: "Numbers of orders",
+            data: orders_by_months,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)"
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)"
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true
+              }
+            }
+          ]
+        }
+      }
+    });
+    //Product Chart
+    var ctx3 = document.getElementById("chartProducts").getContext("2d");
+    var chartProducts = new Chart(ctx3, {
+      type: "pie",
+      data: {
+        labels: label_product_name,
+        datasets: [
+          {
+            label: "# Sold",
+            data: quantity_product_sold,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
