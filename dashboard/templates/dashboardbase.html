@@ -80,7 +80,6 @@
                     </ul>
                 </div>
             </nav>
-
             {% block content %}
             {% endblock %}
         </div>
@@ -92,16 +91,20 @@
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
+
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+
+
     <!-- Chart Js script -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 
     <!-- Personal Chart.js -->
     <script src="{% static 'js/charts.js' %}"></script>
+    <script src="{% static 'js/newchart.js' %}"></script>
 
     <!-- Personal JS-->
     <script src="{% static 'js/custom.js' %}"></script>
-
-
+    
 </body>
 
 </html>
