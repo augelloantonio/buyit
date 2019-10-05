@@ -2,6 +2,7 @@ from django.db import models
 from products.models import Product
 from django.conf import settings
 from cart.contexts import cart_contents
+from datetime import datetime    
 
 # Create your models here.
 
@@ -27,7 +28,7 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField(blank=False)
     total = models.DecimalField(blank=False, default=0, max_digits=100, decimal_places=2)
-
+    date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
         return "{0} {1} {2} @ {3}".format(self.quantity, self.product.name, self.product.price, self.total)
