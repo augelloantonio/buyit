@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_forms_bootstrap',
     'rest_framework',
+    'chartit',
     'accounts',
     'home',
     'products',
@@ -46,8 +47,7 @@ INSTALLED_APPS = [
     'orders',
     'dashboard',
     'reviews',
-    'charts',
-    
+    'charts',    
 ]
 
 MIDDLEWARE = [
@@ -115,6 +115,10 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'accounts.backends.CaseInsensitiveAuth'
+]
+
+DATE_INPUT_FORMATS = [
+    '%d %B %Y'
 ]
 
 
