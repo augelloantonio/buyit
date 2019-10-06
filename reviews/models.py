@@ -18,7 +18,7 @@ class Review(models.Model):
         blank=True, null=True, default=timezone.now)
     user_name = models.CharField(max_length=100)
     comment = models.CharField(max_length=200)
-    rating = models.IntegerField(choices=RATING_CHOICES)
+    rating = models.PositiveIntegerField(choices=RATING_CHOICES)
 
     def __str__(self):
         return self.review_summary
