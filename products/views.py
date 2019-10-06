@@ -12,11 +12,11 @@ from reviews.models import Review
 def all_products(request):
     products = Product.objects.all()
 
-    context = {
-        'products': products
-    }
+    product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
+    product_id=F("id"))
+    reviews = Review.objects.all()
 
-    return render(request, "products.html", {"products": products})
+    return render(request, "products.html", {"products": products, "product_reviews":product_reviews})
 
 
 def product_detail(request, pk):

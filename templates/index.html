@@ -69,6 +69,15 @@
                                         <p class="card-text">{{ product.description }}</p>
                                     </div>
                                     <div class="card-footer">
+                                        {%for range in product_reviews%}
+                                        {%if product.pk == range.product_id %}
+                                        {% if range.avg_rating != Null %}
+                                        <p>{{range.avg_rating}}</p>
+                                        {% else %}
+                                        <p>0</p>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                     </div>
                                 </div>
@@ -135,6 +144,15 @@
                                         <p class="card-text">{{ product.description }}</p>
                                     </div>
                                     <div class="card-footer">
+                                        {%for range in product_reviews%}
+                                        {%if product.pk == range.product_id %}
+                                        {% if range.avg_rating != Null %}
+                                        <p>{{range.avg_rating}}</p>
+                                        {% else %}
+                                        <p>0</p>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                     </div>
                                 </div>
@@ -200,6 +218,15 @@
                                         <p class="card-text">{{ product.description }}</p>
                                     </div>
                                     <div class="card-footer">
+                                        {%for range in product_reviews%}
+                                        {%if product.pk == range.product_id %}
+                                        {% if range.avg_rating != Null %}
+                                        <p>{{range.avg_rating}}</p>
+                                        {% else %}
+                                        <p>0</p>
+                                        {% endif %}
+                                        {% endif %}
+                                        {% endfor %}
                                         <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                                     </div>
                                 </div>
