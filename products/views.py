@@ -1,3 +1,4 @@
+from django.db.models import Avg, F
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import ProductForm
@@ -23,13 +24,16 @@ def product_detail(request, pk):
     Product view
     """
     product = get_object_or_404(Product, pk=pk)
+    product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
+    product_id=F("id"))
     reviews = Review.objects.all()
 
     for review in reviews:
         review_list = Review.objects.all().order_by(
-            '-pub_date').filter(product__name=product.name)[:9]
+            '-pub_date').filter(product__id=product.pk)[:9]
 
-    return render(request, "productdetail.html", {'product': product, 'reviews': reviews, 'review_list': review_list})
+    return render(request, "productdetail.html", {'product': product, 'reviews': reviews,
+     'review_list': review_list, 'product_reviews':product_reviews})
 
 
 def edit_product(request, id):
@@ -56,3 +60,18 @@ def toggle_status(request, id):
     product.in_stock = not product.in_stock
     product.save()
     return redirect(dashboard_product)
+
+
+def product_avg_rating(request, id):
+    product = get_object_or_404(Product, id=id)
+    reviews = Review.objects.all()
+    rating_list = list()
+    if review_list:
+        for review in reviews:
+            rating_list = review["rating"]
+        return rating_list
+    for num in rating_list:
+        sum = num + num
+    rating_avg = sum/len(review_list)
+    print(rating_avg)
+    return render({"rating_avg": rating_avg})
