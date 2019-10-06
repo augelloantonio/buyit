@@ -32,7 +32,7 @@
                     {%for range in product_reviews%}
                     {%if product.pk == range.product_id %}
                     {% if range.avg_rating != Null %}
-                    <p>{{range.avg_rating}}</p>
+                    <p id="star_rating">{{range.avg_rating}}</p>
                     {% else %}
                     <p>0</p>
                     {% endif %}
