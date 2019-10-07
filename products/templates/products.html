@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+
+
 {% block content %}
 <div class="container-fluid">
 
@@ -32,13 +34,12 @@
                     {%for range in product_reviews%}
                     {%if product.pk == range.product_id %}
                     {% if range.avg_rating != Null %}
-                    <p id="star_rating">{{range.avg_rating}}</p>
+                    <p class="star_rating" value="{{range.avg_rating}}">Rated: {{range.avg_rating}}/5</p>
                     {% else %}
-                    <p>0</p>
+                    <p>Rated: 0/5</p>
                     {% endif %}
                     {% endif %}
                     {% endfor %}
-                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                 </div>
             </div>
         </div>
