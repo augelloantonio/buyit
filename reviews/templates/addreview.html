@@ -2,9 +2,14 @@
 {% load bootstrap_tags %}
 {% block content %}
 
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form | as_bootstrap }}
-    <button type="submit" class="btn btn-info">Save</button>
-</form>
+<div class="add_review">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Rating</label>
+
+
+        {{ form | as_bootstrap }}
+        <button type="submit" class="btn btn-info">Save</button>
+    </form>
+</div>
 {% endblock %}
