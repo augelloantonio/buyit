@@ -26,6 +26,6 @@ def get_voucher(request):
             request.session['voucher_id'] = None
     else:
         voucher_form = VoucherForm()
-    messages.error(request, 'Error')
+        messages.error(request, 'Error')
     return redirect("view_cart")
 
