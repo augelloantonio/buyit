@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
 from django.contrib import messages, auth
 from django.urls import reverse
 from .forms import UserLoginForm, UserRegistrationForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
+from orders.models import Order, OrderLineItem
 
 
 # Create your views here.
@@ -50,8 +51,14 @@ def login(request):
 
 @login_required
 def profile(request):
-    """A view that displays the profile page of a logged in user"""
-    return render(request, 'profile.html')
+    user = request.user
+
+    orders = Order.objects.all()
+    order_info = OrderLineItem.objects.all()
+    # filtering order for user 
+    user_orders = OrderLineItem.objects.filter(user=user).order_by('-date')
+
+    return render(request, 'profile.html', {'user_orders':user_orders})
 
 
 def register(request):
