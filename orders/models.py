@@ -3,11 +3,12 @@ from products.models import Product
 from django.conf import settings
 from cart.contexts import cart_contents
 from datetime import datetime    
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 
-
-class Order(models.Model):
+class Order(models.Model):  
     full_name = models.CharField(max_length=50, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)
     email_address = models.CharField(max_length=20, blank=False, default="")
@@ -24,6 +25,8 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)  
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField(blank=False)
@@ -32,3 +35,4 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return "{0} {1} {2} @ {3}".format(self.quantity, self.product.name, self.product.price, self.total)
+
