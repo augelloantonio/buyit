@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 from products.models import Product
 
 
@@ -12,6 +13,8 @@ class Review(models.Model):
         (4, '4'),
         (5, '5'),
     )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, default=1)
     review_summary = models.CharField(max_length=254, default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     pub_date = models.DateTimeField(
@@ -19,6 +22,6 @@ class Review(models.Model):
     user_name = models.CharField(max_length=100)
     comment = models.CharField(max_length=200)
     rating = models.PositiveIntegerField(choices=RATING_CHOICES)
-
+    
     def __str__(self):
         return self.review_summary
