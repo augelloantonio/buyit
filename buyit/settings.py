@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'dashboard',
     'reviews',
     'charts',    
+    'voucher'
 ]
 
 MIDDLEWARE = [
