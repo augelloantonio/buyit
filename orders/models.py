@@ -13,14 +13,14 @@ class Order(models.Model):
                              on_delete=models.CASCADE, default=1)
     full_name = models.CharField(max_length=50, blank=False)
     phone_number = models.CharField(max_length=20, blank=False)
-    email_address = models.CharField(max_length=20, blank=False, default="")
+    email_address = models.CharField(max_length=100, blank=False, default="")
     country = models.CharField(max_length=40, blank=False)
     postcode = models.CharField(max_length=20, blank=True)
     town_or_city = models.CharField(max_length=40, blank=False)
     street_address1 = models.CharField(max_length=40, blank=False)
     street_address2 = models.CharField(max_length=40, blank=False)
     county = models.CharField(max_length=40, blank=False)
-    date = models.DateField()
+    date = models.DateField(null=True)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
@@ -32,7 +32,7 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField(blank=False)
-    total = models.DecimalField(blank=False, default=0, max_digits=100, decimal_places=2)
+    total = models.DecimalField(blank=False, default=0, max_digits=100000, decimal_places=2)
     date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
