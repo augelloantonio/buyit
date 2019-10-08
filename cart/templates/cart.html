@@ -57,7 +57,11 @@
     <div class="row">
         <p>Total</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+        <br>
+        <hr>
+        <p>New Total:</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ new_total }}</p>
+        <br>
         <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"
                 aria-hidden="true"></span>Checkout</a>
     </div>
