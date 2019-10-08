@@ -16,32 +16,52 @@
                 <h3>{{ item.product.name }}</h3>
                 <p class="product-description">{{ item.product.description }}</p>
                 <p>{{ item.product.price }}</p>
-                <p>
 
-                    <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                            <div class="input-group">
-                                <div class="input-group-addon">Qty</div>
-                                <input name="quantity" type="number" min="0" max="999" class="form-control">
-                                <div class="input-group-addon">{{item.quantity}}</div>
-                            </div>
+                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">Qty</div>
+                            <input name="quantity" type="number" min="0" max="999" class="form-control">
+                            <div class="input-group-addon">{{item.quantity}}</div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"
-                                aria-hidden="true"></span>Amend</button>
-                    </form>
-                </p>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"
+                            aria-hidden="true"></span>Amend</button>
+                </form>
             </div>
         </div>
         {% endfor %}
     </div>
+    <div class="form-group col-md-6">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        <form class="card p-2" action="{% url 'voucher' %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                {{ voucher_form }}
+                <div class="input-group-append">
+                    <button class="btn btn-secondary btn-md waves-effect m-0" type="submit">Redeem</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
     <div class="row">
         <p>Total</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
+        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ new_total }}</p>
         <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"
                 aria-hidden="true"></span>Checkout</a>
     </div>
-</div>
 
+
+</div>
 {% endblock %}
