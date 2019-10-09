@@ -35,8 +35,8 @@ class ChartData(APIView):
         serializer = ProductSerializer(product, many=True)
         product_data = serializer.data
 
-        
-        product_name = Product.objects.all().values("name", "quantity_sold").order_by('-quantity_sold')[0:5]
+        product_name = Product.objects.all().values(
+            "name", "quantity_sold").order_by('-quantity_sold')[0:5]
 
         list_product_name = list()
         quantity_product_sold = list()
