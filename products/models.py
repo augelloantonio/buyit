@@ -18,6 +18,7 @@ class Product(models.Model):
     in_stock = models.BooleanField(blank=False, default=True)
     quantity_sold = models.IntegerField(default=0)
 
+
     def __str__(self):
         return self.name
         
