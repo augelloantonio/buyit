@@ -33,11 +33,18 @@ def dashboard(request):
     dataset = OrderLineItem.objects.annotate(month=TruncMonth(
         'date')).values('total').annotate(order_sum=(Sum('total')))
 
-    return render(request, "dashboard.html", {"orders": orders, "total_orders_earning": total_orders_earning,
-                                              "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
-                                              "total_products": total_products, "total_products_in_stock": total_products_in_stock,
-                                              "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
-                                              'dataset': dataset})
+    # Calculate percentage of products stok/not stock
+    perc_stock_prod = (total_products_in_stock/total_products)*100
+    perc_not_stock_prod = (total_products_not_stock/total_products)*100
+
+
+    context = {"orders": orders, "total_orders_earning": total_orders_earning,
+               "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
+               "total_products": total_products, "total_products_in_stock": total_products_in_stock,
+               "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
+               'dataset': dataset, 'perc_stock_prod':perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod}
+
+    return render(request, "dashboard.html", context)
 
 
 @login_required
