@@ -1,0 +1,16 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+html{
+    height: 100%;
+  }
+  body {
+    min-height: 100%;
+  }
+  
+  .container_pages {
+      position: relative;
+      min-height: 100vh;
+      margin-left: 25px;
+      margin-right: 25px;
+  }

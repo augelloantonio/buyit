@@ -1,10 +1,14 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "ACGA,AAAA,IAAI,CAAA;EACA,MAAM,EAAE,IAAI;CACb;;AACD,AAAA,IAAI,CAAC;EACH,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,gBAAgB,CAAC;EACb,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,KAAK;EACjB,WAAW,EAAE,IAAI;EACjB,YAAY,EAAE,IAAI;CACrB;;ACfH,AAAA,eAAe;AACf,kBAAkB,CAAC;EACf,MAAM,EAAE,KAAK;EACb,UAAU,EAAE,MAAM;EAClB,QAAQ,EAAE,KAAK;EACf,QAAQ,EAAE,MACd;CAAC;;AAED,AAAA,gBAAgB,CAAC;EACb,SAAS,EAAE,IAAI;EACf,KAAK,EAAE,KAAK;CACf;;AAED,AAAA,oBAAoB,CAAC;EACjB,QAAQ,EAAE,QAAQ;EAClB,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,IAAI;CACd;;AEjBD,AAAA,QAAQ,CAAC;EACL,eAAe,EAAE,OAAO;EACxB,mBAAmB,EAAE,aAAa;EAClC,iBAAiB,EAAE,SAAS;EAC5B,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,MAAM;CACjB;;ACPD,AAAA,WAAW,CAAA;EACP,MAAM,EAAE,IAAI;CACf;;AAED,AAAA,oBAAoB,CAAC,EAAE,CAAA;EACnB,gBAAgB,EAAE,KAAK;CAC1B",
     "sources": [
         "main.scss",
+        "buyit/_general.scss",
         "buyit/_homepage.scss",
-        "buyit/_charts.scss"
+        "buyit/_charts.scss",
+        "buyit/_products.scss",
+        "buyit/_carousel.scss",
+        "buyit/_dashboard.scss"
     ],
     "names": [],
     "file": "main.css"

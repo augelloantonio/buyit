@@ -1,1 +1,51 @@
-/* No CSS *//*# sourceMappingURL=main.css.map */
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.container_pages {
+  position: relative;
+  min-height: 100vh;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+full-width-logo,
+.full-width-header {
+  height: 100vh;
+  text-align: center;
+  position: block;
+  overflow: hidden;
+}
+
+.ico-narrow-down {
+  font-size: 4rem;
+  color: black;
+}
+
+.narrow-down-display {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.product {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.slider_bar {
+  height: 20px;
+}
+
+.carousel-indicators li {
+  background-color: black;
+}
+/*# sourceMappingURL=main.css.map */
