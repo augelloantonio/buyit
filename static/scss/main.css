@@ -32,6 +32,10 @@ full-width-logo,
   width: 100%;
 }
 
+.chart-row {
+  max-width: 75%;
+}
+
 .product {
   background-size: contain;
   background-position: center center;
