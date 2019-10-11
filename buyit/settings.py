@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'stripe',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -119,8 +120,9 @@ AUTHENTICATION_BACKENDS = [
     'accounts.backends.CaseInsensitiveAuth'
 ]
 
+
 DATE_INPUT_FORMATS = [
-    '%d %B %Y'
+    '%d %M %Y'
 ]
 
 
