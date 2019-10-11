@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
 from products.models import Product
-from django.db.models import Count, Sum
+from django.db.models import Count, Sum, Q
 from products.forms import ProductForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
@@ -24,6 +24,7 @@ def dashboard(request):
     total_products_not_stock = product.exclude(in_stock=True).count()
     total_reviews = reviews.count()
 
+
     for items in order_info:
         total_product_sold = sum(items.quantity for items in order_info)
 
@@ -37,12 +38,11 @@ def dashboard(request):
     perc_stock_prod = (total_products_in_stock/total_products)*100
     perc_not_stock_prod = (total_products_not_stock/total_products)*100
 
-
     context = {"orders": orders, "total_orders_earning": total_orders_earning,
                "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
                "total_products": total_products, "total_products_in_stock": total_products_in_stock,
                "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
-               'dataset': dataset, 'perc_stock_prod':perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod}
+               'dataset': dataset, 'perc_stock_prod': perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod,}
 
     return render(request, "dashboard.html", context)
 

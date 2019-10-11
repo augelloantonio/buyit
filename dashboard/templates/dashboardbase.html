@@ -13,8 +13,8 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
 
     <!-- FontAwesome CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-        type='text/css'>
+    <script src="https://kit.fontawesome.com/98143850da.js" crossorigin="anonymous"></script>
+
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -28,15 +28,21 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="bg-light border-right navbar-primary" id="sidebar-wrapper">
             <div class="sidebar-heading">Start Bootstrap </div>
             <div class="list-group list-group-flush">
-                <a href="{% url 'dashboard'%}" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="{%url 'dashboard_orders'%}" class="list-group-item list-group-item-action bg-light">Orders</a>
-                <a href="{% url 'dashboard_product' %}" class="list-group-item list-group-item-action bg-light">Products</a>
-                <a href="{% url 'add_a_product' %}" class="list-group-item list-group-item-action bg-light">Add a Product</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                <a href="{% url 'dashboard'%}" class="list-group-item list-group-item-action bg-light"><i
+                        class="fas fa-chart-line navbar-icon"></i><span class="nav-label">Dashboard</span></a>
+                <a href="{%url 'dashboard_orders'%}" class="list-group-item list-group-item-action bg-light"><i
+                        class="far fa-clipboard navbar-icon"></i><span class="nav-label">Orders</span></a>
+                <a href="{% url 'dashboard_product' %}" class="list-group-item list-group-item-action bg-light"><i
+                        class="far fa-list-alt navbar-icon"></i><span class="nav-label">Products</span></a>
+                <a href="{% url 'add_a_product' %}" class="list-group-item list-group-item-action bg-light"><i
+                        class="far fa-plus-square navbar-icon"></i><span class="nav-label">Add a Product</span></a>
+                <a href="#" class="list-group-item list-group-item-action bg-light"><span
+                        class="nav-label">Profile</span></a>
+                <a href="#" class="list-group-item list-group-item-action bg-light"><span
+                        class="nav-label">Status</span></a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -44,9 +50,8 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <button class="btn btn-primary" id="menu-toggle">Toggle Menu</button>
-
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top">
+                <button class="btn btn-primary btn-expand-collapse" id="menu-toggle">Toggle Menu</button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -100,7 +105,7 @@
 
     <!-- Personal JS-->
     <script src="{% static 'js/custom.js' %}"></script>
-    
+
 </body>
 
 </html>
