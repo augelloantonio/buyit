@@ -7,8 +7,6 @@ class Voucher(models.Model):
     amount = models.FloatField(default=0)
     price_reducing = models.IntegerField(default=0)
     active = models.BooleanField(default=False)
-    date_from = models.DateTimeField(default=datetime.now())
-    date_to = models.DateTimeField(default=datetime.now())
 
 
 def __str__(self):
