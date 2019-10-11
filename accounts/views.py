@@ -5,18 +5,15 @@ from .forms import UserLoginForm, UserRegistrationForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from orders.models import Order, OrderLineItem
+from home.views import index
+from django.contrib.auth import logout as django_logout
 
 
-# Create your views here.
-def index(request):
-    """A view that displays the index page"""
-    return render(request, "index.html")
 
+@login_required
 def logout(request):
-    """A view that logs the user out and redirects back to the index page"""
-    auth.logout(request)
-    messages.success(request, 'You have successfully logged out')
-    return redirect(reverse('index'))
+    django_logout(request)
+    return  HttpResponseRedirect(reverse('index'))
 
 
 def login(request):

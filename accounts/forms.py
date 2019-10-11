@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
-from .models import UserAddress
 
 
 class UserLoginForm(forms.Form):
@@ -37,14 +36,5 @@ class UserRegistrationForm(UserCreationForm):
 
         if password1 != password2:
             raise ValidationError("Passwords do not match")
-        return password2
 
-class UserAddressForm(forms.Form):
-    class AddressForm(forms.ModelForm):
-        class Meta:
-            model = UserAddress
-            fields = (
-                'full_name', 'phone_number', 'country', 'postcode',
-                'town_or_city', 'street_address1', 'street_address2',
-                'county', 'email_address'
-            )
+        return password2

@@ -2,7 +2,7 @@ from django.urls import path, include
 from . import urls_reset
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import index, register, profile, logout, login
+from .views import register, profile, logout, login
 
 urlpatterns = [
     path('logout/', logout, name='logout'),
