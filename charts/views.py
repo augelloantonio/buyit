@@ -8,6 +8,7 @@ from rest_framework import viewsets
 from django.contrib.auth.models import User
 from orders.models import Order, OrderLineItem
 from products.models import Product
+from reviews.models import Review
 from .serializers import ProductSerializer, MonthlyEarning
 from django.db.models.functions import TruncMonth, TruncYear
 
@@ -37,6 +38,12 @@ class ChartData(APIView):
 
         product_name = Product.objects.all().values(
             "name", "quantity_sold").order_by('-quantity_sold')[0:5]
+     
+
+        # Need to made a list of product with own quantity taken datas from order line items
+        list_product = list()
+        quantity_product = OrderLineItem.objects.all().values("quantity", "product_id")
+
 
         list_product_name = list()
         quantity_product_sold = list()
@@ -71,12 +78,28 @@ class ChartData(APIView):
             months_in_orders.append(entry['month'])
             orders_by_months.append(entry['total'])
 
+        # Counting score to made a chart with scores
+        # aggregation Q & not working
+        review_one_score = Review.objects.filter(rating=1).count()
+        review_two_score = Review.objects.filter(rating=2).count()
+        review_three_score = Review.objects.filter(rating=3).count()
+        review_four_score = Review.objects.filter(rating=4).count()
+        review_five_score = Review.objects.filter(rating=5).count()
+        
+        # Sum total charts
+        one_two_rating = review_one_score + review_two_score
+        three_four_rating = review_three_score + review_four_score
+        five_riting = review_five_score
+
+
         # calculate number of product sold by product an made a pie chart
 
-        # Labels
+        # 
+        label_rating = ["Negative", "Medium", "Positive"]
 
         # Assign data
         data = {
+            "label_rating": label_rating,
             "number_of_orders_by_month": number_of_orders_by_month,
             "months_in_earning": months_in_earning,
             "earning": earning,
@@ -84,6 +107,8 @@ class ChartData(APIView):
             "orders_by_months": orders_by_months,
             "product_name": list_product_name,
             "quantity_product_sold": quantity_product_sold,
+            "score_rating": [one_two_rating, three_four_rating, five_riting],
+            "quantity_product":quantity_product
         }
 
         return Response(data)
