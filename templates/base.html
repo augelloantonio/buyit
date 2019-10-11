@@ -13,8 +13,8 @@
   <title>Shop Homepage - Start Bootstrap Template</title>
 
   <!-- FontAwesome CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    type='text/css'>
+  <script src="https://kit.fontawesome.com/98143850da.js" crossorigin="anonymous"></script>
+
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -43,7 +43,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           {% if user.is_authenticated %}
-          {% if request.user.is_superuser %}
+          {% if user.is_superuser %}
           <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-user"></i>
               Dashboard</a></li>
           {% endif %}
