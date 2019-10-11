@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from products.models import Product
+from django.contrib.auth.models import User
 
 
 class Review(models.Model):
@@ -13,7 +14,7 @@ class Review(models.Model):
         (4, '4'),
         (5, '5'),
     )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(User,
                              on_delete=models.CASCADE, default=1)
     review_summary = models.CharField(max_length=254, default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
