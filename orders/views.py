@@ -18,12 +18,12 @@ stripe.api_key = settings.STRIPE_SECRET
 @login_required()
 def checkout(request):
     if request.method == "POST":
-
         order_form = OrderForm(request.POST)
         payment_form = MakePaymentForm(request.POST)
+        code = None
         # Handle bug if voucher_id is not in session
-        if request.session['voucher_id'] != None:
-            voucher_id = request.session.get('voucher_id')
+        if 'voucher_id' in request.session:
+            voucher_id = request.session['voucher_id']
             code = Voucher.objects.get(id=voucher_id)
         else:
             None
@@ -39,7 +39,7 @@ def checkout(request):
             for id, quantity in cart.items():
                 product = get_object_or_404(Product, pk=id)
                 total += quantity * product.price
-                if request.session['voucher_id'] != None:
+                if code != None:
                     discount = (code.price_reducing/Decimal('100'))*total
                     new_total = total - discount
                 else:
@@ -51,8 +51,6 @@ def checkout(request):
                     total=new_total,
                 )
                 order_line_item.save()
-                product.quantity_sold == quantity
-                product.save()
             try:
                 customer = stripe.Charge.create(
                     amount=int(new_total * 100),
@@ -68,7 +66,7 @@ def checkout(request):
                 # empty session cart
                 request.session['cart'] = {}
                 # Remove voucher from session
-                request.session['voucher_id'] = None
+                del request.session["voucher_id"]
                 return redirect(reverse('index'))
             else:
                 messages.error(request, "Unable to take payment")
