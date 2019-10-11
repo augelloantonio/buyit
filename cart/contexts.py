@@ -11,11 +11,17 @@ def cart_contents(request):
     every page
     """
     cart = request.session.get('cart', {})
+    
 
     # Handle bug if voucher_id is not in session
-    if request.session['voucher_id'] != None:
+    code = None
+
+    if 'voucher_id':
         voucher_id = request.session.get('voucher_id')
-        code = Voucher.objects.get(id=voucher_id)
+        try:
+            code = Voucher.objects.get(id=voucher_id)
+        except Voucher.DoesNotExist:
+            code = None
     else:
         None
 
@@ -30,7 +36,7 @@ def cart_contents(request):
         product = get_object_or_404(Product, pk=id)
         total += quantity * product.price
         # Handle bug if voucher_id is not in session
-        if request.session['voucher_id'] != None:
+        if code != None:
             discount = (code.price_reducing/Decimal('100'))*total
             new_total = total - discount
         else:
