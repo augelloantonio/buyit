@@ -8,5 +8,6 @@ from django.db.models import Avg, F
 def index(request):
     products = Product.objects.all()
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
-                                           product_id=F("id"))
-    return render(request, "index.html", {"products": products, "product_reviews":product_reviews})
+                                               product_id=F("id"))
+
+    return render(request, "index.html", {"products": products, "product_reviews": product_reviews})
