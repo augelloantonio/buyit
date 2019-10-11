@@ -15,3 +15,8 @@ window.onscroll = function() {
   }
   prevScrollpos = currentScrollPos;
 };
+
+
+$('.btn-expand-collapse').click(function(e) {
+  $('#sidebar-wrapper').toggleClass('collapsed');
+});
