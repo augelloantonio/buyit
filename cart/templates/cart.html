@@ -13,7 +13,7 @@
                     <th scope="col">Product Image</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
+                    <th scope="col">Price </th>
                 </tr>
             </thead>
             <tbody>
@@ -39,27 +39,27 @@
                                     aria-hidden="true"></span>Amend</button>
                         </form>
                     </td>
-                    <td>{{ item.product.price}} * {{item.quantity}}</td>
+                    <td>{{ item.product.price}} <i class="fas fa-euro-sign"></i> * {{item.quantity}}</td>
                 </tr>
                 {% endfor %}
                 <tr>
-                    <th >Total Price</th>
+                    <th>Total Price</th>
                     <td></td>
                     <td></td>
-                    <td id="total">{{total}}</td>
+                    <td id="total">{{total}} <i class="fas fa-euro-sign"></i></td>
                 </tr>
                 {% if code != None %}
                 <tr>
                     <th>Discount Price</th>
                     <td></td>
                     <td></td>
-                    <td id="new_total">{{new_total}}</td>
+                    <td id="new_total">{{new_total|floatformat:2}} <i class="fas fa-euro-sign"></i></td>
                 </tr>
                 {% endif %}
             </tbody>
         </table>
-
     </div>
+
     <div class="form-group col-md-6">
         {% if messages %}
         <ul class="messages">
@@ -68,30 +68,28 @@
                 {% endfor %}
         </ul>
         {% endif %}
-
-
     </div>
 
-
-    <form class="card p-2" action="{% url 'voucher' %}" method="POST">
-        {% csrf_token %}
-        <div class="input-group">
-            <input type="text" name="code" class="form-control" placeholder="Promo code">
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
+    <div class="voucher">
+        <div class="center-align">
+            <p>Do you have a Promo Code?</p>
+            <form class="card p-2" action="{% url 'voucher' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" name="code" class="form-control" placeholder="Promo code">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                    </div>
+                </div>
+            </form>
+            <div class="checkout-btn">
+                <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span
+                        class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
             </div>
         </div>
-    </form>
-
-
-    <div class="row">
-        <p>New Total:</p>
-        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ new_total }}</p>
-        <br>
-        <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign"
-                aria-hidden="true"></span>Checkout</a>
     </div>
 
 
 </div>
+
 {% endblock %}
