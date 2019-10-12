@@ -11,7 +11,6 @@ def cart_contents(request):
     every page
     """
     cart = request.session.get('cart', {})
-    
 
     # Handle bug if voucher_id is not in session
     code = None
@@ -30,7 +29,6 @@ def cart_contents(request):
     product_count = 0
     new_total = 0
 
-    
     for id, quantity in cart.items():
         user = request.user
         product = get_object_or_404(Product, pk=id)
@@ -42,8 +40,11 @@ def cart_contents(request):
         else:
             new_total = total
         product_count += quantity
-        cart_items.append({'id': id, 'quantity': quantity, 'product': product, 'user': user})
+        cart_items.append({'id': id, 'quantity': quantity, 'product': product,
+                           'user': user})
+
 
     voucher_form = VoucherForm(request.POST)
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 'voucher_form':voucher_form,
-    'new_total':new_total}
+
+    return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 'voucher_form': voucher_form,
+            'new_total': new_total}

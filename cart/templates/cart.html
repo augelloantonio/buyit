@@ -5,34 +5,52 @@
 {% block content %}
 <div class="container_pages">
 
+
     <div class="row">
-        {% for item in cart_items %}
-
-        <div class="">
-
-            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"></div>
-
-            <div class="caption">
-                <h3>{{ item.product.name }}</h3>
-                <p class="product-description">{{ item.product.description }}</p>
-                <p>{{ item.product.price }}</p>
-
-                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">Qty</div>
-                            <input name="quantity" type="number" min="0" max="999" class="form-control">
-                            <div class="input-group-addon">{{item.quantity}}</div>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Product Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr>
+                    <th scope="row">
+                        <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')">
                         </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"
-                            aria-hidden="true"></span>Amend</button>
-                </form>
-            </div>
-        </div>
-        {% endfor %}
+                    </th>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{item.quantity}}
+                        <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">Qty</div>
+                                    <input name="quantity" type="number" min="0" max="999" class="form-control">
+                                    <div class="input-group-addon">{{item.quantity}}</div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-edit"
+                                    aria-hidden="true"></span>Amend</button>
+                        </form>
+                    </td>
+                    <td>{{ item.product.price}} * {{item.quantity}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <th>Total Price</th>
+                    <td></td>
+                    <td></td>
+                    <td>{{total}}</td>
+                </tr>
+            </tbody>
+        </table>
+
     </div>
     <div class="form-group col-md-6">
         {% if messages %}
@@ -42,16 +60,21 @@
                 {% endfor %}
         </ul>
         {% endif %}
-        <form class="card p-2" action="{% url 'voucher' %}" method="POST">
-            {% csrf_token %}
-            <div class="input-group">
-                {{ voucher_form }}
-                <div class="input-group-append">
-                    <button class="btn btn-secondary btn-md waves-effect m-0" type="submit">Redeem</button>
-                </div>
-            </div>
-        </form>
+
+
     </div>
+
+
+    <form class="card p-2" action="{% url 'voucher' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" name="code" class="form-control" placeholder="Promo code">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Redeem</button>
+            </div>
+        </div>
+    </form>
+
 
 
     <div class="row">
