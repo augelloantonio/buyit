@@ -11,6 +11,7 @@ body {
   min-height: 100vh;
   margin-left: 25px;
   margin-right: 25px;
+  bottom: -80px;
 }
 
 full-width-logo,
@@ -129,5 +130,9 @@ full-width-logo,
 
 .navbar-icon {
   font-size: 2rem;
+}
+
+.basic_price_lined {
+  text-decoration: line-through;
 }
 /*# sourceMappingURL=main.css.map */

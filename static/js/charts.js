@@ -70,7 +70,7 @@ $(document).ready(function() {
     // Order Chart
     var ctx2 = document.getElementById("chartOrders").getContext("2d");
     var chartOrder = new Chart(ctx2, {
-      type: "bar",
+      type: "line",
       data: {
         labels: label_orders_by_months,
         datasets: [

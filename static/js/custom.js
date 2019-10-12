@@ -16,7 +16,19 @@ window.onscroll = function() {
   prevScrollpos = currentScrollPos;
 };
 
+// jQuery functions
+//collapse sidebar in dashboard
+$(document).ready(function() {
+  $(".btn-expand-collapse").click(function(e) {
+    $("#sidebar-wrapper").toggleClass("collapsed");
+  });
 
-$('.btn-expand-collapse').click(function(e) {
-  $('#sidebar-wrapper').toggleClass('collapsed');
+  // Add style to total price if discount code is applied
+  if ($("#new_total").is(":visible")) {
+    $("#total").addClass("basic_price_lined");
+    console.log("visible");
+  } else {
+    $("#total").removeClass(".basic_price_lined");
+    console.log("not visible");
+  }
 });
