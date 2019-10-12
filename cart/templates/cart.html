@@ -43,11 +43,19 @@
                 </tr>
                 {% endfor %}
                 <tr>
-                    <th>Total Price</th>
+                    <th >Total Price</th>
                     <td></td>
                     <td></td>
-                    <td>{{total}}</td>
+                    <td id="total">{{total}}</td>
                 </tr>
+                {% if code != None %}
+                <tr>
+                    <th>Discount Price</th>
+                    <td></td>
+                    <td></td>
+                    <td id="new_total">{{new_total}}</td>
+                </tr>
+                {% endif %}
             </tbody>
         </table>
 
@@ -76,12 +84,7 @@
     </form>
 
 
-
     <div class="row">
-        <p>Total</p>
-        <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-        <br>
-        <hr>
         <p>New Total:</p>
         <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ new_total }}</p>
         <br>
