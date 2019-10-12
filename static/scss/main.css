@@ -135,4 +135,18 @@ full-width-logo,
 .basic_price_lined {
   text-decoration: line-through;
 }
+
+.voucher-form {
+  min-width: 100%;
+}
+
+.center-align {
+  max-width: 35%;
+  margin: auto;
+  text-align: center;
+}
+
+.checkout-btn {
+  margin-top: 0.5rem;
+}
 /*# sourceMappingURL=main.css.map */
