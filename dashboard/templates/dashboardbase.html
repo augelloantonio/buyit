@@ -13,7 +13,15 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
 
     <!-- FontAwesome CSS -->
-    <script src="https://kit.fontawesome.com/98143850da.js" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        (function () {
+            var css = document.createElement('link');
+            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
+            css.rel = 'stylesheet';
+            css.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(css);
+        })();
+    </script>
 
 
     <!-- Bootstrap core CSS -->
@@ -29,7 +37,7 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right navbar-primary" id="sidebar-wrapper">
-            <div class="sidebar-heading">Start Bootstrap </div>
+            <div class="sidebar-heading nav-label">Dashboard </div>
             <div class="list-group list-group-flush">
                 <a href="{% url 'dashboard'%}" class="list-group-item list-group-item-action bg-light"><i
                         class="fas fa-chart-line navbar-icon"></i><span class="nav-label">Dashboard</span></a>
@@ -39,6 +47,8 @@
                         class="far fa-list-alt navbar-icon"></i><span class="nav-label">Products</span></a>
                 <a href="{% url 'add_a_product' %}" class="list-group-item list-group-item-action bg-light"><i
                         class="far fa-plus-square navbar-icon"></i><span class="nav-label">Add a Product</span></a>
+                <a href="{% url 'add_a_category' %}" class="list-group-item list-group-item-action bg-light"><i
+                        class="far fa-plus-square navbar-icon"></i><span class="nav-label">Add a Category</span></a>
                 <a href="#" class="list-group-item list-group-item-action bg-light"><span
                         class="nav-label">Profile</span></a>
                 <a href="#" class="list-group-item list-group-item-action bg-light"><span
@@ -81,8 +91,10 @@
                     </ul>
                 </div>
             </nav>
-            {% block content %}
-            {% endblock %}
+            <div class="container_page">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
         <!-- ./Page content-->
     </div>
