@@ -14,7 +14,11 @@ body {
 }
 
 #page-content-wrapper {
-  min-width: 100%;
+  width: 100%;
+}
+
+#wrapper {
+  min-height: 100vh;
 }
 
 full-width-logo,
@@ -137,6 +141,10 @@ full-width-logo,
   padding: 1rem !important;
   text-align: center;
   font-weight: 600;
+}
+
+.container_page {
+  padding: 20px;
 }
 
 .basic_price_lined {
