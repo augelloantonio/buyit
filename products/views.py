@@ -1,22 +1,20 @@
 from django.db.models import Avg, F
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, CategoryForm
 from home.views import index
 from dashboard.views import dashboard_product
 from reviews.models import Review
-
-# Create your views here.
 
 
 def all_products(request):
     products = Product.objects.all()
 
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
-    product_id=F("id"))
+                                               product_id=F("id"))
     reviews = Review.objects.all()
 
-    return render(request, "products.html", {"products": products, "product_reviews":product_reviews})
+    return render(request, "products.html", {"products": products, "product_reviews": product_reviews})
 
 
 def product_detail(request, pk):
@@ -25,7 +23,7 @@ def product_detail(request, pk):
     """
     product = get_object_or_404(Product, pk=pk)
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
-    product_id=F("id"))
+                                               product_id=F("id"))
     reviews = Review.objects.all()
 
     for review in reviews:
@@ -33,7 +31,7 @@ def product_detail(request, pk):
             '-pub_date').filter(product__id=product.pk)[:9]
 
     return render(request, "productdetail.html", {'product': product, 'reviews': reviews,
-     'review_list': review_list, 'product_reviews':product_reviews})
+                                                  'review_list': review_list, 'product_reviews': product_reviews})
 
 
 def edit_product(request, id):
@@ -75,3 +73,19 @@ def product_avg_rating(request, id):
     rating_avg = sum/len(review_list)
     print(rating_avg)
     return render({"rating_avg": rating_avg})
+
+
+"""
+def all_products(request, category_id=None):
+
+    If there's no category id in the URL, return all products.
+    Otherwise, filter on that category but return the same template
+
+
+    if not category_id:
+        products = Product.objects.all()
+    else:
+        products = Product.object.filter(category=category_id)
+
+    return render(request, 'products/all_products.html', products=products)
+    """
