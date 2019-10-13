@@ -31,7 +31,7 @@
 <body>
 
   <!-- Navigation -->
-  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <div class="navbar-header">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -39,6 +39,17 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
+        <div class="cart-mobile">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i>
+                Cart
+                {% if product_count > 0 %}
+                <label class="badge badge-warning">{{ product_count }}</label>
+                {% endif %}
+              </a>
+            </li>
+        </div>
       </div>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
@@ -49,7 +60,8 @@
           {% endif %}
           <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i>
               Profile</a></li>
-          <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Log
+          <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>
+              Log
               Out</a></li>
           {%  else %}
           <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i class="fa fa-user-plus"></i>

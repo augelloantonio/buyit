@@ -42,8 +42,8 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            {% for product in products|slice:":8"  %}
-                            {% if product.category == "bestseller" %}
+                            {% for product in products|slice:":9"  %}
+                            {% if product.product_category.name == "bestseller" %}
                             <!--card-->
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
@@ -117,8 +117,8 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            {% for product in products|slice:":8" %}
-                            {% if product.category == "latest" %}
+                            {% for product in products|slice:":9" %}
+                            {% if product.product_category.name == "latest" %}
                             <!--card-->
                             <div class="col-lg-4 col-md-6 mb-4">
                                 <div class="card h-100">
