@@ -16,7 +16,7 @@
     left: 0px;
     position: relative;
     top: 0px;
-    width: 350px;
+    min-width: 220px;
     z-index: 8;
     overflow: hidden;
     -webkit-transition: all 0.1s ease-in-out;
@@ -24,8 +24,8 @@
     transition: all 0.1s ease-in-out;
 }
 
-.navbar-primary.collapsed {
-    width: 60px;
+.collapsed {
+    min-width: 60px !important;
 }
 
 .navbar-primary.collapsed .glyphicon {
@@ -76,5 +76,13 @@
 }
 
 .navbar-icon {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 2px;
+    margin-right: 8px;
+}
+
+.sidebar-heading {
+    padding: 1rem !important;
+    text-align: center;
+    font-weight: 600;
 }
