@@ -1,0 +1,22 @@
+@media (max-width:992px) {
+    .navbar-header {
+        width: 100%;
+
+    }
+}
+
+
+@media (max-width:992px) {
+    .cart-mobile {
+        float: right;
+        display: block;
+    }
+}
+
+
+
+@media (min-width:992px) {
+    .cart-mobile {
+        display: none;
+    }
+}
