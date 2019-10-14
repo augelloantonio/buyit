@@ -11,6 +11,8 @@ body {
   margin-left: 25px;
   margin-right: 25px;
   bottom: -80px;
+  display: -ms-grid;
+  display: grid;
 }
 
 #page-content-wrapper {
@@ -38,6 +40,14 @@ full-width-logo,
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.page-jumbotron {
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  top: 10%;
+  position: relative;
 }
 
 .product {
@@ -182,5 +192,21 @@ full-width-logo,
   .cart-mobile {
     display: none;
   }
+}
+
+.orders-container {
+  width: 75%;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .orders-container {
+    padding: 0.3rem;
+    width: 100%;
+  }
+}
+
+.pagination-container {
+  float: right;
 }
 /*# sourceMappingURL=main.css.map */
