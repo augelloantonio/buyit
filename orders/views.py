@@ -11,7 +11,6 @@ from voucher.models import Voucher
 from decimal import Decimal
 import stripe
 
-# Create your views here.
 stripe.api_key = settings.STRIPE_SECRET
 
 
@@ -22,7 +21,7 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
         code = None
         # Handle bug if voucher_id is not in session
-        if 'voucher_id' in request.session:
+        if 'voucher_id':
             voucher_id = request.session['voucher_id']
             code = Voucher.objects.get(id=voucher_id)
         else:
@@ -72,7 +71,8 @@ def checkout(request):
                 messages.error(request, "Unable to take payment")
         else:
             print(payment_form.errors)
-            messages.error(request, "We were unable to take a payment with that card!")
+            messages.error(
+                request, "We were unable to take a payment with that card!")
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
