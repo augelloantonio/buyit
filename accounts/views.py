@@ -6,14 +6,14 @@ from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from orders.models import Order, OrderLineItem
 from home.views import index
+from django.core.paginator import Paginator
 from django.contrib.auth import logout as django_logout
-
 
 
 @login_required
 def logout(request):
     django_logout(request)
-    return  HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('index'))
 
 
 def login(request):
@@ -28,7 +28,7 @@ def login(request):
                 auth.login(request, user)
                 messages.error(request, "You have successfully logged in")
 
-                if request.GET and request.GET['next'] !='':
+                if request.GET and request.GET['next'] != '':
                     next = request.GET['next']
                     print('fail')
                     return HttpResponseRedirect(next)
@@ -37,7 +37,8 @@ def login(request):
                     return redirect(reverse('index'))
             else:
                 print('fail')
-                user_form.add_error(None, "Your username or password are incorrect")
+                user_form.add_error(
+                    None, "Your username or password are incorrect")
     else:
         print('fail')
         user_form = UserLoginForm()
@@ -52,10 +53,13 @@ def profile(request):
 
     orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
-    # filtering order for user 
+    # filtering order for user
     user_orders = OrderLineItem.objects.filter(user=user).order_by('-date')
+    paginator = Paginator(user_orders, 6)
+    page = request.GET.get('page')
+    pagination_orders = paginator.get_page(page)
 
-    return render(request, 'profile.html', {'user_orders':user_orders})
+    return render(request, 'profile.html', {'pagination_orders': pagination_orders})
 
 
 def register(request):
