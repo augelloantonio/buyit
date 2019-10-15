@@ -21,9 +21,12 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
         code = None
         # Handle bug if voucher_id is not in session
-        if 'voucher_id':
+        if 'voucher_id' in request.session:
             voucher_id = request.session['voucher_id']
-            code = Voucher.objects.get(id=voucher_id)
+            try:
+                code = Voucher.objects.get(id=voucher_id)
+            except Voucher.DoesNotExist:
+                code = None
         else:
             None
         if order_form.is_valid() and payment_form.is_valid():
@@ -65,7 +68,6 @@ def checkout(request):
                 # empty session cart
                 request.session['cart'] = {}
                 # Remove voucher from session
-                del request.session["voucher_id"]
                 return redirect(reverse('index'))
             else:
                 messages.error(request, "Unable to take payment")
