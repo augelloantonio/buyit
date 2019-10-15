@@ -1,18 +1,19 @@
 full-width-logo,
 .full-width-header {
-    height: 100vh;
+    height: 75vh;
     text-align: center;
     position: block;
     overflow: hidden
 }
 
-.ico-narrow-down {
-    font-size: 4rem;
-    color: black;
+.logo-carousel {
+    width: 100%;
+    object-fit: cover;
+    height: 75vh;
 }
 
 
-@keyframes pulse {
+@keyframes jump {
     0% {
         opacity: 1;
     }
@@ -39,8 +40,13 @@ full-width-logo,
     position: absolute;
     bottom: 1rem;
     width: 100%;
-    animation: pulse 3s infinite;
+    animation: 3s infinite;
     animation-direction: normal;
+}
+
+.jumbotron-container {
+    margin: auto;
+    position: relative;
 }
 
 .page-jumbotron {
@@ -49,4 +55,69 @@ full-width-logo,
     margin: auto;
     top: 10%;
     position: relative;
+    padding: 4rem 2rem;
+    top: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.badge-new-product {
+    position: absolute;
+    padding-top: 6px;
+    float: right;
+    right: 11px;
+    top: 10px;
+    width: 80px;
+    height: 25px;
+    text-align: center;
+}
+
+// Animation for the badge new products
+.pulse {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fc013af5;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 0 rgba(225, 27, 27, 0.4);
+    box-shadow: 0 0 0 rgba(255, 0, 0, 0.4);
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse 2s infinite;
+    padding-top: 19px;
+}
+
+.pulse:hover {
+    animation: none;
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    }
+
+    70% {
+        -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    }
+
+    100% {
+        -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
+    }
+
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    }
+
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
 }

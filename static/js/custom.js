@@ -39,4 +39,10 @@ $(document).ready(function() {
     console.log("not visible");
   }
 
+  // Removing narrow down in homepage on scrolling down
+  $("#narrow-down-display").scroll(function() {
+    $("#narrow-down-display").hide();
+  });
 });
+
+
