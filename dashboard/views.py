@@ -6,6 +6,7 @@ from django.db.models import Count, Sum, Q
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
+from .filters import OrdersFilter
 
 
 @login_required
@@ -34,8 +35,13 @@ def dashboard(request):
         'date')).values('total').annotate(order_sum=(Sum('total')))
 
     # Calculate percentage of products stok/not stock
-    perc_stock_prod = (total_products_in_stock/total_products)*100
-    perc_not_stock_prod = (total_products_not_stock/total_products)*100
+
+    if total_products != 0:
+        perc_stock_prod = (total_products_in_stock/total_products)*100
+        perc_not_stock_prod = (total_products_not_stock/total_products)*100
+    else:
+        perc_stock_prod = 0
+        perc_not_stock_prod = 0
 
     context = {"orders": orders, "total_orders_earning": total_orders_earning,
                "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
@@ -52,7 +58,15 @@ def dashboard_orders(request):
     order_info = OrderLineItem.objects.all()
     product = Product.objects.all()
 
-    return render(request, "dashboardorders.html", {"order_info": order_info, "orders": orders, 'product': product})
+    filter_orders = OrdersFilter(request.GET, queryset=orders)
+
+    months = [i.month for i in Order.objects.values_list(
+        'date', flat=True).distinct()]
+    months_filtered = list(dict.fromkeys(months))
+
+    return render(request, "dashboardorders.html", {"order_info": order_info, "orders": orders,
+                                                    'product': product, 'filter': filter_orders,
+                                                    'months_filtered': months_filtered})
 
 
 def dashboard_order_details(request, id):
@@ -96,5 +110,5 @@ def add_a_category(request):
             category_form.save()
             return redirect(dashboard_product)
     else:
-            category_form = CategoryForm()
+        category_form = CategoryForm()
     return render(request, "dashboardaddcategory.html", {'category_form': category_form})

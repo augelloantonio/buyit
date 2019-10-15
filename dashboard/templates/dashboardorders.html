@@ -1,9 +1,23 @@
 {% extends "dashboardbase.html" %}
+{% load bootstrap_tags %}
 {% load staticfiles %}
+
+{% block css %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+{% endblock %}
 
 {%block content%}
 <div class="row">
-    {% for order in orders %}
+    <div class="col-sm-12">
+        <form method="GET">
+            {{ filter.form|as_bootstrap }}
+
+            <button type="submit" class="btn btn-info">Save</button>
+        </form>
+    </div>
+    {% for order in filter.qs %}
     <div class="col-sm-12 col-md-4">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
@@ -38,4 +52,9 @@
     {%endfor%}
 
 </div>
+
+
+<script>
+    $('#id_date').datepicker();
+</script>
 {% endblock %}
