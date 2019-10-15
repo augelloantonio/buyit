@@ -38,4 +38,5 @@ $(document).ready(function() {
     $("#total").removeClass(".basic_price_lined");
     console.log("not visible");
   }
+
 });

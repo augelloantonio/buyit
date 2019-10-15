@@ -11,10 +11,36 @@ full-width-logo,
     color: black;
 }
 
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    25% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
 .narrow-down-display {
     position: absolute;
-    bottom: 0;
+    bottom: 1rem;
     width: 100%;
+    animation: pulse 3s infinite;
+    animation-direction: normal;
 }
 
 .page-jumbotron {
