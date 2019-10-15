@@ -20,46 +20,47 @@
             </div>
         </div>
         <div class="col-9">
-
-            {% for product in products %}
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="{% url 'product_detail' product.id %}"><img class="card-img-top"
-                            src="/media/{{ product.image }}" alt="{{ product.name }}"></a>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
-                        </h4>
-                        <h5>{{ product.price }}</h5>
-                        <h5>{{ product.product_category.name }}</h5>
-                        <div>
-                            <form method="post" action="{% url 'add_to_cart' product.id %}">
-                                {% csrf_token %}
-                                <div class="input-group">
-                                    <input name="quantity" type="number" min="1" max="999" class="form-control"
-                                        placeholder="Quantity">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success" type="submit">Add</button>
-                                    </span>
-                                </div>
-                            </form>
+            <div class="row">
+                {% for product in products %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="{% url 'product_detail' product.id %}"><img class="card-img-top"
+                                src="/media/{{ product.image }}" alt="{{ product.name }}"></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                            </h4>
+                            <h5>{{ product.price }}</h5>
+                            <h5>{{ product.product_category.name }}</h5>
+                            <div>
+                                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                    {% csrf_token %}
+                                    <div class="input-group">
+                                        <input name="quantity" type="number" min="1" max="999" class="form-control"
+                                            placeholder="Quantity">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success" type="submit">Add</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                            <p class="card-text">{{ product.description|truncatechars:50  }}</p>
                         </div>
-                        <p class="card-text">{{ product.description }}</p>
-                    </div>
-                    <div class="card-footer">
-                        {%for range in product_reviews%}
-                        {%if product.pk == range.product_id %}
-                        {% if range.avg_rating != Null %}
-                        <p class="star_rating" value="{{range.avg_rating}}">Rated: {{range.avg_rating}}/5</p>
-                        {% else %}
-                        <p>Rated: 0/5</p>
-                        {% endif %}
-                        {% endif %}
-                        {% endfor %}
+                        <div class="card-footer">
+                            {%for range in product_reviews%}
+                            {%if product.pk == range.product_id %}
+                            {% if range.avg_rating != Null %}
+                            <p class="star_rating" value="{{range.avg_rating}}">Rated: {{range.avg_rating}}/5</p>
+                            {% else %}
+                            <p>Rated: 0/5</p>
+                            {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
