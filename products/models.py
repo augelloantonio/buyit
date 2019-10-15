@@ -21,8 +21,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='images')
     published_date = models.DateTimeField(
         blank=True, null=True, default=timezone.now)
-    product_category = models.ForeignKey(
-        Category, default=1, on_delete=models.CASCADE,)
+    product_category = models.ManyToManyField(Category)
     in_stock = models.BooleanField(blank=False, default=True)
     quantity_sold = models.IntegerField(default=0)
 

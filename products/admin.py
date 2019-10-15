@@ -4,9 +4,9 @@ from .models import Product, Category
 
 class ProductAdmin(admin.ModelAdmin):
     model = Product
-    list_display = ('name', 'product_category', 'in_stock')
-    list_filter = ['name', 'product_category', 'published_date', 'in_stock']
-    search_fields = ['name', 'product_category']
+    list_display = ('name', 'in_stock')
+    list_filter = ['name', 'published_date', 'in_stock']
+    search_fields = ['name']
 
 
 class CategoryAdmin(admin.ModelAdmin):

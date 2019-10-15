@@ -1,20 +1,39 @@
 from django.db.models import Avg, F
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product
-from .forms import ProductForm, CategoryForm
+from .models import Product, Category
+from .forms import ProductForm
 from home.views import index
 from dashboard.views import dashboard_product
 from reviews.models import Review
 
 
-def all_products(request):
-    products = Product.objects.all()
+def all_products(request, category_id=None):
+
+    categories = Category.objects.all()
 
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
                                                product_id=F("id"))
     reviews = Review.objects.all()
+    products = Product.objects.all()
 
-    return render(request, "products.html", {"products": products, "product_reviews": product_reviews})
+    return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
+                                             'categories': categories})
+
+
+def products_by_category(request, category_id=None):
+
+    product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
+                                               product_id=F("id"))
+    reviews = Review.objects.all()
+    categories = Category.objects.all()
+
+    if not category_id:
+        products = Product.objects.all()
+    else:
+        products = Product.objects.filter(product_category=category_id)
+
+    return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
+                                             'categories': categories})
 
 
 def product_detail(request, pk):
@@ -25,6 +44,7 @@ def product_detail(request, pk):
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
                                                product_id=F("id"))
     reviews = Review.objects.all()
+    review_list = []
 
     for review in reviews:
         review_list = Review.objects.all().order_by(
@@ -73,19 +93,3 @@ def product_avg_rating(request, id):
     rating_avg = sum/len(review_list)
     print(rating_avg)
     return render({"rating_avg": rating_avg})
-
-
-"""
-def all_products(request, category_id=None):
-
-    If there's no category id in the URL, return all products.
-    Otherwise, filter on that category but return the same template
-
-
-    if not category_id:
-        products = Product.objects.all()
-    else:
-        products = Product.object.filter(category=category_id)
-
-    return render(request, 'products/all_products.html', products=products)
-    """
