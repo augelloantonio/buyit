@@ -22,6 +22,7 @@ from orders import urls as urls_orders
 from dashboard import urls as urls_dashboard
 from reviews import urls as urls_review
 from voucher import urls as urls_voucher
+from home import urls as urls_home
 from django.conf import settings
 from django.conf.urls.static import static
 from home.views import index
@@ -36,5 +37,6 @@ urlpatterns = [
     path('dashboard/', include(urls_dashboard)),
     path('review/', include(urls_review)),
     path('voucher/', include(urls_voucher)),
+    path('home/', include(urls_home)),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
