@@ -6,6 +6,10 @@
     min-width: 100%;
 }
 
+.voucher{
+    text-align: center;
+}
+
 .center-align {
     max-width: 35%;
     margin: auto;
@@ -17,7 +21,6 @@
 }
 
 .amend-btn {
-    width: 100%;
 }
 
 .coupon-group {
@@ -36,4 +39,16 @@
 
 .code-form {
     border: 0px;
+}
+
+.tr-total-table {
+    width: 100%;
+}
+
+.container-cart {
+    padding: 20px;
+}
+
+.form-amend-quantity {
+    margin: auto;
 }

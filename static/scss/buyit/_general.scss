@@ -2,7 +2,8 @@ $font-stack: Helvetica,
 sans-serif;
 $primary-color: #333;
 
-html {
+html,
+body {
   position: relative;
   min-height: 100%;
 }

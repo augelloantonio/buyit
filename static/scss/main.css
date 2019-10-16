@@ -1,4 +1,5 @@
-html {
+html,
+body {
   position: relative;
   min-height: 100%;
 }
@@ -314,6 +315,10 @@ full-width-logo,
   min-width: 100%;
 }
 
+.voucher {
+  text-align: center;
+}
+
 .center-align {
   max-width: 35%;
   margin: auto;
@@ -322,10 +327,6 @@ full-width-logo,
 
 .checkout-btn {
   margin-top: 0.5rem;
-}
-
-.amend-btn {
-  width: 100%;
 }
 
 .coupon-group {
@@ -344,6 +345,18 @@ full-width-logo,
 
 .code-form {
   border: 0px;
+}
+
+.tr-total-table {
+  width: 100%;
+}
+
+.container-cart {
+  padding: 20px;
+}
+
+.form-amend-quantity {
+  margin: auto;
 }
 
 @media (max-width: 992px) {
@@ -379,5 +392,37 @@ full-width-logo,
 
 .pagination-container {
   float: right;
+}
+
+.checkout-review {
+  width: 100%;
+}
+
+.checkout-header {
+  width: 75%;
+  margin: auto;
+}
+
+.form-row {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+}
+
+.row-shipping-info {
+  border: 1px solid #c1c1c1;
+  border-radius: 10px;
+  margin: auto;
+}
+
+.credit-card-box {
+  padding: 25px;
+}
+
+.panel-title {
+  padding: 25px;
+  background: #44494ef5;
+  color: white;
+  border-radius: 10px;
 }
 /*# sourceMappingURL=main.css.map */

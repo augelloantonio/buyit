@@ -35,7 +35,7 @@ $(document).ready(function() {
     $("#total").addClass("basic_price_lined");
     console.log("visible");
   } else {
-    $("#total").removeClass(".basic_price_lined");
+    $("#total").removeClass("basic_price_lined");
     console.log("not visible");
   }
 });
