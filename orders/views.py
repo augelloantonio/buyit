@@ -21,7 +21,7 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
         code = None
         # Handle bug if voucher_id is not in session
-        if 'voucher_id' in request.session:
+        if 'voucher_id':
             voucher_id = request.session['voucher_id']
             try:
                 code = Voucher.objects.get(id=voucher_id)
@@ -61,20 +61,22 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
-
+                messages.warning(request, "Your card was declined! Pleace check that the payment details are correct and try again.")
+                return redirect('profile')
             if customer.paid:
-                messages.error(request, "You have successfully paid")
+                messages.success(request, "You have successfully paid. Your order will be processed soon.")
                 # empty session cart
                 request.session['cart'] = {}
                 # Remove voucher from session
-                return redirect(reverse('index'))
+                request.session['voucher'] = {}
+                return redirect('profile')
             else:
-                messages.error(request, "Unable to take payment")
+                messages.warning(request, "We were unable to take payment, we are sorry for the inconvenient, please, try again")
+                return redirect('profile')
         else:
             print(payment_form.errors)
-            messages.error(
-                request, "We were unable to take a payment with that card!")
+            messages.warning("We were unable to take a payment with that card!")
+            request ('profile')
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()

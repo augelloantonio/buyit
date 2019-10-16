@@ -1,57 +1,106 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
 {% load staticfiles %}
+{% load i18n widget_tweaks %}
 
 {% block content %}
-<div class="row row-flex">
-    {% for item in cart_items %}
-    <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
-        <div class="panel-body">
-            <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')"
-                alt="{{ item.product.name }}"></div>
-            <div class="caption">
-                <h3>{{ item.product.name }}</h3>
-                <p class="product-description">{{ item.product.description }}</p>
-                <p>{{ item.quantity }}</p>
-                <p>{{item.product.price}}€</p>
+<div class="container-personal">
+
+    <div class="row checkout-review">
+        <div class="card-header py-3 align-items-center justify-content-between checkout-header">
+            <div class="row">
+                {% for item in cart_items %}
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="font-weight-bold">Products:</p>
+                        <p>{{ item.product.name }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p class="font-weight-bold">Quantity: </p>
+                        <p>{{ item.quantity }}</p>
+                    </div>
+                    <div class="col-sm">
+                        <p class="font-weight-bold">Total: </p>
+                        <p>{{ item.quantity }}*{{ item.product.price }}<i class="fas fa-euro-sign"></i></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if code != None %}
+            <div class="col-sm">
+                <p class="font-weight-bold">Discounted Price: </p>
+                <p id="new_total">{{new_total|floatformat:2}} <i class="fas fa-euro-sign"></i></p>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+<div class="container-form">
+    <form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <div id="credit-card-errors" style="display: none;">
+            <div class="alert-message block-message error alert alert-danger" id="stripe-error-message" role="alert">
             </div>
         </div>
-    </div>
-    {% endfor %}
-</div>
-<div class="row">
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
-</div>
-<div class="row">
-    <p>Total</p>
-    <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ new_total }}</p>
-</div>
+        <div class="form-row row">
+            <div class="form-group col-md-6">
+                <div class="row-shipping-info">
+                    <h2 class="panel-title">Shipping Details</h2>
+                    <div class="credit-card-box">
+                        <div class="row">
+                            {% for field in order_form %}
+                            {% if field.errors %}
+                            <div class="form-group has-error col-6">
+                                <label class="col-sm-12 control-label"
+                                    for="id_{{ field.name }}">{{ field.label }}</label>
+                                <div class="col-sm-12">
+                                    {{ field|attr:"class:form-control" }}
+                                    <span class="help-block">
+                                        {% for error in  field.errors %}{{ error }}{% endfor %}
+                                    </span>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="form-group col-6 ">
+                                <label class="col-sm-12 control-label"
+                                    for="id_{{ field.name }}">{{ field.label }}</label>
+                                <div class="col-sm-12">
+                                    {{ field|attr:"class:form-control" }}
+                                    {% if field.help_text %}
+                                    <p class="help-block"><small>{{ field.help_text }}</small></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
-    {% csrf_token %}
+            <div class="form-group col-md-6">
+                <div class="row-shipping-info">
+                    <h2 class="panel-title">Payment Details</h2>
+                    <div class="credit-card-box">
+                        <div class="display-td">
+                            <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                        </div>
+                        {{ payment_form | as_bootstrap }}
+                    </div>
+                </div>
+            </div>
 
-    <legend>Payment Details</legend>
-
-    <div id="credit-card-errors" style="display: none;">
-            <div class="alert-message block-message error" id="stripe-error-message"></div>
+            <div class="form-group col-md-12">
+                <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit"
+                    value="Submit Payment">
+            </div>
         </div>
-
-    <div class="form-group col-md-6">
-        {{ order_form | as_bootstrap }}
-    </div>
+    </form>
+</div>
 
 
-    <div class="form-group col-md-6">
-        {{ payment_form | as_bootstrap }}
-    </div>
-
-    <div class="form-group col-md-12">
-        <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit" value="Submit Payment">
-    </div>
-</form>
-
-{% endblock %}
 
 {% block script_js %}
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
@@ -61,4 +110,5 @@
     //]]>
 </script>
 <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
+{% endblock %}
 {% endblock %}

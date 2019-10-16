@@ -5,7 +5,7 @@ from . import views
 from .views import checkout, all_orders, order_detail
 
 urlpatterns = [
-    path('', checkout, name='checkout'),
+    path('', views.checkout, name='checkout'),
     path('orders', all_orders, name='all_orders'),
     path('order_detail/<int:id>', views.order_detail, name="order_detail"),
 ]
