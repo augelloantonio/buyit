@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import get_voucher
+from .views import add_voucher
 from . import views
 
 urlpatterns = [
-    path('', views.get_voucher, name='voucher'),
+    path('', views.add_voucher, name='voucher')
 ]
 
