@@ -38,11 +38,4 @@ $(document).ready(function() {
     $("#total").removeClass(".basic_price_lined");
     console.log("not visible");
   }
-
-  // Removing narrow down in homepage on scrolling down
-  $("#narrow-down-display").scroll(function() {
-    $("#narrow-down-display").hide();
-  });
 });
-
-
