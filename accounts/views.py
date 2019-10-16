@@ -12,8 +12,8 @@ from django.contrib.auth import logout as django_logout
 
 @login_required
 def logout(request):
-    django_logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    logout(request)
+    return HttpResponse('success')
 
 
 def login(request):

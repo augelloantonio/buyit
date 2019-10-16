@@ -3,108 +3,109 @@
 
 {% block content %}
 
-<div class="container_page">
-    <h2>My Orders</h2>
+<div class="container-personal">
+    <div class="container_pages">
+        <h2>My Orders</h2>
 
-    <div class="orders-container">
-        {% for order in pagination_orders %}
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 align-items-center justify-content-between">
-                <div class="row">
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Date of your order:</p>
-                        <p>{{order.date}}</p>
+        <div class="orders-container">
+            {% for order in pagination_orders %}
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 align-items-center justify-content-between">
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Date of your order:</p>
+                            <p>{{order.date}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Total: </p>
+                            <p>{{order.total}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Delivered to: </p>
+                            <p>{{order.order.street_address1}}, {{order.order.town_or_city}}</p>
+                        </div>
                     </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Total: </p>
-                        <p>{{order.total}}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Delivered to: </p>
-                        <p>{{order.order.street_address1}}, {{order.order.town_or_city}}</p>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm">
+                            <img class=" card-img-top" src="/media/{{ order.product.image }}"
+                                alt=" {{ order.product.name }}">
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Product:</p>
+                            <a href="{% url 'product_detail' order.product.id %}">
+                                <p>{{order.product.name}}</p>
+                            </a>
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold"> Product Price: </p>
+                            <p>{{order.product.price}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Quantity: </p>
+                            <p>{{order.quantity}}</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="font-weight-bold">Order Status: </p>
+                            <p>{{order.order.status}}</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm">
-                        <img class=" card-img-top" src="/media/{{ order.product.image }}"
-                            alt=" {{ order.product.name }}">
-                    </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Product:</p>
-                        <a href="{% url 'product_detail' order.product.id %}">
-                            <p>{{order.product.name}}</p>
-                        </a>
-                    </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold"> Product Price: </p>
-                        <p>{{order.product.price}}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Quantity: </p>
-                        <p>{{order.quantity}}</p>
-                    </div>
-                    <div class="col-sm">
-                        <p class="font-weight-bold">Order Status: </p>
-                        <p>{{order.order.status}}</p>
-                    </div>
-                </div>
+
+            {% endfor %}
+
+
+            <div class="pagination-container">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        {% if pagination_orders.has_previous %}
+                        <li class="page-item">
+                            <span class="page-link"><a
+                                    href="?page={{ pagination_orders.previous_page_number }}">Previous</a></span>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                        {% endif%}
+
+
+                        {% if pagination_orders.number|add:'-4' > 1 %}
+                        <li><a href="?page={{ pagination_orders.number|add:'-5' }}">&hellip;</a></li>
+                        {% endif %}
+
+                        {% for i in pagination_orders.paginator.page_range %}
+                        {% if pagination_orders.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }}</span> <span
+                                class="sr-only">(current)</span></span></li>
+                        {% elif i > pagination_orders.number|add:'-5' and i < pagination_orders.number|add:'5' %}
+                        <li class="page-item"><a href="?page={{ i }}"><span class="page-link">{{ i }}</span></a></li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if pagination_orders.paginator.num_pages > pagination_orders.number|add:'4' %}
+                        <li><a href="?page={{ pagination_orders.number|add:'5' }}">&hellip;</a></li>
+                        {% endif %}
+
+                        {% if pagination_orders.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ pagination_orders.next_page_number }}">Next</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
             </div>
+
         </div>
-
-        {% endfor %}
-
-
-        <div class="pagination-container">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    {% if pagination_orders.has_previous %}
-                    <li class="page-item">
-                        <span class="page-link"><a
-                                href="?page={{ pagination_orders.previous_page_number }}">Previous</a></span>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Previous</span>
-                    </li>
-                    {% endif%}
-
-
-                    {% if pagination_orders.number|add:'-4' > 1 %}
-                    <li><a href="?page={{ pagination_orders.number|add:'-5' }}">&hellip;</a></li>
-                    {% endif %}
-
-                    {% for i in pagination_orders.paginator.page_range %}
-                    {% if pagination_orders.number == i %}
-                    <li class="page-item active"><span class="page-link">{{ i }}</span> <span
-                            class="sr-only">(current)</span></span></li>
-                    {% elif i > pagination_orders.number|add:'-5' and i < pagination_orders.number|add:'5' %}
-                    <li class="page-item"><a href="?page={{ i }}"><span class="page-link">{{ i }}</span></a></li>
-                    {% endif %}
-                    {% endfor %}
-
-                    {% if pagination_orders.paginator.num_pages > pagination_orders.number|add:'4' %}
-                    <li><a href="?page={{ pagination_orders.number|add:'5' }}">&hellip;</a></li>
-                    {% endif %}
-
-                    {% if pagination_orders.has_next %}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ pagination_orders.next_page_number }}">Next</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-
     </div>
-
 </div>
 
 {% endblock %}
