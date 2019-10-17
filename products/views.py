@@ -5,6 +5,7 @@ from .forms import ProductForm
 from home.views import index
 from dashboard.views import dashboard_product
 from reviews.models import Review
+from django.core.paginator import Paginator
 
 
 def all_products(request, category_id=None):
@@ -48,10 +49,17 @@ def product_detail(request, pk):
 
     for review in reviews:
         review_list = Review.objects.all().order_by(
-            '-pub_date').filter(product__id=product.pk)[:9]
+            '-pub_date').filter(product__id=product.pk)
+        n_reviews = review_list.count()
+
+    # pagination
+    paginator = Paginator(review_list, 6)
+    page = request.GET.get('page')
+    pagination_reviews = paginator.get_page(page)
 
     return render(request, "productdetail.html", {'product': product, 'reviews': reviews,
-                                                  'review_list': review_list, 'product_reviews': product_reviews})
+                                                  'review_list': review_list, 'product_reviews': product_reviews,
+                                                  'n_reviews': n_reviews, 'pagination_reviews': pagination_reviews})
 
 
 def edit_product(request, id):
