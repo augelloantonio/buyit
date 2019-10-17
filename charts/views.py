@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 from django.db.models import Count, Sum
 from rest_framework.views import APIView
@@ -40,7 +40,7 @@ class ChartData(APIView):
 
         # Need to made a list of product with own quantity taken datas from order line items
         product_name = Product.objects.all().values(
-            "name").annotate(dcount=(Count("orderlineitem__quantity")))
+            "name").annotate(dcount=(Sum("orderlineitem__quantity")))
 
         list_product_name = list()
         quantity_product_sold = list()
@@ -48,7 +48,6 @@ class ChartData(APIView):
         for name in product_name:
             list_product_name.append(name['name'])
             quantity_product_sold.append(name['dcount'])
-
 
         # calculate total earning by month
         earnings_by_month = OrderLineItem.objects.annotate(month=TruncMonth(

@@ -123,11 +123,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-DATE_INPUT_FORMATS = [
-    '%d %M %Y'
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
