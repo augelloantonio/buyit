@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="add_review">
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST"  enctype="multipart/form-data">
         {% csrf_token %}
         <label>Rating</label>
         {{ form | as_bootstrap }}
