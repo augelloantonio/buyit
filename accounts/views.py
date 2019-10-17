@@ -55,6 +55,7 @@ def profile(request):
     order_info = OrderLineItem.objects.all()
     # filtering order for user
     user_orders = OrderLineItem.objects.filter(user=user).order_by('-date')
+    # pagination
     paginator = Paginator(user_orders, 6)
     page = request.GET.get('page')
     pagination_orders = paginator.get_page(page)
