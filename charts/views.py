@@ -11,6 +11,8 @@ from products.models import Product
 from reviews.models import Review
 from .serializers import ProductSerializer, MonthlyEarning
 from django.db.models.functions import TruncMonth, TruncYear
+from itertools import groupby
+from operator import itemgetter
 
 
 def view_chart(View):
@@ -36,21 +38,17 @@ class ChartData(APIView):
         serializer = ProductSerializer(product, many=True)
         product_data = serializer.data
 
-        product_name = Product.objects.all().values(
-            "name", "quantity_sold").order_by('-quantity_sold')[0:5]
-     
-
         # Need to made a list of product with own quantity taken datas from order line items
-        list_product = list()
-        quantity_product = OrderLineItem.objects.all().values("quantity", "product_id")
-
+        product_name = Product.objects.all().values(
+            "name").annotate(dcount=(Count("orderlineitem__quantity")))
 
         list_product_name = list()
         quantity_product_sold = list()
 
         for name in product_name:
             list_product_name.append(name['name'])
-            quantity_product_sold.append(name['quantity_sold'])
+            quantity_product_sold.append(name['dcount'])
+
 
         # calculate total earning by month
         earnings_by_month = OrderLineItem.objects.annotate(month=TruncMonth(
@@ -85,16 +83,15 @@ class ChartData(APIView):
         review_three_score = Review.objects.filter(rating=3).count()
         review_four_score = Review.objects.filter(rating=4).count()
         review_five_score = Review.objects.filter(rating=5).count()
-        
-        # Sum total charts
-        one_two_rating = review_one_score + review_two_score
-        three_four_rating = review_three_score + review_four_score
-        five_riting = review_five_score
 
+        # Sum total charts
+        negative_rating = review_one_score + review_two_score
+        medium_rating = review_three_score
+        positive_rating = review_four_score + review_five_score
 
         # calculate number of product sold by product an made a pie chart
 
-        # 
+        #
         label_rating = ["Negative", "Medium", "Positive"]
 
         # Assign data
@@ -107,8 +104,7 @@ class ChartData(APIView):
             "orders_by_months": orders_by_months,
             "product_name": list_product_name,
             "quantity_product_sold": quantity_product_sold,
-            "score_rating": [one_two_rating, three_four_rating, five_riting],
-            "quantity_product":quantity_product
+            "score_rating": [negative_rating, medium_rating, positive_rating],
         }
 
         return Response(data)
