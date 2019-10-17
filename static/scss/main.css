@@ -445,4 +445,49 @@ full-width-logo,
 .add-to-cart-icon {
   padding: 5px;
 }
+
+.in-page-review-link {
+  text-decoration: none;
+  color: black;
+}
+
+.img-product-page {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-style: inset;
+}
+
+.not-stock {
+  color: red;
+}
+
+@media (min-width: 756px) {
+  .img-product-page {
+    margin-top: 40px;
+  }
+}
+
+.product-description-row {
+  margin-top: 20px;
+}
+
+.user-img {
+  height: 50px;
+  width: 50px;
+}
+
+.card-review-col {
+  padding: 15px;
+}
+
+.frontside .card .card-title,
+.card .card-title {
+  color: #007b5e !important;
+}
+
+.frontside .card .card-body img {
+  width: 120px;
+  border-radius: 50%;
+}
 /*# sourceMappingURL=main.css.map */
