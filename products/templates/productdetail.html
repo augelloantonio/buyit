@@ -2,45 +2,60 @@
 {% load bootstrap_tags %}
 {% load staticfiles %}
 
+
 {% block content %}
-<div class="container_pages">
-    <h3>{{ product.name }}</h3>
-    <small class="text-muted"></small>
-    {%for range in product_reviews%}
-    {%if product.pk == range.product_id %}
-    {% if range.avg_rating != Null %}
-    <p class="star_rating" value="{{range.avg_rating}}">Rated: {{range.avg_rating}}/5</p>
-    {% else %}
-    <p>Rated: 0/5</p>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
+
+<div class="container">
+    <div class="container-personal">
+
+        <div class="container_pages">
+            <h3>{{ product.name }}</h3>
+            <small class="text-muted"></small>
+            {%for range in product_reviews%}
+            {%if product.pk == range.product_id %}
+            {% if range.avg_rating != Null %}
+            <p class="star_rating" value="{{range.avg_rating}}">Rated: {{range.avg_rating}}/5</p>
+            {% else %}
+            <p>Rated: 0/5</p>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
 
 
-    <div class="row">
-        <div class="col-md-6">
-            <img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}">
-        </div>
-        <div class="col-md-6">
             <div class="row">
-                <div class="col-12">
-                    <h4>Product Description</h4>
-                    <p>{{ product.description }}</p>
+                <div class="col-md-6">
+                    <img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}">
                 </div>
-                <div class="col-12">
-                    <p>Price: {{ product.price }} €</p>
-                </div>
-                <div>
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <input name="quantity" type="number" min="1" max="999" class="form-control"
-                                placeholder="Quantity">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="submit">Add</button>
-                            </span>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Product Description</h4>
+                            <p>{{ product.description }}</p>
                         </div>
-                    </form>
+                        <div class="col-12">
+                            <p>Price: {{ product.price }} €</p>
+                        </div>
+                    </div>
+                    <!-- Quantity spinner-->
+                    <div class="row">
+                        <div class="quantity-form col-12">
+                            <form method="post" action="{% url 'add_to_cart' product.id %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <div class="col-5">
+                                        <input name="quantity" id="demo9" type="text" min="1" max="999"
+                                            class="form-control" placeholder="Quantity">
+                                    </div>
+                                    <div class="col-7">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success text-uppercase" type="submit">add to
+                                                chart<i class="fas fa-shopping-cart add-to-cart-icon"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -72,6 +87,8 @@
     <p><a href="{% url 'add_review' product.id%}">Add a Review</a></p>
 
 
+</div>
+</div>
 </div>
 
 {% endblock %}
