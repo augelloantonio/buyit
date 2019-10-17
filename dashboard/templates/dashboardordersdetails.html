@@ -1,4 +1,5 @@
 {% extends "dashboardbase.html" %}
+{% load bootstrap_tags %}
 {% load staticfiles %}
 
 {%block content%}
@@ -79,15 +80,13 @@
 
     <h4>Order Status</h4>
     <div class="input-group">
-        <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-            <option selected>Choose...</option>
-            <option value="1">Ready</option>
-            <option value="2">Shipped</option>
-            <option value="3">Received</option>
-        </select>
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button">Button</button>
-        </div>
+        <form role="form" method="POST" action="{% url 'change_order_status' order.id %}">
+            {% csrf_token %}
+            {{ form | as_bootstrap}}
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Button</button>
+            </div>
+        </form>
     </div>
 </div>
 

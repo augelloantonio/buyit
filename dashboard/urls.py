@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from . import views
 from .views import dashboard, dashboard_orders, dashboard_order_details, confirm_delete_product, add_a_product, add_a_category
 from products.views import toggle_status
+from orders.views import change_order_status
 from charts import urls as urls_charts
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
     path('dashboardaddproduct', views.add_a_product, name='add_a_product'),
     path('dashboardaddcategory', views.add_a_category, name='add_a_category'),
     path('toggle_status/<int:id>', toggle_status),
+    path('changeorderstatus/<int:id>', change_order_status, name='change_order_status'),
     path('charts/', include(urls_charts)),
 
 ]

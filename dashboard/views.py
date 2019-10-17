@@ -7,6 +7,7 @@ from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
 from .filters import OrdersFilter
+from orders.forms import OrderStatus
 
 
 @login_required
@@ -54,7 +55,7 @@ def dashboard(request):
 
 @login_required
 def dashboard_orders(request):
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-id')
     order_info = OrderLineItem.objects.all()
     product = Product.objects.all()
 
@@ -76,8 +77,10 @@ def dashboard_order_details(request, id):
     total_order_price = sum(
         items.total for items in order_info if order.id == items.order.id)
 
+    form = OrderStatus(request.POST)
+
     return render(request, "dashboardordersdetails.html", {"order_info": order_info, "orders": orders, 'order': order,
-                                                           "total_order_price": total_order_price})
+                                                           "total_order_price": total_order_price, 'form':form})
 
 
 def dashboard_product(request):
