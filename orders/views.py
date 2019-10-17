@@ -68,7 +68,7 @@ def checkout(request):
                 # empty session cart
                 request.session['cart'] = {}
                 # Remove voucher from session
-                request.session['voucher'] = {}
+                request.session['voucher'] = None
                 return redirect('profile')
             else:
                 messages.warning(request, "We were unable to take payment, we are sorry for the inconvenient, please, try again")
