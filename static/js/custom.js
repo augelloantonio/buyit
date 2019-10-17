@@ -38,4 +38,12 @@ $(document).ready(function() {
     $("#total").removeClass("basic_price_lined");
     console.log("not visible");
   }
+
+// Add script for spinner
+
+});
+
+$("#demo9").TouchSpin({
+  buttondown_class: "btn btn-link",
+  buttonup_class: "btn btn-link"
 });

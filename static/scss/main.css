@@ -8,6 +8,7 @@ body {
   display: inline-block;
   width: 100%;
   margin-top: 20px;
+  min-height: 100vh;
 }
 
 .container-index {
@@ -411,7 +412,7 @@ full-width-logo,
 
 .row-shipping-info {
   border: 1px solid #c1c1c1;
-  border-radius: 10px;
+  border-radius: 12px;
   margin: auto;
 }
 
@@ -424,5 +425,24 @@ full-width-logo,
   background: #44494ef5;
   color: white;
   border-radius: 10px;
+}
+
+.input-group-btn-vertical .btn {
+  min-width: 1.5rem;
+}
+
+.bootstrap-touchspin-injected {
+  border-radius: 2px;
+  border: 0.8px solid lightgray;
+}
+
+.btn-link,
+.bootstrap-touchspin-down {
+  text-decoration: none !important;
+  color: black;
+}
+
+.add-to-cart-icon {
+  padding: 5px;
 }
 /*# sourceMappingURL=main.css.map */
