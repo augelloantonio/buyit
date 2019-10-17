@@ -5,6 +5,7 @@ from . import views
 from .views import add_review, review_detail
 
 urlpatterns = [
+    path('', views.review_detail, name="reviews"),
     path('review/<int:review_id>', views.review_detail, name='review_detail'),
     path('addreview/product/<int:product_id>', views.add_review, name='add_review'),
 ]

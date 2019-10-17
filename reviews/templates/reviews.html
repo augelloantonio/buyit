@@ -1,0 +1,90 @@
+ <!--Product Reviews-->
+ <div class="container-fluid">
+     <div id="view_reviews">
+         <h3>Product Reviews</h3>
+         {% if messages %}
+         <ul class="messages">
+             {% for message in messages %}
+             <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                 {% endfor %}
+         </ul>
+         {% endif %}
+         <!-- Add a review btn-->
+         <p><a href="{% url 'add_review' product.id%}">Add a Review</a></p>
+         <!-- Check if product has review-->
+         {% if review_list%}
+         <div class="row">
+             {% for review in pagination_reviews %}
+             <!-- Review cards-->
+             <div class="col-xs-12 col-sm-6 col-md-4 card-review-col">
+                 <div class="image-flip h-100" ontouchstart="this.classList.toggle('hover');">
+                     <div class="mainflip h-100">
+                         <div class="frontside h-100">
+                             <div class="card h-100">
+                                 <div class="card-body text-center h-100">
+                                     <p><img class=" img-fluid" src="/static/media/user.png" alt="user image">
+                                     </p>
+                                     <h4 class="card-title">{{ review.user_name }}</h4>
+                                     <h5>Rated {{ review.rating }} of 5</h5>
+                                     <h6>{{review.review_summary}}</h6>
+                                     <p class="card-text">{{ review.comment }}</p>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             {% endfor %}
+         </div>
+         <!--pagination-->
+         <div class="pagination-container">
+             <nav aria-label="...">
+                 <ul class="pagination">
+                     {% if pagination_reviews.has_previous %}
+                     <li class="page-item">
+                         <span class="page-link"><a
+                                 href="?page={{ pagination_reviews.previous_page_number }}">Previous</a></span>
+                     </li>
+                     {% else %}
+                     <li class="page-item disabled">
+                         <span class="page-link">Previous</span>
+                     </li>
+                     {% endif%}
+
+
+                     {% if pagination_reviews.number|add:'-4' > 1 %}
+                     <li><a href="?page={{ pagination_reviews.number|add:'-5' }}">&hellip;</a></li>
+                     {% endif %}
+
+                     {% for i in pagination_reviews.paginator.page_range %}
+                     {% if pagination_reviews.number == i %}
+                     <li class="page-item active"><span class="page-link">{{ i }}</span> <span
+                             class="sr-only">(current)</span></span></li>
+                     {% elif i > pagination_reviews.number|add:'-5' and i < pagination_reviews.number|add:'5' %}
+                     <li class="page-item"><a href="?page={{ i }}"><span class="page-link">{{ i }}</span></a>
+                     </li>
+                     {% endif %}
+                     {% endfor %}
+
+                     {% if pagination_reviews.paginator.num_pages > pagination_reviews.number|add:'4' %}
+                     <li><a href="?page={{ pagination_reviews.number|add:'5' }}">&hellip;</a></li>
+                     {% endif %}
+
+                     {% if pagination_reviews.has_next %}
+                     <li class="page-item">
+                         <a class="page-link" href="?page={{ pagination_reviews.next_page_number }}">Next</a>
+                     </li>
+                     {% else %}
+                     <li class="page-item disabled">
+                         <a class="page-link" href="#">Next</a>
+                     </li>
+                     {% endif %}
+                 </ul>
+             </nav>
+         </div>
+         <!-- else add following text-->
+         {% else %}
+         <p>No reviews for this product yet.</p>
+         {% endif %}
+     </div>
+ </div>

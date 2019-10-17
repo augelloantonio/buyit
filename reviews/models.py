@@ -16,7 +16,7 @@ class Review(models.Model):
     )
     user = models.ForeignKey(User,
                              on_delete=models.PROTECT, default=1)
-    review_summary = models.CharField(max_length=254, default='')
+    review_summary = models.CharField(max_length=75, default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     pub_date = models.DateTimeField(
         blank=True, null=True, default=timezone.now)

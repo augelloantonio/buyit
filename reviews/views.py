@@ -10,7 +10,7 @@ from .models import Review
 
 def review_detail(request, review_id):
     review = get_object_or_404(Review, pk=review_id)
-    return render(request, {'review': review})
+    return render(request, 'review.html', {'review': review})
 
 
 @login_required()
