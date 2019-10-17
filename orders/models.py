@@ -2,13 +2,18 @@ from django.db import models
 from products.models import Product
 from django.conf import settings
 from cart.contexts import cart_contents
-from datetime import datetime    
+from datetime import datetime
 from django.contrib.auth.models import User
 
+ORDER_STATUS = (
+    ('Order Received', 'Order Received'),
+    ('Delivered', 'Delivered'),
+)
 
 # Create your models here.
 
-class Order(models.Model):  
+
+class Order(models.Model):
     user = models.ForeignKey(User,
                              on_delete=models.CASCADE, default=1)
     full_name = models.CharField(max_length=50, blank=False)
@@ -21,7 +26,9 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField(null=True)
-    voucher = models.CharField(max_length=50, null =True)
+    voucher = models.CharField(max_length=50, null=True)
+    order_status = models.CharField(
+        choices=ORDER_STATUS, max_length=50, default='Order Received', blank=True)
 
     def __str__(self):
         return "{0}-{1}-{2}".format(self.id, self.date, self.full_name)
@@ -33,9 +40,9 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField(blank=False)
-    total = models.DecimalField(blank=False, default=0, max_digits=100000, decimal_places=2)
+    total = models.DecimalField(
+        blank=False, default=0, max_digits=100000, decimal_places=2)
     date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
         return "{0} {1} {2} @ {3}".format(self.quantity, self.product.name, self.product.price, self.total)
-

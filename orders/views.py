@@ -1,7 +1,7 @@
-from django.shortcuts import render, get_object_or_404, reverse, redirect
+from django.shortcuts import render, get_object_or_404, reverse, redirect, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import MakePaymentForm, OrderForm
+from .forms import MakePaymentForm, OrderForm, OrderStatus
 from voucher.forms import VoucherForm
 from .models import OrderLineItem, Order
 from django.conf import settings
@@ -10,6 +10,8 @@ from products.models import Product
 from voucher.models import Voucher
 from decimal import Decimal
 import stripe
+import datetime
+
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -21,7 +23,7 @@ def checkout(request):
         payment_form = MakePaymentForm(request.POST)
         code = None
         # Handle bug if voucher_id is not in session
-        if 'voucher_id':
+        if 'voucher_id' in request.session:
             voucher_id = request.session['voucher_id']
             try:
                 code = Voucher.objects.get(id=voucher_id)
@@ -31,7 +33,7 @@ def checkout(request):
             None
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
-            order.date = timezone.now()
+            order.date = datetime.datetime.now()
 
             order.save()
 
@@ -41,6 +43,7 @@ def checkout(request):
             for id, quantity in cart.items():
                 product = get_object_or_404(Product, pk=id)
                 total += quantity * product.price
+                product_sold_quantity = product.quantity_sold + quantity
                 if code != None:
                     discount = (code.price_reducing/Decimal('100'))*total
                     new_total = total - discount
@@ -53,6 +56,8 @@ def checkout(request):
                     total=new_total,
                 )
                 order_line_item.save()
+                Product.objects.filter(id=id).update(quantity_sold=product_sold_quantity)
+                request.session['voucher_id'] = None
             try:
                 customer = stripe.Charge.create(
                     amount=int(new_total * 100),
@@ -95,3 +100,14 @@ def order_detail(request, id):
     """
     order = get_object_or_404(Order, id=id)
     return render(request, "orderdetails.html", {'order': order})
+
+
+def change_order_status(request, id):
+    order = get_object_or_404(Order, id=id)
+    if request.method == "POST":
+        form = OrderStatus(request.POST)
+        if form.is_valid():
+            order_status = form.cleaned_data['order_status']
+            Order.objects.filter(id=id).update(order_status=order_status)
+            return HttpResponseRedirect(reverse('dashboard'))
+    return redirect('dashboard')
