@@ -18,10 +18,11 @@
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  
 
   <!-- Personal CSS-->
   <link href="{% static 'scss/main.css' %}" rel="stylesheet">
-
+  {%block head%} {%endblock%}
 </head>
 
 <body>
@@ -92,8 +93,10 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.5/jquery.bootstrap-touchspin.min.js">
+  </script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}">
+  </script>
 
   <!-- stripe js block-->
   {% block script_js %} {% endblock %}
