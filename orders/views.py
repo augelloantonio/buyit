@@ -80,8 +80,8 @@ def checkout(request):
                 return redirect('profile')
         else:
             print(payment_form.errors)
-            messages.warning("We were unable to take a payment with that card!")
-            request ('profile')
+            messages.warning(request, "We were unable to take a payment with that card!")
+            return redirect ('profile')
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
