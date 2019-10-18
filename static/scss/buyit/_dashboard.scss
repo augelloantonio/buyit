@@ -1,0 +1,23 @@
+.filter-orders {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+}
+
+.filter-orders-container {
+    width: 100%;
+}
+
+.order-card {
+    padding: 0.5rem
+}
+
+@media (max-width: 756px) {
+    .order-card {
+        padding: 1.5rem
+    }
+}
+
+.icon-inline-space {
+    margin-left: 0.5rem;
+}
