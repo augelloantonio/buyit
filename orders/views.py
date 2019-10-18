@@ -89,19 +89,6 @@ def checkout(request):
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
 
 
-def all_orders(request):
-    orders = Order.objects.all()
-    return render(request, "orders.html", {"orders": orders})
-
-
-def order_detail(request, id):
-    """
-    Order details view
-    """
-    order = get_object_or_404(Order, id=id)
-    return render(request, "orderdetails.html", {'order': order})
-
-
 def change_order_status(request, id):
     order = get_object_or_404(Order, id=id)
     if request.method == "POST":

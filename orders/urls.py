@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
-from .views import checkout, all_orders, order_detail, change_order_status
+from .views import checkout
 
 urlpatterns = [
     path('', views.checkout, name='checkout'),
