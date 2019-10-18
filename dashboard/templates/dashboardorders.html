@@ -15,12 +15,26 @@
 {%block content%}
 <div class="row">
     <div class="filter-orders-container">
-        <div class="filter-orders">
-            <form method="GET">
-                {{ filter.form|as_bootstrap }}
-                <button type="submit" class="btn btn-info">Filter</button>
-            </form>
+        <div class="filter-orders collapsible">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Filter Orders
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <form method="GET">
+                    <div class="row">
+                        {{ filter.form|as_bootstrap_horizontal }}
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-info">Filter</button>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn"></button>
+            </div>
         </div>
+
     </div>
     <div class="container">
         <div class="row">
@@ -40,9 +54,11 @@
                             <p>{{order.date}}</p>
                             <p class="font-weight-bold">Order Status: </p>
                             {% if order.order_status == 'Delivered'%}
-                            <p>{{order.order_status}}<span class="icon-inline-space"><i class="fas fa-truck"></i></span></p>
+                            <p>{{order.order_status}}<span class="icon-inline-space"><i class="fas fa-truck"></i></span>
+                            </p>
                             {% else %}
-                            <p>{{order.order_status}}<span class="icon-inline-space"><i class="fas fa-hourglass-start"></i></p>
+                            <p>{{order.order_status}}<span class="icon-inline-space"><i
+                                        class="fas fa-hourglass-start"></i></p>
                             {% endif %}
                         </div>
                     </div>
@@ -53,8 +69,9 @@
     </div>
 </div>
 
-
+<!-- loading datepicker, not loading adding it in block js-->
 <script>
     $('#id_date').datepicker();
 </script>
+
 {% endblock %}
