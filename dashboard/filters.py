@@ -5,4 +5,4 @@ class OrdersFilter(django_filters.FilterSet):
     
     class Meta:
         model = Order
-        fields = {'date', 'id'}
+        fields = {'date', 'id', 'order_status'}
