@@ -24,13 +24,6 @@ $(document).ready(function() {
     $("#sidebar-wrapper").toggleClass("collapsed");
   });
 
-  // If screen size < 960px use sidebar collepsed
-  if ($(window).width() < 960) {
-    $("#sidebar-wrapper").addClass("collapsed");
-  } else {
-    $("#sidebar-wrapper").removeClass("collapsed");
-  }
-
   // Add style to total price if discount code is applied
   if ($("#new_total").is(":visible")) {
     $("#total").addClass("basic_price_lined");

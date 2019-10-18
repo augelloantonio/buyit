@@ -1,7 +1,8 @@
 .filter-orders {
-    width: 50%;
+    width: 100%;
     margin: auto;
     padding: 20px;
+    margin-left: 20px;
 }
 
 .filter-orders-container {
@@ -20,4 +21,17 @@
 
 .icon-inline-space {
     margin-left: 0.5rem;
+}
+
+.dashboard-navbar {
+    height: 62px;
+    color: white;
+}
+
+.bg-dark {
+    color: white !important;
+}
+
+.navbar-icon {
+    color: white;
 }

@@ -39,6 +39,10 @@ footer {
   width: 100%;
 }
 
+button:focus {
+  outline: none;
+}
+
 full-width-logo,
 .full-width-header {
   height: 75vh;
@@ -219,9 +223,10 @@ full-width-logo,
 }
 
 .filter-orders {
-  width: 50%;
+  width: 100%;
   margin: auto;
   padding: 20px;
+  margin-left: 20px;
 }
 
 .filter-orders-container {
@@ -240,6 +245,19 @@ full-width-logo,
 
 .icon-inline-space {
   margin-left: 0.5rem;
+}
+
+.dashboard-navbar {
+  height: 62px;
+  color: white;
+}
+
+.bg-dark {
+  color: white !important;
+}
+
+.navbar-icon {
+  color: white;
 }
 
 .navbar-global {
@@ -332,6 +350,15 @@ full-width-logo,
   min-height: 100vh;
 }
 
+.sidebar-navbar {
+  right: 30px;
+  position: absolute !important;
+}
+
+#menu {
+  float: right;
+}
+
 .basic_price_lined {
   text-decoration: line-through;
 }
@@ -401,11 +428,6 @@ full-width-logo,
   .cart-mobile {
     display: none;
   }
-}
-
-.sidebar-navbar {
-  right: 30px;
-  position: absolute !important;
 }
 
 .orders-container {

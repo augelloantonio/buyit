@@ -43,3 +43,7 @@ footer {
   font-size: small;
   width: 100%;
 }
+
+button:focus {
+  outline: none;
+}
