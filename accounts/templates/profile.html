@@ -59,8 +59,15 @@
                             <p>{{order.quantity}}</p>
                         </div>
                         <div class="col-sm">
-                            <p class="font-weight-bold">Order Status:</p>
-                            <p>{{order.order.order_status}}</p>
+                            <p class="font-weight-bold">Order Status: </p>
+                            {% if order.order.order_status == 'Delivered'%}
+                            <p>{{order.order.order_status}}<span class="icon-inline-space"><i
+                                        class="fas fa-truck"></i></span>
+                            </p>
+                            {% else %}
+                            <p>{{order.order.order_status}}<span class="icon-inline-space"><i
+                                        class="fas fa-hourglass-start"></i></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
