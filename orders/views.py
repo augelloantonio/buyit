@@ -96,5 +96,5 @@ def change_order_status(request, id):
         if form.is_valid():
             order_status = form.cleaned_data['order_status']
             Order.objects.filter(id=id).update(order_status=order_status)
-            return HttpResponseRedirect(reverse('dashboard'))
-    return redirect('dashboard')
+            return HttpResponseRedirect(reverse('dashboard_orders'))
+    return redirect('dashboard_orders')
