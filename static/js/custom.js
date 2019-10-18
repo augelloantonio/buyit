@@ -17,8 +17,9 @@ window.onscroll = function() {
 };
 
 // jQuery functions
-//collapse sidebar in dashboard
 $(document).ready(function() {
+  //collapse sidebar in dashboard
+
   $(".btn-expand-collapse").click(function(e) {
     $("#sidebar-wrapper").toggleClass("collapsed");
   });

@@ -14,9 +14,15 @@
 }
 
 
-
 @media (min-width:992px) {
     .cart-mobile {
         display: none;
     }
+}
+
+
+//Sidebar Navbar
+.sidebar-navbar {
+    right: 30px;
+    position: absolute!important;
 }

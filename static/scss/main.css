@@ -379,6 +379,11 @@ full-width-logo,
   }
 }
 
+.sidebar-navbar {
+  right: 30px;
+  position: absolute !important;
+}
+
 .orders-container {
   width: 75%;
   padding: 2rem;
