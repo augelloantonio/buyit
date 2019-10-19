@@ -8,11 +8,10 @@ def index(request):
     product_reviews = products.annotate(avg_rating=Avg('review__rating'),
                                         product_id=F("id"))
 
-    # Made a list of product with category latest
+    # Make a list of products ordered by added date
     products_latest = products.order_by('-published_date')[:9]
 
-    # Made a list of product with category bestsellers
-
+    # Order products by quantity sold
     products_bestsellers = products.order_by('-quantity_sold')
 
     return render(request, "index.html", {"products": products, "product_reviews": product_reviews,
