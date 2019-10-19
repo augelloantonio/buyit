@@ -2,12 +2,17 @@
 {% load bootstrap_tags %}
 {% block content %}
 
-<div class="add_review">
-    <form method="POST"  enctype="multipart/form-data">
-        {% csrf_token %}
-        <label>Rating</label>
-        {{ form | as_bootstrap }}
-        <button type="submit" class="btn btn-info">Save</button>
-    </form>
+<div class="container">
+    <div class="container-personal">
+        <div class="add_review">
+            <h3>You are adding a review for the product: </h3>
+            <h3>"{{product.name}}"</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | as_bootstrap }}
+                <button type="submit" class="btn btn-info">Add Review</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
