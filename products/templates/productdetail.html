@@ -25,8 +25,8 @@
                                 {%if product.pk == range.product_id %}
                                 {% if range.avg_rating != Null %}
                                 <div class="col-6">
-                                    <p class="star_rating" value="{{range.avg_rating}}">Rated:
-                                        {{range.avg_rating}}/5
+                                    <p class="star_rating" value="{{range.avg_rating}}|floatformat:1">Rated:
+                                        {{range.avg_rating|floatformat:1}}/5
                                     </p>
                                 </div>
                                 {% else %}
