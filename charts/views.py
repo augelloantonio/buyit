@@ -13,6 +13,7 @@ from .serializers import ProductSerializer, MonthlyEarning
 from django.db.models.functions import TruncMonth, TruncYear
 from itertools import groupby
 from operator import itemgetter
+from django.contrib.auth.decorators import login_required
 
 
 def view_chart(View):

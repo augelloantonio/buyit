@@ -26,10 +26,8 @@ def add_review(request, product_id):
         if form.is_valid():
             rating = form.cleaned_data['rating']
             comment = form.cleaned_data['comment']
-            user_name = request.user
             review = Review()
             review.product_id = product.id
-            review.user_name = user_name
             review.rating = rating
             review.comment = comment
             review.pub_date = datetime.datetime.now()

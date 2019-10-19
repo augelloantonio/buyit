@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_copy.html" %}
 {% load staticfiles %}
 
 {%block title %}
@@ -24,8 +24,6 @@
             </div>
 
             <!-- Callout -->
-            {% if user_id.is_authenticated %}
-            {%else%}
             <div class="callout-row jumbotron-container">
                 <div class="jumbotron page-jumbotron">
                     <h1 class="display-4">Listen your music everywhere, anytime!</h1>
@@ -36,7 +34,6 @@
                     <a class="btn btn-primary btn-lg advert-btn" href="#" role="button">Register Now</a>
                 </div>
             </div>
-            {% endif %}
             <!-- /.callout -->
         </div>
     </div>

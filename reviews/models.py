@@ -14,15 +14,15 @@ class Review(models.Model):
         (4, '4'),
         (5, '5'),
     )
-    user = models.ForeignKey(User,
+    user = models.OneToOneField(User, unique=False,
                              on_delete=models.PROTECT, default=1)
     review_summary = models.CharField(max_length=75, default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     pub_date = models.DateTimeField(
         blank=True, null=True, default=timezone.now)
-    user_name = models.CharField(max_length=100)
     comment = models.CharField(max_length=200)
     rating = models.PositiveIntegerField(choices=RATING_CHOICES)
+    user_name = models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return self.review_summary

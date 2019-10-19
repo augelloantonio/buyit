@@ -11,9 +11,26 @@ from django.contrib.auth import logout as django_logout
 
 
 @login_required
+def profile(request):
+    user = request.user
+
+    orders = Order.objects.all()
+    order_info = OrderLineItem.objects.all()
+    # filtering order for user
+    user_orders = OrderLineItem.objects.filter(user=user).order_by('-id')
+    # pagination
+    paginator = Paginator(user_orders, 6)
+    page = request.GET.get('page')
+    pagination_orders = paginator.get_page(page)
+
+    return render(request, 'profile.html', {'pagination_orders': pagination_orders})
+
+
 def logout(request):
-    logout(request)
-    return HttpResponse('success')
+    """A view that logs the user out and redirects back to the index page"""
+    auth.logout(request)
+    messages.success(request, 'You have successfully logged out')
+    return redirect(reverse('index'))
 
 
 def login(request):
@@ -30,37 +47,17 @@ def login(request):
 
                 if request.GET and request.GET['next'] != '':
                     next = request.GET['next']
-                    print('fail')
                     return HttpResponseRedirect(next)
                 else:
-                    print('success')
                     return redirect(reverse('index'))
             else:
-                print('fail')
                 user_form.add_error(
                     None, "Your username or password are incorrect")
     else:
-        print('fail')
         user_form = UserLoginForm()
 
     args = {'user_form': user_form, 'next': request.GET.get('next', '')}
     return render(request, 'login.html', args)
-
-
-@login_required
-def profile(request):
-    user = request.user
-
-    orders = Order.objects.all()
-    order_info = OrderLineItem.objects.all()
-    # filtering order for user
-    user_orders = OrderLineItem.objects.filter(user=user).order_by('-id')
-    # pagination
-    paginator = Paginator(user_orders, 6)
-    page = request.GET.get('page')
-    pagination_orders = paginator.get_page(page)
-
-    return render(request, 'profile.html', {'pagination_orders': pagination_orders})
 
 
 def register(request):
