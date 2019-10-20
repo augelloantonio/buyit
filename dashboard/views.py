@@ -6,7 +6,7 @@ from django.db.models import Count, Sum, Q
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
-from .filters import OrdersFilter
+from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
 
