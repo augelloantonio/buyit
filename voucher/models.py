@@ -9,6 +9,5 @@ class Voucher(models.Model):
     price_reducing = models.IntegerField(default=0)
     active = models.BooleanField(default=False)
 
-
-def __str__(self):
-    return self.code
+    def __str__(self):
+        return self.code
