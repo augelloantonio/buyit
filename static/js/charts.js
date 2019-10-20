@@ -10,7 +10,11 @@ $(document).ready(function() {
       label_orders_by_months = data.months_in_orders;
       label_product_name = data.product_name;
       orders_by_months = data.orders_by_months;
+      daily_orders = data.daily_orders;
+      days_in_orders = data.days_in_orders;
       quantity_product_sold = data.quantity_product_sold;
+      day_in_month = data.day_in_month;
+      total_daily = data.total_daily;
       label_rating = data.label_rating;
       score_rating = data.score_rating;
       console.log(label_rating);
@@ -67,6 +71,23 @@ $(document).ready(function() {
         }
       }
     });
+
+    //Change data set to daily
+    $("#daily_earning_data").click(function() {
+      console.log("data changes");
+      chartRevenue.data.labels = day_in_month;
+      chartRevenue.data.datasets[0].data = total_daily;
+      chartRevenue.update();
+    });
+
+    //Set data back to montlhy
+    $("#montly_earning_data").click(function() {
+      console.log("data changes");
+      chartRevenue.data.labels = label_months;
+      chartRevenue.data.datasets[0].data = earning_data;
+      chartRevenue.update();
+    });
+
     // Order Chart
     var ctx2 = document.getElementById("chartOrders").getContext("2d");
     var chartOrder = new Chart(ctx2, {
@@ -77,14 +98,6 @@ $(document).ready(function() {
           {
             label: "Numbers of orders",
             data: orders_by_months,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
-            ],
             borderColor: [
               "rgba(255, 99, 132, 1)",
               "rgba(54, 162, 235, 1)",
@@ -109,6 +122,23 @@ $(document).ready(function() {
         }
       }
     });
+
+    //Change data set to daily
+    $("#daily_orders_data").click(function() {
+      console.log("data changes");
+      chartOrder.data.labels = days_in_orders;
+      chartOrder.data.datasets[0].data = daily_orders;
+      chartOrder.update();
+    });
+
+    //Set data back to montlhy
+    $("#montly_orders_data").click(function() {
+      console.log("data changes");
+      chartOrder.data.labels = label_orders_by_months;
+      chartOrder.data.datasets[0].data = orders_by_months;
+      chartOrder.update();
+    });
+
     //Product Chart
     var ctx3 = document.getElementById("chartProducts").getContext("2d");
     var chartProducts = new Chart(ctx3, {
@@ -151,6 +181,7 @@ $(document).ready(function() {
         }
       }
     });
+
     // Reviews chart
     var ctx4 = document.getElementById("chartReviews").getContext("2d");
     var chartProducts = new Chart(ctx4, {

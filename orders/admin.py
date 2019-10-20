@@ -13,7 +13,6 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['date', 'order_status']
     search_fields = ['orderlineitem__product__name']
 
-
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderLineItem, OrderLineAdminInline)
 
