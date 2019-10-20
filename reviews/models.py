@@ -14,7 +14,7 @@ class Review(models.Model):
         (4, '4'),
         (5, '5'),
     )
-    user = models.OneToOneField(User, unique=False,
+    user = models.OneToOneField(User, unique=True,
                              on_delete=models.PROTECT, default=1)
     review_summary = models.CharField(max_length=75, default='')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)

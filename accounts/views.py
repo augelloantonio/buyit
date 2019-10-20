@@ -74,15 +74,17 @@ def register(request):
                 user_form.save()
 
                 user = auth.authenticate(request.POST.get('email'),
-                                        password=request.POST.get('password1'))
+                                         password=request.POST.get('password1'))
 
                 if user:
                     auth.login(request, user)
-                    messages.success(request, "You have successfully registered")
+                    messages.success(
+                        request, "You have successfully registered")
                     return redirect(reverse('index'))
 
                 else:
-                    messages.error(request, "unable to log you in at this time!")
+                    messages.error(
+                        request, "unable to log you in at this time!")
         else:
             user_form = UserRegistrationForm()
 

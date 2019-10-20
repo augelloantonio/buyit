@@ -17,9 +17,8 @@ def review_detail(request, review_id):
 def add_review(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm(request.POST)
-    user = request.user
 
-    if Review.objects.filter(product_id=product, user__username=user):
+    if Review.objects.filter(product_id=product, user=request.user):
         messages.warning(request, "We are sorry, but you can't review twice!")
         return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
     else:

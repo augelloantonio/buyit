@@ -8,8 +8,6 @@ def index(request):
     product_reviews = products.annotate(avg_rating=Avg('review__rating'),
                                         product_id=F("id"))
 
-    user = request.user
-
     # Make a list of products ordered by added date
     products_latest = products.order_by('-published_date')[:9]
 

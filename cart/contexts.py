@@ -30,7 +30,6 @@ def cart_contents(request):
     new_total = 0
 
     for id, quantity in cart.items():
-        user = request.user
         product = get_object_or_404(Product, pk=id)
         total += quantity * product.price
         # Handle bug if voucher_id is not in session
@@ -41,8 +40,9 @@ def cart_contents(request):
             new_total = total
         product_count += quantity
         cart_items.append({'id': id, 'quantity': quantity,
-                           'product': product, 'user': user})
+                           'product': product})
 
     voucher_form = VoucherForm(request.POST)
+    
     return {'cart_items': cart_items, 'total': total, 'product_count': product_count, 'voucher_form': voucher_form,
             'new_total': new_total, 'code': code}
