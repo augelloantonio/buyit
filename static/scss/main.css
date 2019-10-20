@@ -431,14 +431,12 @@ full-width-logo,
 }
 
 .orders-container {
-  width: 75%;
   padding: 2rem;
 }
 
 @media (max-width: 768px) {
   .orders-container {
     padding: 0.3rem;
-    width: 100%;
   }
 }
 
