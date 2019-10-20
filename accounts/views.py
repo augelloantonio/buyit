@@ -8,6 +8,7 @@ from orders.models import Order, OrderLineItem
 from home.views import index
 from django.core.paginator import Paginator
 from django.contrib.auth import logout as django_logout
+from orders.filters import OrdersFilter
 
 
 @login_required
@@ -23,7 +24,15 @@ def profile(request):
     page = request.GET.get('page')
     pagination_orders = paginator.get_page(page)
 
-    return render(request, 'profile.html', {'pagination_orders': pagination_orders})
+    # Filter Orders
+    filter_orders = OrdersFilter(request.GET, queryset=orders)
+
+    months = [i.month for i in Order.objects.values_list(
+        'date', flat=True).distinct()]
+    months_filtered = list(dict.fromkeys(months))
+
+    return render(request, 'profile.html', {'pagination_orders': pagination_orders, 'filter': filter_orders,
+                                            'months_filtered': months_filtered})
 
 
 def logout(request):
@@ -42,7 +51,7 @@ def login(request):
             user_form = UserLoginForm(request.POST)
             if user_form.is_valid():
                 user = auth.authenticate(request.POST['username_or_email'],
-                                        password=request.POST['password'])
+                                         password=request.POST['password'])
 
                 if user:
                     auth.login(request, user)
