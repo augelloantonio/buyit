@@ -260,6 +260,18 @@ full-width-logo,
   color: white;
 }
 
+.chart-views-btn {
+  width: 100%;
+}
+
+.row-btn-change-view {
+  width: 100% !important;
+}
+
+.card-body {
+  text-align: center;
+}
+
 .navbar-global {
   background-color: indigo;
 }

@@ -45,9 +45,6 @@
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_orders_earning}}€</div>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,10 +60,20 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Choose view -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                            <div class="input-group mb-3">
-                                <button id="montly_earning_data">Montlhy View</button>
-                                <button id="daily_earning_data">Daily View</button>
+                            <div class="row row-btn-change-view">
+                                <div class="col-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings</h6>
+                                </div>
+                                <div class="col-9">
+                                    <div class="input-group mb-3 chart-views-btn">
+                                        <div class="col-6">
+                                            <button id="montly_earning_data">Montlhy View</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="daily_earning_data">Daily View</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Card Body -->
@@ -118,9 +125,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,14 +138,25 @@
                 <!-- Area Chart -->
                 <div class="col-sm-12">
                     <div class="card shadow mb-4">
+
                         <!-- Card Header - Choose view -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                <div class="input-group mb-3">
-                                    <button id="montly_orders_data">Montlhy View</button>
-                                    <button id="daily_orders_data">Daily View</button>
+                            <div class="row row-btn-change-view">
+                                <div class="col-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
+                                </div>
+                                <div class="col-9">
+                                    <div class="input-group mb-3 chart-views-btn">
+                                        <div class="col-6">
+                                            <button id="montly_orders_data">Montlhy View</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="daily_orders_data">Daily View</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
                         <!-- Card Body -->
                         <div class="card-body">
                             {% include 'chart_orders.html' %}
@@ -186,12 +201,12 @@
                                         Stock
                                     </div>
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
+                                        <div class="col-12">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{total_products_in_stock}}
+                                                <p>{{perc_stock_prod|floatformat:0}}%</p>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
                                                     style="width: {{perc_stock_prod}}%"
@@ -200,9 +215,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -219,12 +231,12 @@
                                         Stock
                                     </div>
                                     <div class="row no-gutters align-items-center">
-                                        <div class="col-auto">
+                                        <div class="col-12">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                {{total_products_not_stock}}
+                                                <p>{{perc_not_stock_prod}}%</p>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-12">
                                             <div class="progress progress-sm mr-2">
                                                 <div class="progress-bar bg-info" role="progressbar"
                                                     style="width: {{perc_not_stock_prod}}%"
@@ -233,9 +245,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +259,7 @@
                     <div class="card shadow mb-4">
                         <!-- Card Header - Dropdown -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Product Overview</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Most sold Products</h6>
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-" href="#" role="button" id="dropdownMenuLink" data-="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
