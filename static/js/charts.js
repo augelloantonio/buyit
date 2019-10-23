@@ -37,7 +37,7 @@ $(document).ready(function() {
         labels: label_months,
         datasets: [
           {
-            label: "€ Earned",
+            label: "<i class="fas fa-euro-sign"></i> Earned",
             data: earning_data,
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
