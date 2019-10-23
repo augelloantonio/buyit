@@ -1,4 +1,4 @@
-from django.db.models import Avg, F
+from django.db.models import Avg, F, Q
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
 from .forms import ProductForm
@@ -22,19 +22,20 @@ def all_products(request, category_id=None):
 
 
 def products_by_category(request, category_id=None):
-
-    product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
-                                               product_id=F("id"))
+    product = Product.objects.all()
+    product_reviews = product.annotate(avg_rating=Avg('review__rating'),
+                                       product_id=F("id"))
     reviews = Review.objects.all()
     categories = Category.objects.all()
 
     if not category_id:
-        products = Product.objects.all()
+        products = product.all()
     else:
-        products = Product.objects.filter(product_category=category_id)
+        products = product.filter(product_category=category_id)
+        category = categories.filter(id=category_id)
 
     return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
-                                             'categories': categories})
+                                             'categories': categories, 'category':category})
 
 
 def product_detail(request, pk):
@@ -62,17 +63,17 @@ def product_detail(request, pk):
                                                   'n_reviews': n_reviews, 'pagination_reviews': pagination_reviews})
 
 
-def edit_product(request, id):
-    item = get_object_or_404(Item, pk=id)
+def edit_a_product(request, id):
+    product = get_object_or_404(Product, pk=id)
 
     if request.method == "POST":
-        form = ItemForm(request.POST, instance=item)
+        form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect(product_detail)
+            return redirect(dashboard_product)
     else:
-        form = ItemForm(instance=item)
-    return render(request, "item_form.html", {'form': form})
+        form = ProductForm(instance=product)
+    return render(request, "dashboardaddproduct.html", {'form': form})
 
 
 def remove_product(request, pk):
@@ -101,3 +102,20 @@ def product_avg_rating(request, id):
     rating_avg = sum/len(review_list)
     print(rating_avg)
     return render({"rating_avg": rating_avg})
+
+
+def confirm_delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, "confirmdeleteproduct.html", {"product": product})
+
+
+def add_a_product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(dashboard_product)
+    else:
+        form = ProductForm()
+
+    return render(request, "dashboardaddproduct.html", {'form': form})

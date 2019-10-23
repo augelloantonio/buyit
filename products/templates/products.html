@@ -1,25 +1,15 @@
 {% extends 'base.html' %}
 
-
-
 {% block content %}
-<div class="container-fluid">
-
+<div class="container container-personal">
     <div class="row">
         <div class="col-3">
-            <div class="list-group">
-                {% for category in categories %}
-
-                <a href="{% url 'products_by_category' category_id=category.id %}"
-                    class="list-group-item list-group-item-action active">
-                    {{ category.name }}
-                </a>
-                {% endfor %}
-
-                <a href="{% url 'products' %}" class="list-group-item list-group-item-action">All Products</a>
-            </div>
+            {% include 'list_categories.html' %}
         </div>
         <div class="col-9">
+            {%for cat in category%}
+            <h3>Selected Category: {{cat}}</h3>
+            {% endfor %}
             <div class="row">
                 {% for product in products %}
                 <div class="col-lg-4 col-md-6 mb-4">
@@ -30,8 +20,7 @@
                             <h4 class="card-title">
                                 <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                             </h4>
-                            <h5>{{ product.price }}</h5>
-                            <h5>{{ product.product_category.name }}</h5>
+                            <h5>{{ product.price }}<i class="fas fa-euro-sign"></i></h5>
                             <div>
                                 <form method="post" action="{% url 'add_to_cart' product.id %}">
                                     {% csrf_token %}
