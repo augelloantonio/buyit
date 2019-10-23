@@ -15,10 +15,11 @@ def review_detail(request, review_id):
 
 @login_required()
 def add_review(request, product_id):
+    user = request.user
     product = get_object_or_404(Product, pk=product_id)
     form = ReviewForm(request.POST)
 
-    if Review.objects.filter(product_id=product, user=request.user):
+    if Review.objects.filter(product_id=product, user=user):
         messages.warning(request, "We are sorry, but you can't review twice!")
         return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
     else:
