@@ -5,7 +5,6 @@ from django.db.models import Count, Sum
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
-from django.contrib.auth.models import User
 from orders.models import Order, OrderLineItem
 from products.models import Product
 from reviews.models import Review
@@ -75,8 +74,6 @@ class ChartData(APIView):
             earning.append(entry['total__sum'])
 
         count_orders = Order.objects.all().count()
-        count_users = User.objects.all().count()
-
         # calculate number of orders by months
 
         number_of_orders_by_month = Order.objects.annotate(month=TruncMonth(
