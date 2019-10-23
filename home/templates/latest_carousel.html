@@ -18,7 +18,7 @@
                                 <h4 class="card-title">
                                     <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                                 </h4>
-                                <h5>{{ product.price }} €</h5>
+                                <h5>{{ product.price }} <i class="fas fa-euro-sign"></i></h5>
                                 <p class="card-text">{{ product.description|truncatechars:50 }}</p>
                                 <div>
                                     <form method="post" action="{% url 'add_to_cart' product.id %}">
