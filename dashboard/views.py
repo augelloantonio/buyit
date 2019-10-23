@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
+from datetime import date
 from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
@@ -18,8 +19,10 @@ def dashboard(request):
     product = Product.objects.all()
     reviews = Review.objects.all()
 
+    today = date.today()
     total_orders_earning = sum(items.total for items in order_info)
-    monthly_orders_earning = (total_orders_earning / 12)
+    today_orders_earning = sum(
+        items.total for items in order_info.filter(date__day=today.day))
     total_orders = orders.count()
     total_product_sold = 0
     total_products = product.count()
@@ -46,7 +49,7 @@ def dashboard(request):
         perc_not_stock_prod = 0
 
     context = {"orders": orders, "total_orders_earning": total_orders_earning,
-               "total_orders": total_orders, "total_product_sold": total_product_sold, "monthly_orders_earning": monthly_orders_earning,
+               "total_orders": total_orders, "total_product_sold": total_product_sold, "today_orders_earning": today_orders_earning,
                "total_products": total_products, "total_products_in_stock": total_products_in_stock,
                "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
                'dataset': dataset, 'perc_stock_prod': perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod, }
@@ -101,10 +104,8 @@ def add_a_category(request):
         category_form = CategoryForm()
     return render(request, "dashboardaddcategory.html", {'category_form': category_form})
 
+
 def users_info(request):
     users = User.objects.all()
     total_user = users.count()
-    return render(request, "dashboardusers.html", {'users': users, 'total_user':total_user})
-
-
-
+    return render(request, "dashboardusers.html", {'users': users, 'total_user': total_user})
