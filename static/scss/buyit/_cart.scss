@@ -6,7 +6,7 @@
     min-width: 100%;
 }
 
-.voucher{
+.voucher {
     text-align: center;
 }
 
@@ -20,8 +20,6 @@
     margin-top: 0.5rem;
 }
 
-.amend-btn {
-}
 
 .coupon-group {
     display: inline-block;
@@ -47,6 +45,7 @@
 
 .container-cart {
     padding: 20px;
+    min-height: 100vh;
 }
 
 .form-amend-quantity {

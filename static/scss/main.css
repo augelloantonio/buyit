@@ -428,6 +428,7 @@ full-width-logo,
 
 .container-cart {
   padding: 20px;
+  min-height: 100vh;
 }
 
 .form-amend-quantity {
