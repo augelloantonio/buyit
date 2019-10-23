@@ -1,0 +1,40 @@
+{% extends "dashboardbase.html" %}
+{% load staticfiles %}
+
+{%block title %}
+<title>Dashboard - Users</title>
+{% endblock %}
+
+{%block content%}
+<div class="container container-personal">
+    <h4>Users Info</h4>
+    <table class="table table-sm table-bordered table-responsive table-dark">
+        <thead>
+            <tr>
+                <th scope="col">User ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Active</th>
+                <th scope="col">Date registered</th>
+                <th scope="col">Staff Member</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.is_active}}</td>
+                <td>{{user.date_joined}}</td>
+                <td>{{user.is_staff}}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

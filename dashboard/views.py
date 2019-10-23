@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
 from products.models import Product, Category
 from django.db.models import Count, Sum, Q
+from django.contrib.auth.models import User
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
 from django.db.models.functions import TruncMonth, TruncYear
@@ -99,3 +100,11 @@ def add_a_category(request):
     else:
         category_form = CategoryForm()
     return render(request, "dashboardaddcategory.html", {'category_form': category_form})
+
+def users_info(request):
+    users = User.objects.all()
+    total_user = users.count()
+    return render(request, "dashboardusers.html", {'users': users, 'total_user':total_user})
+
+
+
