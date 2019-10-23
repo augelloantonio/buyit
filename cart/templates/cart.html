@@ -7,125 +7,121 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-personal">
-    <div class="container-pages">
-        <div class="container-cart">
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <table class="table table-responsive">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Product Image</th>
-                                <th scope="col">Product</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Price </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in cart_items %}
-                            <tr>
-                                <th scope="row">
-                                    <div class="product"
-                                        style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')">
-                                    </div>
-                                </th>
-                                <td>{{ item.product.name }}</td>
-                                <td>
-                                    <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
-                                        {% csrf_token %}
-                                        <div class="form-group form-amend-quantity">
-                                            <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                                            <div class="input-group">
-                                                <input name="quantity" type="number" min="0" max="999"
-                                                    class="form-control" value="{{item.quantity}}">
-                                            </div>
+<div class="container-pages">
+    <div class="container-cart">
+        <div class="row">
+            {% if product_count > 0 %}
+            <div class="col-md-8 col-sm-12">
+                <table class="table table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Product Image</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <th scope="row">
+                                <div class="product"
+                                    style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')">
+                                </div>
+                            </th>
+                            <td>{{ item.product.name }}</td>
+                            <td>
+                                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group form-amend-quantity">
+                                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
+                                        <div class="input-group">
+                                            <input name="quantity" type="number" min="0" max="999" class="form-control"
+                                                value="{{item.quantity}}">
                                         </div>
-                                        <button type="submit" class="btn btn-primary amend-btn"><span
-                                                class="glyphicon glyphicon-edit"
-                                                aria-hidden="true"></span>Amend</button>
-                                    </form>
-                                </td>
-                                <td>{{ item.product.price}} <i class="fas fa-euro-sign"></i> * ({{item.quantity}})</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary amend-btn"><span
+                                            class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
+                                </form>
+                            </td>
+                            <td>{{ item.product.price}} <i class="fas fa-euro-sign"></i> * ({{item.quantity}})</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
 
-                <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12">
 
 
-                    <table class="table">
-                        <thead class="thead-dark ">
-                            <tr>
-                                <th class="tr-total-table" scope="col">Summary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+                <table class="table">
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th class="tr-total-table" scope="col">Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                            <tr>
-                                <td><span class="float-left">Total Products: </span> <span
-                                        class=" float-right">{{total}}
-                                        <i class="fas fa-euro-sign"></i></span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><span class="float-left">Shipping Cost:</span> <span class=" float-right">**shipping
-                                        cost**</span> </td>
-                            </tr>
-                        </tbody>
-                        <thead class="thead-dark ">
-                            <tr>
-                                <th class="tr-total-table" scope="col">Summary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td><span class="float-left">Total: </span> <span class=" float-right" id="total">{{total}}
+                        <tr>
+                            <td><span class="float-left">Total Products: </span> <span class=" float-right">{{total}}
                                     <i class="fas fa-euro-sign"></i></span>
                             </td>
-                            {% if code != None %}
-                            <tr>
-                                <td id="new_total"><span class="float-left">Discounted Price: </span> <span
-                                        class="float-right">{{new_total|floatformat:2}} <i class="fas fa-euro-sign"></i>
-                                    </span>
-                                </td>
-                            </tr>
-                            {% endif %}
-                        </tbody>
-                    </table>
-
-
-                    <div class="voucher">
-                        {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}" role="alert">
-                            {{ message }} </div>
-                        {% endfor %}
+                        </tr>
+                        <tr>
+                            <td><span class="float-left">Shipping Cost:</span> <span class=" float-right">**shipping
+                                    cost**</span> </td>
+                        </tr>
+                    </tbody>
+                    <thead class="thead-dark ">
+                        <tr>
+                            <th class="tr-total-table" scope="col">Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td><span class="float-left">Total: </span> <span class=" float-right" id="total">{{total}}
+                                <i class="fas fa-euro-sign"></i></span>
+                        </td>
+                        {% if code != None %}
+                        <tr>
+                            <td id="new_total"><span class="float-left">Discounted Price: </span> <span
+                                    class="float-right">{{new_total|floatformat:2}} <i class="fas fa-euro-sign"></i>
+                                </span>
+                            </td>
+                        </tr>
                         {% endif %}
-                        <div class="center-align">
-                            <form class="card code-form" action="{% url 'voucher' %}" method="POST">
-                                {% csrf_token %}
-                                <div class="input-group coupon-group">
-                                    <input type="text" name="code" class="form-control input-code"
-                                        placeholder="Promo code">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-secondary redeem-btn">Redeem</button>
-                                    </div>
+                    </tbody>
+                </table>
+
+
+                <div class="voucher">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }} </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div class="center-align">
+                        <form class="card code-form" action="{% url 'voucher' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="input-group coupon-group">
+                                <input type="text" name="code" class="form-control input-code" placeholder="Promo code">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary redeem-btn">Redeem</button>
                                 </div>
-                            </form>
-                            <div class="checkout-btn">
-                                <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span
-                                        class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
                             </div>
+                        </form>
+                        <div class="checkout-btn">
+                            <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span
+                                    class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="payment-form">
-            </div>
         </div>
+        {%else%}
+        <h1>Yoour cart is empty.</h1>
+        {% endif %}
     </div>
 </div>
 
 {% endblock %}
-
