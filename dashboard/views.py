@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
-from products.models import Product
+from products.models import Product, Category
 from django.db.models import Count, Sum, Q
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
@@ -80,30 +80,14 @@ def dashboard_order_details(request, id):
     form = OrderStatus(request.POST)
 
     return render(request, "dashboardordersdetails.html", {"order_info": order_info, "orders": orders, 'order': order,
-                                                           "total_order_price": total_order_price, 'form':form})
+                                                           "total_order_price": total_order_price, 'form': form})
 
 
 def dashboard_product(request):
     products = Product.objects.all()
+    categories = Category.objects.all()
 
-    return render(request, "dashboardproducts.html", {"products": products})
-
-
-def confirm_delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, "confirmdeleteproduct.html", {"product": product})
-
-
-def add_a_product(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(dashboard_product)
-    else:
-        form = ProductForm()
-
-    return render(request, "dashboardaddproduct.html", {'form': form})
+    return render(request, "dashboardproducts.html", {"products": products, 'categories': categories})
 
 
 def add_a_category(request):

@@ -27,7 +27,7 @@
                                         (Monthly)
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        {{monthly_orders_earning|floatformat:2}}€</div>
+                                        {{monthly_orders_earning|floatformat:2}}<i class="fas fa-euro-sign"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
                                         (Ever)
                                     </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_orders_earning}}€</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_orders_earning}}<i class="fas fa-euro-sign"></i></div>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-12">
                                             <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <p>{{perc_not_stock_prod}}%</p>
+                                                <p>{{perc_not_stock_prod|floatformat:0}}%</p>
                                             </div>
                                         </div>
                                         <div class="col-12">

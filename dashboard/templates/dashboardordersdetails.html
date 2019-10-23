@@ -24,7 +24,7 @@
         <tbody>
             <tr>
                 <td>{{order.id}}</td>
-                <td>{{total_order_price}}€</td>
+                <td>{{total_order_price}}<i class="fas fa-euro-sign"></i></td>
                 <td>{{order.date}}</td>
                 <td>{{order.full_name}}</td>
                 <td>{{order.phone_number}}</td>
@@ -50,7 +50,7 @@
                 <td>{{orderitems.product.id}}</td>
                 <td>{{orderitems.product.name}}</td>
                 <td>{{orderitems.quantity}}</td>
-                <td>{{orderitems.product.price}}€</td>
+                <td>{{orderitems.product.price}}<i class="fas fa-euro-sign"></i></td>
             </tr>
             {%endif%}
             {% endfor %}
