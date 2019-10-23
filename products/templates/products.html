@@ -7,9 +7,13 @@
             {% include 'list_categories.html' %}
         </div>
         <div class="col-9">
-            {%for cat in category%}
-            <h3>Selected Category: {{cat}}</h3>
+            {%if product_category%}
+            {%for cat in product_category%}
+            <h3 class="text-center">Selected Category: {{cat}}</h3>
             {% endfor %}
+            {% else %}
+            <h3 class="text-center">All Products</h3>
+            {% endif %}
             <div class="row">
                 {% for product in products %}
                 <div class="col-lg-4 col-md-6 mb-4">

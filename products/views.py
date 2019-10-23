@@ -32,10 +32,10 @@ def products_by_category(request, category_id=None):
         products = product.all()
     else:
         products = product.filter(product_category=category_id)
-        category = categories.filter(id=category_id)
+        product_category = categories.filter(id=category_id)
 
     return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
-                                             'categories': categories, 'category':category})
+                                             'categories': categories, 'product_category':product_category})
 
 
 def product_detail(request, pk):
