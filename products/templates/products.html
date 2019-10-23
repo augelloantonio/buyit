@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
-
 {% block content %}
+
 <div class="container container-personal">
     <div class="row">
-        <div class="col-3">
-            {% include 'list_categories.html' %}
+        <div class="col-12">
+            <p>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Categories
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                {% include 'list_categories.html' %}
+            </div>
         </div>
-        <div class="col-9">
+        <div class="col-12">
             {%if product_category%}
             {%for cat in product_category%}
             <h3 class="text-center">Selected Category: {{cat|title }}</h3>
@@ -14,8 +22,8 @@
             {% else %}
             <h3 class="text-center">All Products</h3>
             {% endif %}
-            <div class="row">
-                {% for product in products %}
+            <div class="row products-row">
+                {% for product in pagination_products %}
                 <!--card-->
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
@@ -61,6 +69,53 @@
                 <!--./card-->
                 {% endfor %}
             </div>
+            <!--pagination-->
+            <div class="pagination-container">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        {% if pagination_products.has_previous %}
+                        <li class="page-item">
+                            <span class="page-link"><a
+                                    href="?page={{ pagination_products.previous_page_number }}">Previous</a></span>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Previous</span>
+                        </li>
+                        {% endif%}
+
+
+                        {% if pagination_products.number|add:'-4' > 1 %}
+                        <li><a href="?page={{ pagination_products.number|add:'-5' }}">&hellip;</a></li>
+                        {% endif %}
+
+                        {% for i in pagination_products.paginator.page_range %}
+                        {% if pagination_products.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }}</span> <span
+                                class="sr-only">(current)</span></span></li>
+                        {% elif i > pagination_products.number|add:'-5' and i < pagination_products.number|add:'5' %}
+                        <li class="page-item"><a href="?page={{ i }}"><span class="page-link">{{ i }}</span></a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if pagination_products.paginator.num_pages > pagination_products.number|add:'4' %}
+                        <li><a href="?page={{ pagination_products.number|add:'5' }}">&hellip;</a></li>
+                        {% endif %}
+
+                        {% if pagination_products.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ pagination_products.next_page_number }}">Next</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            <!--./Pagination-->
         </div>
     </div>
 </div>

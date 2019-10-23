@@ -17,7 +17,12 @@ def all_products(request, category_id=None):
     reviews = Review.objects.all()
     products = Product.objects.all()
 
-    return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
+    # pagination
+    paginator = Paginator(products, 12)
+    page = request.GET.get('page')
+    pagination_products = paginator.get_page(page)
+
+    return render(request, "products.html", {'pagination_products': pagination_products, "products": products, "product_reviews": product_reviews,
                                              'categories': categories})
 
 
@@ -30,12 +35,19 @@ def products_by_category(request, category_id=None):
 
     if not category_id:
         products = product.all()
+        paginator = Paginator(products, 12)
+        page = request.GET.get('page')
+        pagination_products = paginator.get_page(page)
     else:
         products = product.filter(product_category=category_id)
         product_category = categories.filter(id=category_id)
+        # pagination
+        paginator = Paginator(products, 12)
+        page = request.GET.get('page')
+        pagination_products = paginator.get_page(page)
 
-    return render(request, "products.html", {"products": products, "product_reviews": product_reviews,
-                                             'categories': categories, 'product_category':product_category})
+    return render(request, "products.html", {'pagination_products': pagination_products, "products": products, "product_reviews": product_reviews,
+                                             'categories': categories, 'product_category': product_category})
 
 
 def product_detail(request, pk):
@@ -82,6 +94,11 @@ def remove_product(request, pk):
     return redirect(dashboard_product)
 
 
+def confirm_delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, "confirmdeleteproduct.html", {"product": product})
+
+
 def toggle_status(request, id):
     product = get_object_or_404(Product, id=id)
     product.in_stock = not product.in_stock
@@ -102,11 +119,6 @@ def product_avg_rating(request, id):
     rating_avg = sum/len(review_list)
     print(rating_avg)
     return render({"rating_avg": rating_avg})
-
-
-def confirm_delete_product(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    return render(request, "confirmdeleteproduct.html", {"product": product})
 
 
 def add_a_product(request):
