@@ -10,7 +10,6 @@ body {
 
 
 .container-personal {
-  display: inline-block;
   width: 100%;
   margin-top: 20px;
   min-height: 100vh;
@@ -46,4 +45,8 @@ footer {
 
 button:focus {
   outline: none;
+}
+
+.pagination-container {
+  float: right;
 }

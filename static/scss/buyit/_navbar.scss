@@ -1,22 +1,12 @@
 @media (max-width:992px) {
     .navbar-header {
-        width: 100%;
+        width: 80%;
 
     }
 }
 
 
-@media (max-width:992px) {
-    .cart-mobile {
-        float: right;
-        display: block;
-    }
+.cart-mobile {
+    float: right;
+    display: flex;
 }
-
-
-@media (min-width:992px) {
-    .cart-mobile {
-        display: none;
-    }
-}
-

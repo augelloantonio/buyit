@@ -5,7 +5,6 @@ body {
 }
 
 .container-personal {
-  display: inline-block;
   width: 100%;
   margin-top: 20px;
   min-height: 100vh;
@@ -41,6 +40,10 @@ footer {
 
 button:focus {
   outline: none;
+}
+
+.pagination-container {
+  float: right;
 }
 
 full-width-logo,
@@ -212,6 +215,14 @@ full-width-logo,
   width: 150px;
   height: 150px;
   margin: 0 auto;
+}
+
+.products-row {
+  margin-top: 40px;
+}
+
+.categories {
+  margin-top: 80px;
 }
 
 .slider_bar {
@@ -425,21 +436,15 @@ full-width-logo,
 
 @media (max-width: 992px) {
   .navbar-header {
-    width: 100%;
+    width: 80%;
   }
 }
 
-@media (max-width: 992px) {
-  .cart-mobile {
-    float: right;
-    display: block;
-  }
-}
-
-@media (min-width: 992px) {
-  .cart-mobile {
-    display: none;
-  }
+.cart-mobile {
+  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .orders-container {
@@ -450,10 +455,6 @@ full-width-logo,
   .orders-container {
     padding: 0.3rem;
   }
-}
-
-.pagination-container {
-  float: right;
 }
 
 .checkout-review {
