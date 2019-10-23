@@ -24,7 +24,7 @@
             </div>
 
             <!-- Callout -->
-            {% if user.is_authenticated %}
+            {% if user != None %}
             {%else%}
             <div class="callout-row jumbotron-container">
                 <div class="jumbotron page-jumbotron">
@@ -77,7 +77,7 @@
                                             <h4 class="card-title">
                                                 <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
                                             </h4>
-                                            <h5>{{ product.price }} €</h5>
+                                            <h5>{{ product.price }} <i class="fas fa-euro-sign"></i></h5>
                                             <div>
                                             </div>
                                             <p class="card-text">{{ product.description|truncatechars:50 }}</p>
