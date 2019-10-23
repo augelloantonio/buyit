@@ -6,6 +6,16 @@
 {% block content %}
 <div class="container">
     <div class="container-personal">
+
+        <!-- Message View-->
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+        </ul>
+        {% endif %}
+        <!-- ./ Message View-->
         <div class="row">
             <div class="col-md-6">
                 <img class="img-product-page card-img-top" src="{{ MEDIA_URL }}{{ product.image }}"
@@ -54,6 +64,7 @@
                     </div>
                 </div>
                 <!-- Quantity spinner-->
+                {% if product.in_stock == True %}
                 <div class="row">
                     <div class="quantity-form col-12">
                         <form method="post" action="{% url 'add_to_cart' product.id %}">
@@ -61,24 +72,21 @@
                             <div class="input-group">
                                 <div class="col-5">
                                     <input name="quantity" id="demo9" type="text" min="1" max="999" class="form-control"
-                                        placeholder="Quantity">
+                                        placeholder="Quantity" value="1">
                                 </div>
                                 <div class="col-7">
                                     <span class="input-group-btn">
                                         <!-- Check if product is in stock, if not in stock disable the add to cart btn-->
-                                        {% if product.in_stock == False %}
                                         <button class="btn btn-success text-uppercase" type="submit" disabled>add to
                                             chart<i class="fas fa-shopping-cart add-to-cart-icon"></i></button>
-                                        {%else%}
-                                        <button class="btn btn-success text-uppercase" type="submit">add to
-                                            chart<i class="fas fa-shopping-cart add-to-cart-icon"></i></button>
-                                        {%endif%}
                                     </span>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+                {%endif%}
+                <!-- ./ Quantity spinner-->
             </div>
         </div>
         {% include 'reviews.html' %}

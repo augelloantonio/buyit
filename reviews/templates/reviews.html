@@ -2,13 +2,6 @@
  <div class="container-fluid">
      <div id="view_reviews">
          <h3>Product Reviews</h3>
-         {% if messages %}
-         <ul class="messages">
-             {% for message in messages %}
-             <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                 {% endfor %}
-         </ul>
-         {% endif %}
          <!-- Add a review btn-->
          <p><a href="{% url 'add_review' product.id%}">Add a Review</a></p>
          <!-- Check if product has review-->

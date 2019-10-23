@@ -19,6 +19,7 @@
                                 <h5>{{ product.price }} <i class="fas fa-euro-sign"></i></h5>
                                 <p class="card-text">{{ product.description|truncatechars:50 }}</p>
                                 <div>
+                                    {% if product.in_stock == True %}
                                     <form method="post" action="{% url 'add_to_cart' product.id %}">
                                         {% csrf_token %}
                                         <div class="input-group">
@@ -29,6 +30,9 @@
                                             </span>
                                         </div>
                                     </form>
+                                    {% else %}
+                                    <h4>Temporary out of stock</h4>
+                                    {% endif %}
                                 </div>
                             </div>
                             <div class="card-footer">
