@@ -30,8 +30,12 @@ def dashboard(request):
     total_products_not_stock = product.exclude(in_stock=True).count()
     total_reviews = reviews.count()
 
-    for items in order_info:
-        total_product_sold = sum(items.quantity for items in order_info)
+    if order_info:
+        for items in order_info:
+            total_product_sold = sum(items.quantity for items in order_info)
+    else:
+        total_product_sold=0
+
 
     order_by_date = order_info.filter(order__date__year='2019').values_list(
         'order__date__month').annotate(total_order_price=Count('total'))
