@@ -25,5 +25,4 @@ def add_voucher(request):
         except Voucher.DoesNotExist:
             messages.warning(request, 'Coupon not accepted.')
             request.session['voucher_id'] = None
-        cart = request.session.get('cart', {})
     return redirect("view_cart")
