@@ -20,8 +20,6 @@ def voucher_contents(request):
 
     except Voucher.DoesNotExist:
         code = None
-    else:
-        None
 
     for id, quantity in cart.items():
         product = get_object_or_404(Product, pk=id)
