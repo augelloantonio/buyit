@@ -5,7 +5,6 @@ from .forms import MakePaymentForm, OrderForm, OrderStatus
 from voucher.forms import VoucherForm
 from .models import OrderLineItem, Order
 from django.conf import settings
-from django.utils import timezone
 from products.models import Product
 from voucher.models import Voucher
 from decimal import Decimal
