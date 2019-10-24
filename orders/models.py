@@ -42,7 +42,7 @@ class OrderLineItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, null=False)
     quantity = models.IntegerField(blank=False)
     total = models.DecimalField(
-        blank=False, default=0, max_digits=100000, decimal_places=2)
+        blank=False, default=0, max_digits=1000, decimal_places=2)
     date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
