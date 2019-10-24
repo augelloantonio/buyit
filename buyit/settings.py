@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://buyit-platform.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'buyit-platform.herokuapp.com']
 
 
 # Application definition
