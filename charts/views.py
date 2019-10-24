@@ -25,7 +25,6 @@ def view_chart_orders(View):
     def get(self, request, *args, **kwargs):
         return render(request, "chart_orders.html")
 
-
 class ChartData(APIView):
 
     authentication_classes = []
