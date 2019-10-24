@@ -11,7 +11,7 @@ from datetime import date
 from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
-    
+
 @login_required
 def dashboard(request):
     orders = Order.objects.all()
@@ -20,9 +20,7 @@ def dashboard(request):
     reviews = Review.objects.all()
 
     today = date.today()
-    total_orders_earning = sum(items.total for items in order_info)
-    today_orders_earning = sum(
-        items.total for items in order_info.filter(date__day=today.day))
+
     total_orders = orders.count()
     total_product_sold = 0
     total_products = product.count()
@@ -31,11 +29,15 @@ def dashboard(request):
     total_reviews = reviews.count()
 
     if order_info:
+        total_orders_earning = sum(items.total for items in order_info)
+        today_orders_earning = sum(
+            items.total for items in order_info.filter(date__day=today.day))
         for items in order_info:
             total_product_sold = sum(items.quantity for items in order_info)
     else:
-        total_product_sold=0
-
+        total_product_sold = 0
+        total_orders_earning = 0
+        today_orders_earning = 0
 
     order_by_date = order_info.filter(order__date__year='2019').values_list(
         'order__date__month').annotate(total_order_price=Count('total'))
