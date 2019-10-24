@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('published_date', models.DateTimeField(blank=True, default=django.utils.timezone.now, null=True)),
                 ('in_stock', models.BooleanField(default=True)),
                 ('quantity_sold', models.IntegerField(default=0)),
-                ('product_category', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='products.Category')),
+                ('product_category', models.ManyToManyField(to='products.Category')),
             ],
         ),
     ]

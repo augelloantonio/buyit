@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.IntegerField()),
-                ('total', models.DecimalField(decimal_places=2, default=0, max_digits=100000)),
+                ('total', models.DecimalField(decimal_places=2, default=0, max_digits=1000)),
                 ('date', models.DateField(blank=True, default=datetime.datetime.now)),
                 ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.Order')),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Product')),

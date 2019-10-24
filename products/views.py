@@ -59,6 +59,7 @@ def product_detail(request, pk):
                                                product_id=F("id"))
     reviews = Review.objects.all()
     review_list = []
+    n_reviews = 0
 
     for review in reviews:
         review_list = Review.objects.all().order_by(

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import env
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -95,9 +96,11 @@ WSGI_APPLICATION = 'buyit.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-if "DATABASE_URL" in os.environ:
-    DATABASES = {'default': dj_database_url.parse(
-        os.environ.get('DATABASE_URL'))}
+# if "DATABASE_URL" in os.environ:
+DATABASES = {'default': dj_database_url.parse(
+        os.environ.get('DATABASE_URL'))
+        }
+"""
 else:
     print("Database URL not found. Using SQLite instead")
     DATABASES = {
@@ -106,6 +109,7 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+    """
 
 
 # Password validation
