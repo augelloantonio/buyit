@@ -2,8 +2,6 @@ dist: xenial
 language: python
 python: 
     - 3.7
-before_install:
-  - chmod +x manage.py
 install: "pip3 install -r requirements.txt"
 script:
 - SECRET_KEY="whateveritmaybe" ./manage.py test
