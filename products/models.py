@@ -1,11 +1,6 @@
 from django.db import models
 from django.utils import timezone
 
-categories_list = (
-    ('bestseller', 'Bestseller'),
-    ('latest', ' Latest'),
-)
-
 
 class Category(models.Model):
     name = models.CharField(max_length=254, default='')
