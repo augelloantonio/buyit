@@ -24,7 +24,7 @@
             </div>
 
             <!-- Callout -->
-            {% if user_id.is_authenticated %}
+            {% if user.is_authenticated %}
             {%else%}
             <div class="callout-row jumbotron-container">
                 <div class="jumbotron page-jumbotron">
@@ -33,7 +33,7 @@
                     <hr class="my-4 advert-hr">
                     <p>Register, buy, play.
                     </p>
-                    <a class="btn btn-primary btn-lg advert-btn" href="#" role="button">Register Now</a>
+                    <a class="btn btn-primary btn-lg advert-btn" href="{% url 'register'%}" role="button">Register Now</a>
                 </div>
             </div>
             {% endif %}
