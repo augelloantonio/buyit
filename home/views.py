@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from products.models import Product, Category
 from django.db.models import Avg, F, Count
-from django.contrib.auth.models import User
 
 
 def index(request):
@@ -16,5 +15,4 @@ def index(request):
     products_bestsellers = products.order_by('-quantity_sold')
 
     return render(request, "index.html", {"products": products, "product_reviews": product_reviews,
-                                          'products_latest': products_latest, 'products_bestsellers': products_bestsellers,
-                                          })
+                                          'products_latest': products_latest, 'products_bestsellers': products_bestsellers})
