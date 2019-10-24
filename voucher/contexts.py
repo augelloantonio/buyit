@@ -38,4 +38,4 @@ def voucher_contents(request):
 
     voucher_form = VoucherForm(request.POST)
 
-    return {'new_total': new_total, 'voucher_form': voucher_form}
+    return {'code': code, 'voucher_id': voucher_id, 'new_total': new_total, 'voucher_form': voucher_form}
