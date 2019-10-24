@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var endpoint = "charts/chart/data";
+  var endpoint = "api/chart/data";
 
   $.ajax({
     method: "GET",
