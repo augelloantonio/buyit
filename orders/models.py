@@ -27,7 +27,7 @@ class Order(models.Model):
     street_address2 = models.CharField(max_length=40, blank=True)
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField(null=True)
-    voucher = models.ForeignKey(Voucher, null=True, blank=True, on_delete=models.SET_NULL)
+    coupon = models.ForeignKey(Voucher, null=True, blank=True, on_delete=models.CASCADE)
     order_status = models.CharField(
         choices=ORDER_STATUS, max_length=50, default='Order Received', blank=True)
 
@@ -37,12 +37,12 @@ class Order(models.Model):
 
 class OrderLineItem(models.Model):
     user = models.ForeignKey(User, unique=False,
-                             on_delete=models.DO_NOTHING, default=1)
-    order = models.ForeignKey(Order, on_delete=models.DO_NOTHING, null=False)
-    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING, null=False)
+                             on_delete=models.CASCADE, default=1)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=False)
     quantity = models.IntegerField(blank=False)
     total = models.DecimalField(
-        blank=False, default=0, max_digits=100000, decimal_places=2)
+        blank=False, default=0, max_digits=4, decimal_places=2)
     date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
