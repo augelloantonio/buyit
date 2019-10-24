@@ -5,7 +5,7 @@ from . import views
 from .views import dashboard, dashboard_orders, dashboard_order_details, add_a_category, users_info
 from products.views import toggle_status, add_a_product, confirm_delete_product, edit_a_product
 from orders.views import change_order_status
-from charts import urls as urls_charts
+from api import urls as urls_api
 
 urlpatterns = [
     path('', views.dashboard, name='dashboard'),
@@ -23,7 +23,7 @@ urlpatterns = [
     path('toggle_status/<int:id>', toggle_status),
     path('changeorderstatus/<int:id>',
          change_order_status, name='change_order_status'),
-    path('charts/', include(urls_charts)),
+    path('api/', include(urls_api)),
 
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

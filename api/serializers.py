@@ -8,3 +8,4 @@ class ProductSerializer(serializers.Serializer):
 class MonthlyEarning(serializers.Serializer):
     total = serializers.CharField()
     date = serializers.DateField()
+    

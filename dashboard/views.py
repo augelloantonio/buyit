@@ -11,7 +11,7 @@ from datetime import date
 from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
-
+    
 @login_required
 def dashboard(request):
     orders = Order.objects.all()
@@ -74,6 +74,7 @@ def dashboard_orders(request):
                                                     'months_filtered': months_filtered})
 
 
+@login_required
 def dashboard_order_details(request, id):
     orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
@@ -87,6 +88,7 @@ def dashboard_order_details(request, id):
                                                            "total_order_price": total_order_price, 'form': form})
 
 
+@login_required
 def dashboard_product(request):
     products = Product.objects.all()
     categories = Category.objects.all()
@@ -94,6 +96,7 @@ def dashboard_product(request):
     return render(request, "dashboardproducts.html", {"products": products, 'categories': categories})
 
 
+@login_required
 def add_a_category(request):
     if request.method == "POST":
         category_form = CategoryForm(request.POST, request.FILES)
@@ -105,6 +108,7 @@ def add_a_category(request):
     return render(request, "dashboardaddcategory.html", {'category_form': category_form})
 
 
+@login_required
 def users_info(request):
     users = User.objects.all()
     total_user = users.count()
