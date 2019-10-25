@@ -44,7 +44,7 @@ def checkout(request):
                 total += quantity * product.price
                 product_sold_quantity = product.quantity_sold + quantity
                 if code != None:
-                    discount = (code.price_reducing/Decimal('100'))*total
+                    discount = (code.amount/Decimal('100'))*total
                     new_total = total - discount
                 else:
                     new_total = total

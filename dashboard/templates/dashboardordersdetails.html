@@ -1,12 +1,6 @@
-{% extends "dashboardbase.html" %}
-{% load bootstrap_tags %}
-{% load staticfiles %}
-
-{%block title %}
+{% extends "dashboardbase.html" %} {% load bootstrap_tags %} {% load staticfiles %} {%block title %}
 <title>Dashboard - Order Details</title>
-{% endblock %}
-
-{%block content%}
+{% endblock %} {%block content%}
 
 <div class="container_pages">
     <h4>Order Info</h4>
@@ -19,6 +13,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Phone Number</th>
                 <th scope="col">Email</th>
+                <th scole="col>">Code Used</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +24,7 @@
                 <td>{{order.full_name}}</td>
                 <td>{{order.phone_number}}</td>
                 <td>{{order.email_address}}</td>
+                <td>{{order.coupon}}</td>
             </tr>
         </tbody>
     </table>
@@ -44,16 +40,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for orderitems in order_info.all %}
-            {%if order.id == orderitems.order_id %}
+            {% for orderitems in order_info.all %} {%if order.id == orderitems.order_id %}
             <tr>
                 <td>{{orderitems.product.id}}</td>
                 <td>{{orderitems.product.name}}</td>
                 <td>{{orderitems.quantity}}</td>
                 <td>{{orderitems.product.price}}<i class="fas fa-euro-sign"></i></td>
             </tr>
-            {%endif%}
-            {% endfor %}
+            {%endif%} {% endfor %}
         </tbody>
     </table>
 
@@ -85,8 +79,7 @@
     <h4>Order Status</h4>
     <div class="input-group">
         <form role="form" method="POST" action="{% url 'change_order_status' order.id %}">
-            {% csrf_token %}
-            {{ form | as_bootstrap}}
+            {% csrf_token %} {{ form | as_bootstrap}}
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Button</button>
             </div>
