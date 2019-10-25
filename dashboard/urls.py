@@ -24,7 +24,7 @@ urlpatterns = [
      path('toggle_status/<int:id>', toggle_status),
      path('changeorderstatus/<int:id>',
          change_order_status, name='change_order_status'),
-     path('dashboarvouchers', voucher_view, name='voucher_view'),
+     path('dashboardvouchers', voucher_view, name='voucher_view'),
      path('dashboardaddvoucher', add_new_voucher, name='add_new_voucher'),
      path('dashboardeditvoucher/<int:id>', edit_a_voucher, name='edit_a_voucher'),    
      path('api/', include(urls_api)),

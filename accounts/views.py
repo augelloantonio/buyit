@@ -8,6 +8,7 @@ from orders.models import Order, OrderLineItem
 from home.views import index
 from django.core.paginator import Paginator
 from django.contrib.auth import logout as django_logout
+from django.core.mail import EmailMessage
 from .filters import OrdersFilter
 
 
@@ -54,7 +55,8 @@ def login(request):
 
                 if user:
                     auth.login(request, user)
-                    messages.success(request, "You have successfully logged in")
+                    messages.success(
+                        request, "You have successfully logged in")
 
                     if request.GET and request.GET['next'] != '':
                         next = request.GET['next']
@@ -83,18 +85,20 @@ def register(request):
 
                 user = auth.authenticate(request.POST.get('email'),
                                          password=request.POST.get('password1'))
-
                 if user:
                     auth.login(request, user)
+                    email = request.user.email
+                    html_content = '<p>Welcome to <a href="https://buyit-platform.herokuapp.com/">Buyit</a>, enjoy your shopping, use the voucher code <strong>welcomenew</strong> and enjoy your 5% OFF of discount.</p>'
+                    email = EmailMessage('Welcome', html_content, to = [email])
+                    email.send()
                     messages.success(
-                        request, "You have successfully registered")
-                    return redirect(reverse('index'))
-
+                        request, "You have successfully registered, an email has been sent to you.")
+                    return redirect(reverse('profile'))
                 else:
-                    messages.error(
+                    messages.warning(
                         request, "unable to log you in at this time!")
         else:
-            user_form = UserRegistrationForm()
+            user_form=UserRegistrationForm()
 
-    args = {'user_form': user_form}
+    args={'user_form': user_form}
     return render(request, 'register.html', args)
