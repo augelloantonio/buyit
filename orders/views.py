@@ -33,8 +33,6 @@ def checkout(request):
         if order_form.is_valid() and payment_form.is_valid():
             order = order_form.save(commit=False)
             order.date = datetime.datetime.now()
-            order.code = code
-            order.save()
 
             cart = request.session.get('cart', {})
             total = 0
@@ -48,6 +46,9 @@ def checkout(request):
                     new_total = total - discount
                 else:
                     new_total = total
+                order.coupon = code
+                print(order.coupon)
+                order.save()
                 order_line_item = OrderLineItem(
                     order=order,
                     product=product,
