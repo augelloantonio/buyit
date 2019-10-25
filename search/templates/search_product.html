@@ -9,6 +9,7 @@
 <div class="container container-personal">
     <div class="row">
         <div class="col-12">
+            {% if products %}
             <h3>These are the results for your search '{{query}}':</h3>
             <div class="row products-row">
                 {% for product in products %}
@@ -42,22 +43,13 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="card-footer">
-                            {%for range in product_reviews%}
-                            {%if product.pk == range.product_id %}
-                            {% if range.avg_rating != Null %}
-                            <p class="star_rating" value="{{range.avg_rating|floatformat:1}}">Rated:
-                                {{range.avg_rating|floatformat:1}}/5</p>
-                            {% else %}
-                            <p>Rated: 0/5</p>
-                            {% endif %}
-                            {% endif %}
-                            {% endfor %}
-                        </div>
                     </div>
                 </div>
                 <!--./card-->
                 {% endfor %}
+                {% else %}
+                <h3>We are sorry, there are no results for your search.</h3>
+                {% endif %}
             </div>
         </div>
     </div>
