@@ -12,7 +12,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('voucher', '0001_initial'),
         ('products', '0002_auto_20191015_1219'),
     ]
 
@@ -33,6 +32,8 @@ class Migration(migrations.Migration):
                 ('date', models.DateField(null=True)),
                 ('order_status', models.CharField(blank=True, choices=[('Order Received', 'Order Received'), ('Delivered', 'Delivered')], default='Order Received', max_length=50)),
                 ('user', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                ('voucher', models.CharField(blank=True, default='', max_length=40, null=True)),
+            
             ],
         ),
         migrations.CreateModel(
@@ -45,7 +46,6 @@ class Migration(migrations.Migration):
                 ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.Order')),
                 ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Product')),
                 ('user', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
-                ('voucher', models.ForeignKey(blank=True, default='', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='order', to='voucher.Voucher')),
             ],
         ),
     ]

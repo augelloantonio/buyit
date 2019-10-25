@@ -8,10 +8,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('voucher', '0003_voucher_amount'),
         ('orders', '0006_auto_20191024_2152'),
     ]
 
     operations = [
-        
+        migrations.AddField(
+            model_name='order',
+            name='voucher',
+            field=models.CharField(max_length=40, blank=True, null=True, default=''),
+        ),
     ]

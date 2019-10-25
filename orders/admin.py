@@ -9,7 +9,7 @@ class OrderLineAdminInline(admin.ModelAdmin):
     search_fields = ['order', 'user']
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'date', 'coupon', 'order_status')
+    list_display = ('id', 'user', 'date', 'order_status')
     list_filter = ['date', 'order_status']
     search_fields = ['orderlineitem__product__name']
 

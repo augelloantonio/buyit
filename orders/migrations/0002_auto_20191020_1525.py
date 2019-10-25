@@ -12,13 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='orderlineitem',
-            name='voucher',
-        ),
-        migrations.AddField(
-            model_name='order',
-            name='voucher',
-            field=models.ForeignKey(blank=True, default='', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='order', to='voucher.Voucher'),
-        ),
     ]
