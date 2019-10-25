@@ -6,14 +6,12 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <div class="row">
+                <div class="row-carousel" style="display:flex">
                     {% for product in products_latest %}
                     <!--card-->
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
                         <div class="card h-100">
-                            <a href="{% url 'product_detail' product.id %}"><img class="img-shop card-img-top"
-                                    src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"><span
-                                    class="badge badge-danger badge-new-product pulse">New</span></a>
+                            <a href="{% url 'product_detail' product.id %}"><img class="img-shop card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"><span class="badge badge-danger badge-new-product pulse">New</span></a>
                             <div class="card-body">
                                 <h4 class="card-title">
                                     <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
@@ -25,8 +23,7 @@
                                     <form method="post" action="{% url 'add_to_cart' product.id %}">
                                         {% csrf_token %}
                                         <div class="input-group">
-                                            <input name="quantity" type="number" min="1" max="999" class="form-control"
-                                                placeholder="Quantity" value='1'>
+                                            <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" value='1'>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-success" type="submit"> <i
                                                         class="fas fa-cart-plus"></i>
@@ -40,16 +37,12 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                {%for range in product_reviews%}
-                                {%if product.pk == range.product_id %}
-                                {% if range.avg_rating != Null %}
-                                <p class="star_rating" value="{{range.avg_rating|floatformat:1}}">Rated:
-                                    {{range.avg_rating|floatformat:1}}/5</p>
+                                {%for range in product_reviews%} {%if product.pk == range.product_id %} {% if range.avg_rating != Null %}
+                                <p class="star_rating" value="{{range.avg_rating|floatformat:1}}">Rated: {{range.avg_rating|floatformat:1}}/5
+                                </p>
                                 {% else %}
                                 <p>Rated: 0/5</p>
-                                {% endif %}
-                                {% endif %}
-                                {% endfor %}
+                                {% endif %} {% endif %} {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -58,9 +51,8 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <div class="row">
-                    {% endif %}
-                    {% endfor %}
+                <div class="row-carousel" style="display:flex">
+                    {% endif %} {% endfor %}
                 </div>
             </div>
         </div>
