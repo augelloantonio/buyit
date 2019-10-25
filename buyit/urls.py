@@ -14,7 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views import static
+from .settings import MEDIA_ROOT
 from accounts import urls as urls_accounts
 from products import urls as urls_products
 from cart import urls as urls_cart
@@ -24,8 +28,7 @@ from reviews import urls as urls_review
 from voucher import urls as urls_voucher
 from home import urls as urls_home
 from api import urls as urls_api
-from django.conf import settings
-from django.conf.urls.static import static
+from search import urls as urls_search
 from home.views import index
 
 urlpatterns = [
@@ -40,5 +43,6 @@ urlpatterns = [
     path('voucher/', include(urls_voucher)),
     path('home/', include(urls_home)),
     path('api/', include(urls_api)),
+    path('search/', include(urls_search)),
+    re_path(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

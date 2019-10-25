@@ -553,4 +553,30 @@ full-width-logo,
   width: 120px;
   border-radius: 50%;
 }
+
+.search-btn {
+  color: white;
+  border-radius: 50%;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.input-search {
+  background-color: #fff7f738;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  -webkit-transition: visibility 0s, opacity 0.3s, max-height 0.6s linear;
+  transition: visibility 0s, opacity 0.3s, max-height 0.6s linear;
+}
+
+.search-btn:hover {
+  color: white !important;
+}
+
+input:focus {
+  outline: none;
+}
 /*# sourceMappingURL=main.css.map */

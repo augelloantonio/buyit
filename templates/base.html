@@ -40,6 +40,15 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
+          <!-- Search Form-->
+          <li class="nav-item active search-li">
+            <form id="search-form" action="{% url 'search' %}" method="get" class="form-inline">
+              <input id="input-search" name="q" class="input-search hidden-input" type="text"
+                placeholder="Search Product" aria-label="Search" required>
+              <button id="search-btn" class="btn search-btn" onclick="searchToggle();"><i
+                  class="fas fa-search"></i></button>
+            </form>
+          </li>
           {% if user.is_superuser %}
           <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-user"></i>
               Dashboard</a></li>

@@ -33,11 +33,19 @@ $(document).ready(function() {
     console.log("not visible");
   }
 
-// Add script for spinner
-
+  // Add script for spinner
 });
 
 $("#demo9").TouchSpin({
   buttondown_class: "btn btn-link",
   buttonup_class: "btn btn-link"
 });
+
+// Search Form activator
+function searchToggle() {
+  if ($("#input-search").hasClass("hidden-input")) {
+    $("#input-search").removeClass("hidden-input");
+  } else {
+    $("#input-search").addClass("hidden-input");
+  }
+}
