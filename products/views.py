@@ -52,7 +52,7 @@ def products_by_category(request, category_id=None):
 
 def product_detail(request, pk):
     """
-    Product viewz
+    Product views
     """
     product = get_object_or_404(Product, pk=pk)
     product_reviews = Product.objects.annotate(avg_rating=Avg('review__rating'),
