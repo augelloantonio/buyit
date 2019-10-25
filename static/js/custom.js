@@ -33,9 +33,13 @@ $(document).ready(function() {
     console.log("not visible");
   }
 
-  // Add script for spinner
+  // Auto Hide Messages
+  setTimeout(function() {
+    $(".alert").hide();
+  }, 2000);
 });
 
+// Add script for spinner
 $("#demo9").TouchSpin({
   buttondown_class: "btn btn-link",
   buttonup_class: "btn btn-link"

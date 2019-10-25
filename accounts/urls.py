@@ -2,7 +2,7 @@ from django.urls import path, include, re_path
 from . import urls_reset
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import register, profile, logout, login, personal_login
+from .views import register, profile, logout, login
 from . import views
 from django.contrib.auth import views as v
 

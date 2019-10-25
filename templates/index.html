@@ -33,7 +33,8 @@
                     <hr class="my-4 advert-hr">
                     <p>Register, buy, play.
                     </p>
-                    <a class="btn btn-primary btn-lg advert-btn" href="{% url 'register'%}" role="button">Register Now</a>
+                    <a class="btn btn-primary btn-lg advert-btn" href="{% url 'register'%}" role="button">Register
+                        Now</a>
                 </div>
             </div>
             {% endif %}
@@ -47,6 +48,13 @@
 <!-- Page Content -->
 <div class="container-personal">
     <div class="container-index">
+        <!--Message-->
+        <div class="alert-personalpage">{% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }} </div>
+            {% endfor %}
+            {% endif %}
+        </div>
         <div class="row">
             <!-- Carousel Latest Product -->
             {% include 'latest_carousel.html'%}
