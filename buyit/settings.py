@@ -164,6 +164,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+AWS_DEFAULT_ACL = None
+
 SAWS_S3_OBJECT_PARAMETERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'CacheControl': 'max-age=9469000'
@@ -192,3 +194,5 @@ STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 MESSAGGE_STORAGE = 'django.contrib.messages.storage.session.Sessionstorage'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
