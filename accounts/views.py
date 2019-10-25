@@ -8,7 +8,7 @@ from orders.models import Order, OrderLineItem
 from home.views import index
 from django.core.paginator import Paginator
 from django.contrib.auth import logout as django_logout
-from orders.filters import OrdersFilter
+from .filters import OrdersFilter
 
 
 @login_required
@@ -25,7 +25,7 @@ def profile(request):
     pagination_orders = paginator.get_page(page)
 
     # Filter Orders
-    filter_orders = OrdersFilter(request.GET, queryset=orders)
+    filter_orders = OrdersFilter(request.GET, queryset=user_orders)
 
     months = [i.month for i in Order.objects.values_list(
         'date', flat=True).distinct()]
