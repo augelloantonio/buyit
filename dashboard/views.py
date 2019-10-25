@@ -12,6 +12,7 @@ from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
 
+
 @login_required
 def dashboard(request):
     orders = Order.objects.all()
@@ -119,3 +120,5 @@ def users_info(request):
     users = User.objects.all()
     total_user = users.count()
     return render(request, "dashboardusers.html", {'users': users, 'total_user': total_user})
+
+
