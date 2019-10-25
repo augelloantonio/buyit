@@ -34,7 +34,7 @@ class ChartData(APIView):
 
         # Need to made a list of product with own quantity taken datas from order line items
         product_name = Product.objects.all().values(
-            "name").annotate(dcount=(Sum("orderlineitem__quantity")))
+            "name").annotate(dcount=(Sum("orderlineitem__quantity")))[0:5]
 
         list_product_name = list()
         quantity_product_sold = list()
