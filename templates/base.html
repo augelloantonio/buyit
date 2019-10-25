@@ -5,18 +5,15 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="ecommerce platform">
-  <meta name="author" content="Antonio Augello">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="ecommerce platform">
+    <meta name="author" content="Antonio Augello"> {%block title %} {% endblock %}
 
-  {%block title %}
-  {% endblock %}
-
-  <!-- FontAwesome CSS -->
+    <!-- FontAwesome CSS -->
     <!-- FontAwesome CSS -->
     <script type="text/javascript">
-        (function () {
+        (function() {
             var css = document.createElement('link');
             css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
             css.rel = 'stylesheet';
@@ -26,98 +23,91 @@
     </script>
 
 
-  <!-- Bootstrap core CSS -->
-  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
 
-  <!-- Personal CSS-->
-  <link href="{% static 'scss/main.css' %}" rel="stylesheet">
-  {%block head%} {%endblock%}
+    <!-- Personal CSS-->
+    <link href="{% static 'scss/main.css' %}" rel="stylesheet"> {%block head%} {%endblock%}
 </head>
 
 <body>
 
-  <!-- Navigation -->
-  <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <div class="navbar-header">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-          aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <!-- Search Form-->
-          <li class="nav-item active search-li">
-            <form id="search-form" action="{% url 'search' %}" method="get" class="form-inline">
-              <input id="input-search" name="q" class="input-search hidden-input" type="text"
-                placeholder="Search Product" aria-label="Search" required>
-              <button id="search-btn" class="btn search-btn" onclick="searchToggle();"><i
+                <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <!-- Search Form-->
+                    <li class="nav-item active search-li">
+                        <form id="search-form" action="{% url 'search' %}" method="get" class="form-inline">
+                            <input id="input-search" name="q" class="input-search hidden-input" type="text" placeholder="Search Product" aria-label="Search" required>
+                            <button id="search-btn" class="btn search-btn" onclick="searchToggle();"><i
                   class="fas fa-search"></i></button>
-            </form>
-          </li>
-          {% if user.is_superuser %}
-          <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-user"></i>
+                        </form>
+                    </li>
+                    {% if user.is_superuser %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-user"></i>
               Dashboard</a></li>
-          {% endif %}
-          {% if user.is_authenticated %}
-          <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i>
+                    {% endif %} {% if user.is_authenticated %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i>
               Profile</a></li>
-          <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>
               Log
               Out</a></li>
-          {%  else %}
-          <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i class="fa fa-user-plus"></i>
+                    {% else %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i class="fa fa-user-plus"></i>
               Register</a></li>
-          <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log
               In</a></li>
-          {% endif %}
-          <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}"><i class="fas fa-store"></i>
+                    {% endif %}
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}"><i class="fas fa-store"></i>
               All Products</a></li>
-        </ul>
-      </div>
-      <div class="cart-mobile">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i>
-              Cart
-              {% if product_count > 0 %}
-              <label class="badge badge-warning">{{ product_count }}</label>
-              {% endif %}
-            </a>
-          </li>
-        </ul>
-      </div>
+                </ul>
+            </div>
+            <div class="cart-mobile">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i> Cart {% if product_count > 0 %}
+                            <label class="badge badge-warning">{{ product_count }}</label> {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- /End Navigation -->
+    <div class="main">
+        {% block content %} {% endblock %}
     </div>
-  </nav>
-  <!-- /End Navigation -->
-
-  {% block content %} {% endblock %}
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark bottom">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+    <!-- Footer -->
+    <footer class="py-5 bg-dark bottom">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
 
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.5/jquery.bootstrap-touchspin.min.js">
-  </script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}">
-  </script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.5/jquery.bootstrap-touchspin.min.js">
+    </script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}">
+    </script>
 
-  <!-- extra js block-->
-  {% block script_js %} {% endblock %}
+    <!-- extra js block-->
+    {% block script_js %} {% endblock %}
 
 
-  <!-- Personal JS-->
-  <script src="{% static 'js/custom.js' %}"></script>
+    <!-- Personal JS-->
+    <script src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>

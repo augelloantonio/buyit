@@ -1,52 +1,54 @@
 $font-stack: Helvetica,
 sans-serif;
 $primary-color: #333;
-
 html,
 body {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-
 .container-personal {
-  width: 100%;
-  margin-top: 20px;
-  min-height: 100vh;
+    width: 100%;
+    margin-top: 20px;
+    min-height: 100vh;
 }
 
 .container-index {
-  width: 85%;
-  margin: auto;
+    width: 85%;
+    margin: auto;
 }
 
 .container_pages {
-  margin-bottom: 20px;
-  height: 100vh;
+    margin-bottom: 20px;
+    height: 100vh;
 }
 
 #page-content-wrapper {
-  width: 100%;
+    width: 100%;
 }
 
 .img-shop {
-  height: 200px;
+    height: 200px;
 }
 
 footer {
-  bottom: 0;
-  color: #707070;
-  height: 2em;
-  left: 0;
-  position: relative;
-  font-size: small;
-  width: 100%;
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: relative;
+    font-size: small;
+    width: 100%;
 }
 
 button:focus {
-  outline: none;
+    outline: none;
 }
 
 .pagination-container {
-  float: right;
+    float: right;
+}
+
+.main {
+    margin-top: 24px;
 }

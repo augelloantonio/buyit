@@ -46,6 +46,10 @@ button:focus {
   float: right;
 }
 
+.main {
+  margin-top: 24px;
+}
+
 full-width-logo,
 .full-width-header {
   height: 75vh;
@@ -446,6 +450,11 @@ full-width-logo,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+#navbar {
+  -webkit-transition: top 0.3s cubic-bezier(0.4, 0, 1, 1) 0s;
+  transition: top 0.3s cubic-bezier(0.4, 0, 1, 1) 0s;
 }
 
 .orders-container {
