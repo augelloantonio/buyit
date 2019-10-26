@@ -10,14 +10,23 @@ def cart_contents(request):
     cart = request.session.get('cart', {})
 
     cart_items = []
-    total = 0
+    total_product = 0
     product_count = 0
+    shipping_costs = 0
+    total = 0
 
     for id, quantity in cart.items():
         product = get_object_or_404(Product, pk=id)
-        total += quantity * product.price
+        total_product += quantity * product.price
         product_count += quantity
         cart_items.append({'id': id, 'quantity': quantity,
                            'product': product})
-    
-    return {'cart_items': cart_items, 'total': total, 'product_count': product_count}
+
+    if total_product >= 50:
+        shipping_costs = 0
+        total += shipping_costs + total_product
+    else:
+        shipping_costs = 10
+        total += shipping_costs + total_product
+
+    return {'cart_items': cart_items, 'total': total, 'total_product': total_product, 'product_count': product_count, 'shipping_costs': shipping_costs}

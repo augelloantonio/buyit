@@ -63,13 +63,16 @@
                     <tbody>
 
                         <tr>
-                            <td><span class="float-left">Total Products: </span> <span class=" float-right">{{total}}
+                            <td><span class="float-left">Total Products: </span> <span
+                                    class=" float-right">{{total_product}}
                                     <i class="fas fa-euro-sign"></i></span>
                             </td>
                         </tr>
                         <tr>
-                            <td><span class="float-left">Shipping Cost:</span> <span class=" float-right">**shipping
-                                    cost**</span> </td>
+                            <td><span class="float-left">Shipping Cost:</span> <span
+                                    class=" float-right">{{shipping_costs|floatformat:2}} <i
+                                        class="fas fa-euro-sign"></i></span>
+                            </td>
                         </tr>
                     </tbody>
                     <thead class="thead-dark ">
@@ -78,7 +81,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <td><span class="float-left">Total: </span> <span class=" float-right" id="total">{{total}}
+                        <td><span class="float-left">Total: </span> <span class=" float-right"
+                                id="total">{{total|floatformat:2}}
                                 <i class="fas fa-euro-sign"></i></span>
                         </td>
                         {% if code != None %}
@@ -91,7 +95,6 @@
                         {% endif %}
                     </tbody>
                 </table>
-
 
                 <div class="voucher">
                     {% if messages %}
