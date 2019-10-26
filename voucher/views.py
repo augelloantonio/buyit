@@ -18,22 +18,25 @@ def add_voucher(request):
     user = request.user
     voucher_form = VoucherForm(request.POST)
     now = timezone.now()
-    if voucher_form.is_valid():
-        code = voucher_form.cleaned_data['code']
-        print(user)
-        if Order.objects.filter(voucher=code).filter(user=user).exists():
-            messages.warning(
-                request, 'Ops, you cannot use this voucher twice.')
-        else:
-            try:
-                voucher = Voucher.objects.get(code=code,
-                                              active=True)
-                request.session['voucher_id'] = voucher.id
-                messages.success(request, 'Coupon applied.')
-            except Voucher.DoesNotExist:
-                messages.warning(request, 'Coupon not accepted.')
-                request.session['voucher_id'] = None
-    return redirect("view_cart")
+    if request.user.is_authenticated:
+        if voucher_form.is_valid():
+            code = voucher_form.cleaned_data['code']
+            if Order.objects.filter(voucher=code).filter(user=user).exists():
+                messages.warning(
+                    request, 'Ops, you cannot use this voucher twice.')
+            else:
+                try:
+                    voucher = Voucher.objects.get(code=code,
+                                                  active=True)
+                    request.session['voucher_id'] = voucher.id
+                    messages.success(request, 'Coupon applied.')
+                except Voucher.DoesNotExist:
+                    messages.warning(request, 'Coupon not accepted.')
+                    request.session['voucher_id'] = None
+        return redirect("view_cart")
+    else:
+        messages.warning(request, 'You must be logged in to add a coupon.')
+        return redirect("view_cart")
 
 
 @login_required
