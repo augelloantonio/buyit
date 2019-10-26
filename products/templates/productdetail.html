@@ -2,18 +2,16 @@
 <div class="container">
     <div class="container-personal">
 
-        <!-- Message View-->
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
-        </ul>
-        {% endif %}
-        <!-- ./ Message View-->
+        <!--Message-->
+        <div class="alert-personalpage">{% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }} </div>
+            {% endfor %} {% endif %}
+        </div>
         <div class="row product-row">
             <div class="col-md-6">
-                <img class="img-product-page card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}">
+                <img class="img-product-page card-img-top" src="{{ MEDIA_URL }}{{ product.image }}"
+                    alt=" {{ product.name }}">
             </div>
             <div class="col-md-6">
                 <div class="row product-description-row">
@@ -25,9 +23,11 @@
                             {%endif%}
                             <div class="row ">
                                 <!-- Show averange rating-->
-                                {%for range in product_reviews%} {%if product.pk == range.product_id %} {% if range.avg_rating != Null %}
+                                {%for range in product_reviews%} {%if product.pk == range.product_id %}
+                                {% if range.avg_rating != Null %}
                                 <div class="col-6">
-                                    <p class="star_rating" value="{{range.avg_rating}}|floatformat:1">Rated: {{range.avg_rating|floatformat:1}}/5
+                                    <p class="star_rating" value="{{range.avg_rating}}|floatformat:1">Rated:
+                                        {{range.avg_rating|floatformat:1}}/5
                                     </p>
                                 </div>
                                 {% else %}
@@ -60,7 +60,8 @@
                             {% csrf_token %}
                             <div class="input-group">
                                 <div class="col-5">
-                                    <input name="quantity" id="quantityspinner" type="text" min="1" max="999" class="form-control" placeholder="Quantity" value="1">
+                                    <input name="quantity" id="quantityspinner" type="text" min="1" max="999"
+                                        class="form-control" placeholder="Quantity" value="1">
                                 </div>
                                 <div class="col-7">
                                     <span class="input-group-btn">

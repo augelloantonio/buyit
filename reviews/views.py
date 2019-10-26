@@ -13,12 +13,17 @@ def review_detail(request, review_id):
     return render(request, 'review.html', {'review': review})
 
 
+@login_required
 def add_review(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    form = ReviewForm(request.POST)
+    customer = request.user
 
+    if request.user.is_anonymous:
+        messages.warning(request, "We are sorry, but you can't review twice!")
+        return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
+    else:
         customer = request.user
-        product = get_object_or_404(Product, pk=product_id)
-        form = ReviewForm(request.POST)
-
         if Review.objects.filter(product_id=product, user=customer):
             messages.warning(request, "We are sorry, but you can't review twice!")
             return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
@@ -34,4 +39,4 @@ def add_review(request, product_id):
                 review.save()
                 return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
 
-        return render(request, "addreview.html", {'form': form, 'product': product})
+    return render(request, "addreview.html", {'form': form, 'product': product})
