@@ -1,3 +1,9 @@
+.container-index {
+    width: 85%;
+    margin: auto;
+    margin-top: 30px;
+}
+
 full-width-logo,
 .full-width-header {
     height: 75vh;
@@ -12,29 +18,23 @@ full-width-logo,
     height: 75vh;
 }
 
-
 @keyframes jump {
     0% {
         opacity: 1;
     }
-
     25% {
         opacity: 0;
     }
-
     50% {
         opacity: 1;
     }
-
     75% {
         opacity: 0;
     }
-
     100% {
         opacity: 1;
     }
 }
-
 
 .narrow-down-display {
     position: absolute;
@@ -96,11 +96,9 @@ full-width-logo,
     0% {
         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
     }
-
     70% {
         -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
     }
-
     100% {
         -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
     }
@@ -111,44 +109,36 @@ full-width-logo,
         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
     }
-
     70% {
         -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
         box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
     }
-
     100% {
         -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
         box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
     }
 }
 
-
 // Media queries
 @media (max-width: 768px) {
-
     .full-width-header,
     .logo-carousel,
     .jumbotron-container {
         height: 60vh;
     }
-
     .page-jumbotron {
         width: 100%;
         font-size: 1rem;
         font-weight: 400;
         height: 60vh;
     }
-
     .display-4 {
         font-size: 1.5rem;
         font-weight: 400;
     }
-
     .advert-hr {
         margin-bottom: 0px !important;
     }
-
     .advert-btn {
         margin-bottom: 10px;
         padding: 5px;

@@ -10,11 +10,6 @@ body {
   min-height: 100vh;
 }
 
-.container-index {
-  width: 85%;
-  margin: auto;
-}
-
 .container_pages {
   margin-bottom: 20px;
   height: 100vh;
@@ -48,6 +43,12 @@ button:focus {
 
 .main {
   margin-top: 55px;
+}
+
+.container-index {
+  width: 85%;
+  margin: auto;
+  margin-top: 30px;
 }
 
 full-width-logo,
