@@ -50,6 +50,8 @@
                         <div class="chart-area">
                             <p class="font-weight-bold">Order Date: </p>
                             <p>{{order.date}}</p>
+                            <p class="font-weight-bold">User: </p>
+                            <p>{{order.user}}</p>
                             <p class="font-weight-bold">Order Status: </p>
                             {% if order.order_status == 'Delivered'%}
                             <p>{{order.order_status}}<span class="icon-inline-space"><i class="fas fa-truck"></i></span>
