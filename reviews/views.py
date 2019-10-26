@@ -25,13 +25,16 @@ def add_review(request, product_id):
     else:
         customer = request.user
         if Review.objects.filter(product_id=product, user=customer):
-            messages.warning(request, "We are sorry, but you can't review twice!")
+            messages.warning(
+                request, "We are sorry, but you can't review twice!")
             return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
         else:
             if form.is_valid():
                 rating = form.cleaned_data['rating']
                 comment = form.cleaned_data['comment']
+                review_summary = form.cleaned_data['review_summary']
                 review = Review()
+                review.review_summary = review_summary
                 review.product_id = product.id
                 review.rating = rating
                 review.comment = comment
