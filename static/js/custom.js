@@ -42,7 +42,7 @@ $(document).ready(function() {
 });
 
 // Add script for spinner
-$("#demo9").TouchSpin({
+$("#quantityspinner").TouchSpin({
     buttondown_class: "btn btn-link",
     buttonup_class: "btn btn-link"
 });

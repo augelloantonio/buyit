@@ -6,7 +6,7 @@ body {
 
 .container-personal {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 80px;
   min-height: 100vh;
 }
 
@@ -441,7 +441,7 @@ full-width-logo,
 
 @media (max-width: 992px) {
   .navbar-header {
-    width: 80%;
+    width: 70%;
   }
 }
 
