@@ -8,6 +8,12 @@
 {% block content %}
 <div class="container">
     <div class="container-personal">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" role="alert">
+            {{ message }} </div>
+        {% endfor %}
+        {% endif %}
         <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
             <fieldset class="form-group">
                 <legend>Login</legend>
