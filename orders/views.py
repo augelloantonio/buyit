@@ -46,7 +46,7 @@ def checkout(request):
                     new_total = total - discount
                 else:
                     new_total = total
-                order.coupon = code
+                order.voucher = code
                 order.user = request.user
                 print(order.coupon)
                 order.save()
