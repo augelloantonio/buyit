@@ -20,6 +20,7 @@ def add_voucher(request):
     now = timezone.now()
     if voucher_form.is_valid():
         code = voucher_form.cleaned_data['code']
+        print(user)
         if Order.objects.filter(voucher=code).filter(user=user).exists():
             messages.warning(
                 request, 'Ops, you cannot use this voucher twice.')

@@ -47,16 +47,19 @@ def checkout(request):
                 else:
                     new_total = total
                 order.coupon = code
+                order.user = request.user
                 print(order.coupon)
                 order.save()
                 order_line_item = OrderLineItem(
+                    user=request.user,
                     order=order,
                     product=product,
                     quantity=quantity,
                     total=new_total,
                 )
                 order_line_item.save()
-                Product.objects.filter(id=id).update(quantity_sold=product_sold_quantity)
+                Product.objects.filter(id=id).update(
+                    quantity_sold=product_sold_quantity)
                 request.session['voucher_id'] = None
             try:
                 customer = stripe.Charge.create(
@@ -66,22 +69,26 @@ def checkout(request):
                     card=payment_form.cleaned_data['stripe_id'],
                 )
             except stripe.error.CardError:
-                messages.warning(request, "Your card was declined! Pleace check that the payment details are correct and try again.")
+                messages.warning(
+                    request, "Your card was declined! Pleace check that the payment details are correct and try again.")
                 return redirect('profile')
             if customer.paid:
-                messages.success(request, "You have successfully paid. Your order will be processed soon.")
+                messages.success(
+                    request, "You have successfully paid. Your order will be processed soon.")
                 # empty session cart
                 request.session['cart'] = {}
                 # Remove voucher from session
                 request.session['voucher'] = None
                 return redirect('profile')
             else:
-                messages.warning(request, "We were unable to take payment, we are sorry for the inconvenient, please, try again")
+                messages.warning(
+                    request, "We were unable to take payment, we are sorry for the inconvenient, please, try again")
                 return redirect('profile')
         else:
             print(payment_form.errors)
-            messages.warning(request, "We were unable to take a payment with that card!")
-            return redirect ('profile')
+            messages.warning(
+                request, "We were unable to take a payment with that card!")
+            return redirect('profile')
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
