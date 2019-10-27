@@ -1,5 +1,6 @@
 from django.db.models import Avg, F, Q
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import Product, Category
 from .forms import ProductForm
 from home.views import index
@@ -76,6 +77,7 @@ def product_detail(request, pk):
                                                   'n_reviews': n_reviews, 'pagination_reviews': pagination_reviews})
 
 
+@login_required
 def edit_a_product(request, id):
     product = get_object_or_404(Product, pk=id)
 
@@ -89,12 +91,14 @@ def edit_a_product(request, id):
     return render(request, "dashboardaddproduct.html", {'form': form})
 
 
+@login_required
 def remove_product(request, pk):
     item = get_object_or_404(Product, pk=pk)
     item.delete()
     return redirect(dashboard_product)
 
 
+@login_required
 def confirm_delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
     return render(request, "confirmdeleteproduct.html", {"product": product})
@@ -105,6 +109,19 @@ def toggle_status(request, id):
     product.in_stock = not product.in_stock
     product.save()
     return redirect(dashboard_product)
+
+
+@login_required
+def add_a_product(request):
+    if request.method == "POST":
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(dashboard_product)
+    else:
+        form = ProductForm()
+
+    return render(request, "dashboardaddproduct.html", {'form': form})
 
 
 def product_avg_rating(request, id):
@@ -120,15 +137,3 @@ def product_avg_rating(request, id):
     rating_avg = sum/len(review_list)
     print(rating_avg)
     return render({"rating_avg": rating_avg})
-
-
-def add_a_product(request):
-    if request.method == "POST":
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect(dashboard_product)
-    else:
-        form = ProductForm()
-
-    return render(request, "dashboardaddproduct.html", {'form': form})
