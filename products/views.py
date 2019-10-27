@@ -33,15 +33,16 @@ def products_by_category(request, category_id=None):
                                        product_id=F("id"))
     reviews = Review.objects.all()
     categories = Category.objects.all()
+    product_category = categories.filter(id=category_id)
 
-    if not category_id:
+    if not product_category:
         products = product.all()
         paginator = Paginator(products, 12)
         page = request.GET.get('page')
         pagination_products = paginator.get_page(page)
     else:
+        print('category id')
         products = product.filter(product_category=category_id)
-        product_category = categories.filter(id=category_id)
         # pagination
         paginator = Paginator(products, 12)
         page = request.GET.get('page')
