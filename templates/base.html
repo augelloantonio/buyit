@@ -13,7 +13,7 @@
     <!-- FontAwesome CSS -->
     <!-- FontAwesome CSS -->
     <script type="text/javascript">
-        (function() {
+        (function () {
             var css = document.createElement('link');
             css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
             css.rel = 'stylesheet';
@@ -37,9 +37,10 @@
     <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
             </div>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -47,34 +48,42 @@
                     <!-- Search Form-->
                     <li class="nav-item active search-li">
                         <form id="search-form" action="{% url 'search' %}" method="get" class="form-inline">
-                            <input id="input-search" name="q" class="input-search hidden-input" type="text" placeholder="Search Product" aria-label="Search" required>
+                            <input id="input-search" name="q" class="input-search hidden-input" type="text"
+                                placeholder="Search Product" aria-label="Search" required>
                             <button id="search-btn" class="btn search-btn" onclick="searchToggle();"><i
-                  class="fas fa-search"></i></button>
+                                    class="fas fa-search"></i></button>
                         </form>
                     </li>
                     {% if user.is_superuser %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i class="fa fa-user"></i>
-              Dashboard</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i
+                                class="fa fa-user"></i>
+                            Dashboard</a></li>
                     {% endif %} {% if user.is_authenticated %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user"></i>
-              Profile</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i>
-              Log
-              Out</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i
+                                class="fa fa-user"></i>
+                            Profile</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i
+                                class="fas fa-sign-out-alt"></i>
+                            Log
+                            Out</a></li>
                     {% else %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i class="fa fa-user-plus"></i>
-              Register</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i> Log
-              In</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i
+                                class="fa fa-user-plus"></i>
+                            Register</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}"><i
+                                class="fa fa-sign-in"></i> Log
+                            In</a></li>
                     {% endif %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}"><i class="fas fa-store"></i>
-              All Products</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}"><i
+                                class="fas fa-store"></i>
+                            All Products</a></li>
                 </ul>
             </div>
             <div class="cart-mobile">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i> Cart {% if product_count > 0 %}
+                        <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i> Cart
+                            {% if product_count > 0 %}
                             <label class="badge badge-warning">{{ product_count }}</label> {% endif %}
                         </a>
                     </li>
