@@ -40,7 +40,7 @@
 <!-- ./Page Header-->
 
 <!-- Page Content -->
-<div class="container-index">
+<div class="container-index container">
     <!--Message-->
     <div class="alert-personalpage">{% if messages %} {% for message in messages %}
         <div class="alert alert-{{ message.tags }}" role="alert">
@@ -70,7 +70,8 @@
                             <!--card-->
                             <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
                                 <div class="card h-100">
-                                    <a href="{% url 'product_detail' product.id %}"><img class="img-shop card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"></a>
+                                    <a href="{% url 'product_detail' product.id %}"><img class="img-shop card-img-top"
+                                            src="{{ MEDIA_URL }}{{ product.image }}" alt=" {{ product.name }}"></a>
                                     <div class="card-body">
                                         <h4 class="card-title">
                                             <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
@@ -83,7 +84,8 @@
                                         <form method="post" action="{% url 'add_to_cart' product.id %}">
                                             {% csrf_token %}
                                             <div class="input-group">
-                                                <input name="quantity" type="number" min="1" max="999" class="form-control" placeholder="Quantity" value='1'>
+                                                <input name="quantity" type="number" min="1" max="999"
+                                                    class="form-control" placeholder="Quantity" value='1'>
                                                 <span class="input-group-btn">
                                                     <button class="btn btn-success" type="submit"> <i
                                                             class="fas fa-cart-plus"></i>
@@ -96,8 +98,10 @@
                                         {% endif %}
                                     </div>
                                     <div class="card-footer">
-                                        {%for range in product_reviews%} {%if product.pk == range.product_id %} {% if range.avg_rating != Null %}
-                                        <p class="star_rating" value="{{range.avg_rating|floatformat:2}}">Rated: {{range.avg_rating|floatformat:1}}/5
+                                        {%for range in product_reviews%} {%if product.pk == range.product_id %}
+                                        {% if range.avg_rating != Null %}
+                                        <p class="star_rating" value="{{range.avg_rating|floatformat:2}}">Rated:
+                                            {{range.avg_rating|floatformat:1}}/5
                                         </p>
                                         {% else %}
                                         <p>Rated: 0/5</p>
