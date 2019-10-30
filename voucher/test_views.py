@@ -174,7 +174,6 @@ class DashboardVoucherView(TestCase):
         page = self.client.post("/dashboard/dashboardaddvoucher",
                                 {'code': 'test code',
                                  'amount': 5,
-                                 'price_reducing': 5,
                                  'active': True},
                                 follow=True)
 
@@ -197,14 +196,12 @@ class DashboardVoucherView(TestCase):
         page = self.client.post("/dashboard/dashboardaddvoucher",
                                 {'code': '',
                                  'amount': 5,
-                                 'price_reducing': 5,
                                  },
                                 follow=True)
 
         # check there is a status code of 200
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "dashboardaddavouchercode.html")
-
 
     def test_get_edit_voucer_page(self):
         ''' test get edit voucher view page'''
@@ -220,7 +217,6 @@ class DashboardVoucherView(TestCase):
 
         voucher = Voucher.objects.create(code='test code',
                                          amount=5,
-                                         price_reducing=5,
                                          active=True)
         voucher.save()
 
@@ -245,7 +241,6 @@ class DashboardVoucherView(TestCase):
 
         voucher = Voucher.objects.create(code='test code',
                                          amount=5,
-                                         price_reducing=5,
                                          active=True)
         voucher.save()
         id = voucher.id
@@ -254,7 +249,6 @@ class DashboardVoucherView(TestCase):
         page = self.client.post("/dashboard/dashboardeditvoucher/{0}".format(id),
                                 {'code': 'new test code',
                                  'amount': 5,
-                                 'price_reducing': 5,
                                  'active': True},
                                 follow=True)
 
@@ -279,7 +273,6 @@ class DashboardVoucherView(TestCase):
 
         voucher = Voucher.objects.create(code='test code',
                                          amount=5,
-                                         price_reducing=5,
                                          active=True)
         voucher.save()
         id = voucher.id
@@ -291,4 +284,3 @@ class DashboardVoucherView(TestCase):
         # check there is a status code of 200
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "dashboardvouchers.html")
-

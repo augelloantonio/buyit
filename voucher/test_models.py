@@ -9,7 +9,6 @@ class Test_Voucher_model(TestCase):
         # Create review
         voucher = Voucher(
             code='test',
-            price_reducing=5,
             active=True,
             amount=5
         )
@@ -17,7 +16,6 @@ class Test_Voucher_model(TestCase):
         voucher.save()
         # check to see that the review summary equal the saved review value
         self.assertEqual(voucher.code, "test")
-        self.assertEqual(voucher.price_reducing, 5)
         self.assertEqual(voucher.active, True)
         self.assertEqual(voucher.amount, 5)
 
