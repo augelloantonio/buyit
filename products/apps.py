@@ -5,5 +5,5 @@ class ProductsConfig(AppConfig):
     name = 'products'
 
 
-class ClassConfig(AppConfig):
+class CategoryConfig(AppConfig):
     name = 'category'

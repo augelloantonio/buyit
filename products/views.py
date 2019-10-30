@@ -123,18 +123,3 @@ def add_a_product(request):
         form = ProductForm()
 
     return render(request, "dashboardaddproduct.html", {'form': form})
-
-
-def product_avg_rating(request, id):
-    product = get_object_or_404(Product, id=id)
-    reviews = Review.objects.all()
-    rating_list = list()
-    if review_list:
-        for review in reviews:
-            rating_list = review["rating"]
-        return rating_list
-    for num in rating_list:
-        sum = num + num
-    rating_avg = sum/len(review_list)
-    print(rating_avg)
-    return render({"rating_avg": rating_avg})
