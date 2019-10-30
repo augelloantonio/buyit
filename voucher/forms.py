@@ -6,7 +6,7 @@ class VoucherForm(forms.Form):
     code = forms.CharField()
 
 
-class AddNewVOucher(forms.ModelForm):
+class AddNewVoucher(forms.ModelForm):
     class Meta:
         model = Voucher
         fields = ('code', 'amount', 'active')

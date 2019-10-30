@@ -10,7 +10,7 @@ import datetime
 from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from .forms import AddNewVOucher
+from .forms import AddNewVoucher
 
 
 @require_POST
@@ -42,12 +42,12 @@ def add_voucher(request):
 @login_required
 def add_new_voucher(request):
     if request.method == "POST":
-        form = AddNewVOucher(request.POST, request.FILES)
+        form = AddNewVoucher(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect(voucher_view)
     else:
-        form = AddNewVOucher()
+        form = AddNewVoucher()
     return render(request, "dashboardaddavouchercode.html", {'form': form})
 
 
@@ -55,12 +55,12 @@ def edit_a_voucher(request, id):
     voucher = get_object_or_404(Voucher, pk=id)
 
     if request.method == "POST":
-        form = AddNewVOucher(request.POST, instance=voucher)
+        form = AddNewVoucher(request.POST, instance=voucher)
         if form.is_valid():
             form.save()
             return redirect(voucher_view)
     else:
-        form = AddNewVOucher(instance=voucher)
+        form = AddNewVoucher(instance=voucher)
     return render(request, "dashboardaddavouchercode.html", {'form': form})
 
 
