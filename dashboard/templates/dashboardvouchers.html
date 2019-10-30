@@ -1,12 +1,12 @@
 {% extends "dashboardbase.html" %} {% load staticfiles %} {%block title %}
 <title>Dashboard - Products</title>
 {% endblock %} {%block content%}
-<div class="container container-personal">
+<div class="container-personal">
     <h3>Voucher List</h3>
     <div class="row">
         {% for voucher in vouchers %}
         <!-- Area Chart -->
-        <div class="col-sm-12 col-md-4">
+        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2">
             <div class="card shadow mb-4">
                 <!-- Card Body -->
                 <div class="card-body">
