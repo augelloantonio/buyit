@@ -47,7 +47,6 @@ def checkout(request):
                     new_total = total
                 order.voucher = code
                 order.user = request.user
-                print(order.coupon)
                 order.save()
                 order_line_item = OrderLineItem(
                     user=request.user,
