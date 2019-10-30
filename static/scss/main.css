@@ -45,6 +45,13 @@ button:focus {
   margin-top: 55px;
 }
 
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
 .container-index {
   width: 85%;
   margin: auto;

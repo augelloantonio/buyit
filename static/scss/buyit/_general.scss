@@ -1,6 +1,7 @@
 $font-stack: Helvetica,
 sans-serif;
 $primary-color: #333;
+
 html,
 body {
     position: relative;
@@ -46,4 +47,10 @@ button:focus {
 
 .main {
     margin-top: 55px;
+}
+
+.btn.focus,
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
 }
