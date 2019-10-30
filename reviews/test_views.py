@@ -27,7 +27,7 @@ class TestPostReviewView(TestCase):
         page = self.client.post(
             "/review/addreview/product/{0}".format(id),
             {'review_summary': 'summary',
-             'rating': '4',
+             'rating': 4,
              'pub_date': '2019-10-21 19:47:27.674081',
              'comment': 'test comment'},
             follow=True)
@@ -65,6 +65,7 @@ class TestUserAlreadyReviewedAProduct(TestCase):
     '''Test if a user already reviewed a product'''
 
     def test_add_new_review_if_review_with_same_user_exist_already(self):
+        '''Test if a review by a given user exist'''
         # create a user
         user = User.objects.create_user(username='username',
                                         password='password')

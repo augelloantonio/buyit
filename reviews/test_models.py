@@ -12,7 +12,7 @@ class Test_Review_model(TestCase):
         user = User.objects.create(username='tester')
         product = Product.objects.create(name='test product', price='2')
         review = Review(
-            rating='4',
+            rating=4,
             review_summary='testing summary',
             pub_date='2019-10-21 19:47:27.674081',
             comment='test comment'
@@ -25,8 +25,11 @@ class Test_Review_model(TestCase):
         review.save()
         # check to see that the review summary equal the saved review value
         self.assertEqual(review.review_summary, "testing summary")
-        self.assertEqual(review.rating, "4")
+        self.assertEqual(review.rating, 4)
         self.assertEqual(review.pub_date, "2019-10-21 19:47:27.674081")
         self.assertEqual(review.comment, "test comment")
         self.assertEqual(review.user_id, 1)
         self.assertEqual(review.product_id, 1)
+
+        ''' Test review as string'''
+        self.assertEqual('testing summary', str(review))
