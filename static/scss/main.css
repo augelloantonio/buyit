@@ -249,12 +249,13 @@ full-width-logo,
   width: 100%;
 }
 
-.order-card {
+.dashboard-card {
   padding: 0.5rem;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 756px) {
-  .order-card {
+  .dashboard-card {
     padding: 1.5rem;
   }
 }
@@ -286,6 +287,12 @@ full-width-logo,
 
 .card-body {
   text-align: center;
+}
+
+.container-orders {
+  min-height: 100vh;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .navbar-global {
