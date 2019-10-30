@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.contrib.auth.models import User, AnonymousUser
+from django.contrib.auth.models import User
 from products.models import Product
 from .models import Review
 from .forms import ReviewForm
