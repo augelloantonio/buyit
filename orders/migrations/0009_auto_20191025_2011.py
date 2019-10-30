@@ -10,9 +10,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='order',
-            old_name='coupon',
-            new_name='voucher',
-        ),
+
     ]

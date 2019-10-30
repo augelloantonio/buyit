@@ -12,30 +12,28 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='order',
-            name='coupon',
-            field=models.CharField(default='welcomenew', max_length=40),
-            preserve_default=False,
-        ),
         migrations.AlterField(
             model_name='orderlineitem',
             name='order',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='orders.Order'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='orders.Order'),
         ),
         migrations.AlterField(
             model_name='orderlineitem',
             name='product',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='products.Product'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='products.Product'),
         ),
         migrations.AlterField(
             model_name='orderlineitem',
             name='total',
-            field=models.DecimalField(decimal_places=2, default=0, max_digits=4),
+            field=models.DecimalField(
+                decimal_places=2, default=0, max_digits=4),
         ),
         migrations.AlterField(
             model_name='orderlineitem',
             name='user',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(
+                default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
     ]
