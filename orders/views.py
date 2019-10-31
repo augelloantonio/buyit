@@ -35,16 +35,24 @@ def checkout(request):
             order.date = datetime.datetime.now()
             cart = request.session.get('cart', {})
             total = 0
+            total_product = 0
+            shipping_costs = 0
             new_total = 0
             for id, quantity in cart.items():
                 product = get_object_or_404(Product, pk=id)
-                total += quantity * product.price
+                total_product += quantity * product.price
                 product_sold_quantity = product.quantity_sold + quantity
                 if code != None:
                     discount = (code.amount/Decimal('100'))*total
                     new_total = total - discount
                 else:
                     new_total = total
+                if total_product >= 50:
+                    shipping_costs = 0
+                    total += shipping_costs + total_product
+                else:
+                    shipping_costs = 10
+                    total += shipping_costs + total_product
                 order.voucher = code
                 order.user = request.user
                 order.save()
@@ -53,7 +61,7 @@ def checkout(request):
                     order=order,
                     product=product,
                     quantity=quantity,
-                    total=new_total,
+                    total=total,
                 )
                 order_line_item.save()
                 Product.objects.filter(id=id).update(
@@ -61,7 +69,7 @@ def checkout(request):
                 request.session['voucher_id'] = None
             try:
                 customer = stripe.Charge.create(
-                    amount=int(new_total * 100),
+                    amount=int(total * 100),
                     currency="EUR",
                     description=request.user.email,
                     card=payment_form.cleaned_data['stripe_id'],
