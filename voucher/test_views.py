@@ -204,7 +204,6 @@ class DashboardVoucherView(TestCase):
 
     def test_get_edit_voucer_page(self):
         ''' test get edit voucher view page'''
-        '''test edit voucher'''
         # create a user
         user = User.objects.create_user(username='username',
                                         password='password',
