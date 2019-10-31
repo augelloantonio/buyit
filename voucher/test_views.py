@@ -2,7 +2,6 @@ from django.test import TestCase
 from decimal import Decimal
 from django.shortcuts import get_object_or_404
 from .models import Voucher
-from products.models import Product
 from django.contrib.auth.models import User
 from orders.models import Order
 
