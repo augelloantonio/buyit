@@ -26,7 +26,7 @@ def voucher_contents(request):
         total += quantity * product.price
         # Handle bug if voucher_id is not in session
         if code != None:
-            discount = (code.amount/Decimal('100'))*total
+            discount = (code.amount/100)*total
             new_total = total - discount
         else:
             new_total = total
