@@ -15,7 +15,7 @@ import datetime
 stripe.api_key = settings.STRIPE_SECRET
 
 
-@login_required()
+@login_required
 def checkout(request):
     if request.method == "POST":
         order_form = OrderForm(request.POST)
@@ -77,7 +77,7 @@ def checkout(request):
             except stripe.error.CardError:
                 messages.warning(
                     request, "Your card was declined! Pleace check that the payment details are correct and try again.")
-                return redirect('profile')
+                return redirect('checkout')
             if customer.paid:
                 messages.success(
                     request, "You have successfully paid. Your order will be processed soon.")
@@ -89,12 +89,12 @@ def checkout(request):
             else:
                 messages.warning(
                     request, "We were unable to take payment, we are sorry for the inconvenient, please, try again")
-                return redirect('profile')
+                return redirect('checkout')
         else:
             print(payment_form.errors)
             messages.warning(
-                request, "We were unable to take a payment with that card!")
-            return redirect('profile')
+                request, "Ops, something went wrong, check that all the info are correct.")
+            return redirect('checkout')
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
