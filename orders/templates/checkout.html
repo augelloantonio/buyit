@@ -10,9 +10,15 @@
 {% block content %}
 
 <div class="container-personal">
-
     <!-- Order Summary -->
     <div class="row checkout-review">
+        <!-- General Messages-->
+        <div class="alert-personalpage">{% if messages %} {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+                {{ message }} </div>
+            {% endfor %}
+            {% endif %}
+        </div>
         <div class="card-header py-3 align-items-center justify-content-between checkout-header">
             <h2 class="text-center">Your Order Summary</h2>
             <div class="row">
@@ -72,11 +78,6 @@
     <div class="container-form">
         <form role="form" method="POST" id="payment-form" action="{% url 'checkout' %}">
             {% csrf_token %}
-            <div id="credit-card-errors" style="display: none;">
-                <div class="alert-message block-message error alert alert-danger" id="stripe-error-message"
-                    role="alert">
-                </div>
-            </div>
             <div class="form-row row">
                 <div class="form-group col-md-6">
                     <div class="row-shipping-info">
@@ -124,7 +125,12 @@
                         </div>
                     </div>
                 </div>
-
+                <!--Card Messages-->
+                <div id="credit-card-errors" class="alert-personalpage" style="display: none;">
+                    <div class="alert-message block-message error alert alert-danger" id="stripe-error-message"
+                        role="alert">
+                    </div>
+                </div>
                 <div class="form-group col-md-12">
                     <input class=" btn btn-primary" id="submit_payment_btn" name="commit" type="submit"
                         value="Submit Payment">
