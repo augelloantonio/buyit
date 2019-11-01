@@ -28,7 +28,7 @@ class Order(models.Model):
     county = models.CharField(max_length=40, blank=False)
     date = models.DateField(null=True)
     voucher = models.CharField(
-        max_length=40, blank=True, null=False, default='')
+        max_length=40, blank=True, null=True, default='')
     order_status = models.CharField(
         choices=ORDER_STATUS, max_length=50, default='Order Received', blank=True)
 
