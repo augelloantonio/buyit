@@ -6,7 +6,7 @@
  */
 
 var prevScrollpos = window.pageYOffset;
-window.onscroll = function() {
+window.onscroll = function () {
     if (window.pageYOffset >= 60) {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
@@ -19,10 +19,10 @@ window.onscroll = function() {
 };
 
 // jQuery functions
-$(document).ready(function() {
+$(document).ready(function () {
     //collapse sidebar in dashboard
 
-    $(".btn-expand-collapse").click(function(e) {
+    $(".btn-expand-collapse").click(function (e) {
         $("#sidebar-wrapper").toggleClass("collapsed");
     });
 
@@ -36,9 +36,9 @@ $(document).ready(function() {
     }
 
     // Auto Hide Messages
-    setTimeout(function() {
+    setTimeout(function () {
         $(".alert").hide();
-    }, 2000);
+    }, 4000);
 });
 
 // Add script for spinner
