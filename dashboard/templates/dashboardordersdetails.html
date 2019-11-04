@@ -76,7 +76,7 @@
         </tbody>
     </table>
 
-    <h4>Order Status</h4>
+    <h4>Order Status: {{order.order_status}}</h4>
     <div class="input-group">
         <form role="form" method="POST" action="{% url 'change_order_status' order.id %}">
             {% csrf_token %} {{ form | as_bootstrap}}
@@ -86,5 +86,4 @@
         </form>
     </div>
 </div>
-
 {% endblock %}
