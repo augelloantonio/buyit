@@ -12,7 +12,6 @@ from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
 
-
 @login_required
 def dashboard(request):
     orders = Order.objects.all()
@@ -72,13 +71,8 @@ def dashboard_orders(request):
 
     filter_orders = OrdersFilter(request.GET, queryset=orders)
 
-    months = [i.month for i in Order.objects.values_list(
-        'date', flat=True).distinct()]
-    months_filtered = list(dict.fromkeys(months))
-
     return render(request, "dashboardorders.html", {"order_info": order_info, "orders": orders,
-                                                    'product': product, 'filter': filter_orders,
-                                                    'months_filtered': months_filtered})
+                                                    'product': product, 'filter': filter_orders})
 
 
 @login_required
@@ -120,5 +114,3 @@ def users_info(request):
     users = User.objects.all()
     total_user = users.count()
     return render(request, "dashboardusers.html", {'users': users, 'total_user': total_user})
-
-
