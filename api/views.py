@@ -8,7 +8,7 @@ from rest_framework import viewsets
 from orders.models import Order, OrderLineItem
 from products.models import Product
 from reviews.models import Review
-from .serializers import ProductSerializer, MonthlyEarning
+from .serializers import ProductSerializer
 from django.db.models.functions import TruncMonth, TruncYear, TruncDay
 from itertools import groupby
 from operator import itemgetter
