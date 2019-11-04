@@ -111,4 +111,3 @@ def change_order_status(request, id):
             order_status = form.cleaned_data['order_status']
             Order.objects.filter(id=id).update(order_status=order_status)
             return HttpResponseRedirect(reverse('dashboard_order_details', args=(order.id,)))
-    return redirect(reverse, 'dashboard_order_details', args=(order.id,))
