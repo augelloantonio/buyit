@@ -21,16 +21,16 @@ class TestInsertVoucherView(TestCase):
         voucher = Voucher.objects.create(code='test', amount=5, active=True)
         voucher.save()
 
-        # assign the voucher code to code variable
-        code = voucher.code
-
         # create a new voucher session
         session = self.client.session
-        session['voucher'] = code
+        session['voucher'] = voucher.id
         session.save()
 
+        # assign the voucher code to code variable
+        code = session['voucher']
+
         # check if the code in session is the voucher code
-        self.assertEqual(session['voucher'], "test")
+        self.assertEqual(session['voucher'], 1)
         page = self.client.post("/voucher/", {'code': code},
                                 follow=True)
 
