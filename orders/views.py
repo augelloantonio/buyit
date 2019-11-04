@@ -43,7 +43,7 @@ def checkout(request):
                 total_product += quantity * product.price
                 product_sold_quantity = product.quantity_sold + quantity
                 if code != None:
-                    discount = (code.amount/Decimal('100'))*total
+                    discount = (code.amount/100)*total
                     new_total = total - discount
                 else:
                     new_total = total
@@ -102,6 +102,7 @@ def checkout(request):
     return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
 
 
+@login_required
 def change_order_status(request, id):
     order = get_object_or_404(Order, id=id)
     if request.method == "POST":
