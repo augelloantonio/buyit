@@ -74,7 +74,7 @@ class TestCartView(TestCase):
         #  # check Template Used is cart.html page
         self.assertTemplateUsed(page, "cart.html")
 
-    def test_remove_item_from_cart(self):
+    def test_remove_item_from_cart_if_quantity_is_zero(self):
         ''' test adjusting the quantity in the cart '''
 
         # create an item
@@ -90,6 +90,28 @@ class TestCartView(TestCase):
         # post same product and quantity to cart
         page = self.client.post("/cart/adjust/{0}".format(item.id),
                                 data={'quantity': '0'},
+                                follow=True)
+
+        # check the status code is 200
+        self.assertEqual(page.status_code, 200)
+        #  # check Template Used is cart.html page
+        self.assertTemplateUsed(page, "cart.html")
+
+    def test_remove_item_cart(self):
+        ''' test remove item from cart '''
+
+        # create an item
+        item = Product(name="Product", price=2)
+
+        # save the item
+        item.save()
+        # post the product id and ammended quantity
+        page = self.client.post("/cart/add/{0}".format(item.id),
+                                data={"quantity": 2},
+                                follow=True)
+
+        # post same product and quantity to cart
+        page = self.client.post("/cart/remove/{0}".format(item.id),
                                 follow=True)
 
         # check the status code is 200
