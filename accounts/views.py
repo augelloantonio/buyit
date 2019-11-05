@@ -9,6 +9,7 @@ from home.views import index
 from django.core.paginator import Paginator
 from django.contrib.auth import logout as django_logout
 from django.core.mail import EmailMessage
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .filters import OrdersFilter
 
 
@@ -16,17 +17,24 @@ from .filters import OrdersFilter
 def profile(request):
     user = request.user
 
-    orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
     # filtering order for user
     user_orders = OrderLineItem.objects.filter(user=user).order_by('-id')
-    # pagination
-    paginator = Paginator(user_orders, 6)
-    page = request.GET.get('page')
-    pagination_orders = paginator.get_page(page)
 
     # Filter Orders
     filter_orders = OrdersFilter(request.GET, queryset=user_orders)
+    user_order_list = filter_orders.qs
+
+    # pagination to switch before filter order to work
+    paginator = Paginator(user_order_list, 6)
+    page = request.GET.get('page')
+
+    try:
+        pagination_orders = paginator.page(page)
+    except PageNotAnInteger:
+        pagination_orders = paginator.page(1)
+    except EmptyPage:
+        pagination_orders = paginator.page(paginator.num_pages)
 
     months = [i.month for i in Order.objects.values_list(
         'date', flat=True).distinct()]
@@ -51,7 +59,7 @@ def login(request):
             user_form = UserLoginForm(request.POST)
             if user_form.is_valid():
                 user = auth.authenticate(request.POST['username_or_email'],
-                                        password=request.POST['password'])
+                                         password=request.POST['password'])
 
                 if user:
                     auth.login(request, user)
@@ -89,7 +97,7 @@ def register(request):
                     auth.login(request, user)
                     email = request.user.email
                     html_content = '<p>Welcome to <a href="https://buyit-platform.herokuapp.com/">Buyit</a>, enjoy your shopping, use the voucher code <strong>welcomenew</strong> and enjoy your 5% OFF of discount.</p>'
-                    email = EmailMessage('Welcome', html_content, to = [email])
+                    email = EmailMessage('Welcome', html_content, to=[email])
                     email.send()
                     messages.success(
                         request, "You have successfully registered, an email has been sent to you.")
@@ -98,7 +106,7 @@ def register(request):
                     messages.warning(
                         request, "unable to log you in at this time!")
         else:
-            user_form=UserRegistrationForm()
+            user_form = UserRegistrationForm()
 
-    args={'user_form': user_form}
+    args = {'user_form': user_form}
     return render(request, 'register.html', args)
