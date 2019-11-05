@@ -257,6 +257,7 @@ class TestCheckoutView(TestCase):
 
         # get the stripe publisable key
         stripe_id = 'tok_visa'
+        stripe.secret = settings.STRIPE_SECRET
 
         page = self.client.post("/order/",
                                 {'full_name': 'name',
