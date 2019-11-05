@@ -414,7 +414,7 @@ full-width-logo,
 }
 
 .center-align {
-  max-width: 35%;
+  max-width: 70%;
   margin: auto;
   text-align: center;
 }
@@ -452,6 +452,10 @@ full-width-logo,
 
 .form-amend-quantity {
   margin: auto;
+}
+
+.remove-item-btn {
+  float: right;
 }
 
 @media (max-width: 992px) {
