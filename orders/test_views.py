@@ -7,6 +7,7 @@ from orders.models import Order
 from voucher.models import Voucher
 from products.models import Product
 
+
 class TestCheckoutView(TestCase):
     '''Test Checkout views'''
 
@@ -257,7 +258,6 @@ class TestCheckoutView(TestCase):
 
         # get the stripe publisable key
         stripe_id = 'tok_visa'
-        stripe.secret = settings.STRIPE_SECRET
 
         page = self.client.post("/order/",
                                 {'full_name': 'name',
@@ -325,6 +325,7 @@ class TestCheckoutView(TestCase):
         # check Template Used is cart.html page
         self.assertTemplateUsed(page, "profile.html")
 
+
 class OrderDashboardChangeStatus(TestCase):
     '''Test change order status'''
 
@@ -338,19 +339,19 @@ class OrderDashboardChangeStatus(TestCase):
 
         # login the user
         self.client.login(username='username',
-                        password='password')
+                          password='password')
 
         # Create an order
         order = Order(full_name='name',
-                        email_address='email@email.com',
-                        phone_number='0000',
-                        town_or_city='city',
-                        street_address1='street sddress 1',
-                        street_address2='street sddress 2',
-                        country='country',
-                        county='county',
-                        postcode='postcode',
-                        order_status='Order Received')
+                      email_address='email@email.com',
+                      phone_number='0000',
+                      town_or_city='city',
+                      street_address1='street sddress 1',
+                      street_address2='street sddress 2',
+                      country='country',
+                      county='county',
+                      postcode='postcode',
+                      order_status='Order Received')
 
         # add the user and the code to the order
         order.user_id = user.id
@@ -359,7 +360,7 @@ class OrderDashboardChangeStatus(TestCase):
         id = order.id
 
         page = self.client.post("/dashboard/changeorderstatus/{0}".format(id),
-                             {'order_status': 'Delivered'}, follow=True)
+                                {'order_status': 'Delivered'}, follow=True)
 
         # check the page status is ok
         self.assertEqual(page.status_code, 200)
