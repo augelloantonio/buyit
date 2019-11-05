@@ -12,43 +12,55 @@
         <div class="row">
             {% if product_count > 0 %}
             <div class="col-md-8 col-sm-12">
-                <table class="table table-responsive">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Product Image</th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Price </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in cart_items %}
-                        <tr>
-                            <th scope="row">
-                                <div class="product"
-                                    style="background-image: url('{{ MEDIA_URL }}{{ item.product.image }}')">
-                                </div>
-                            </th>
-                            <td>{{ item.product.name }}</td>
-                            <td>
-                                <form class="form-inline" method="post" action="{% url 'adjust_cart' item.id %}">
+
+                {% for item in cart_items %}
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 align-items-center justify-content-between">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="font-weight-bold">{{item.product.name}}</p>
+                            </div>
+                            <div class="col-4">
+                                <form action="{%url 'remove_item' item.product.id %}">
+                                    <button type="submit" class="btn btn-outline-danger remove-item-btn">Remove</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm">
+                                <img class=" card-img-top" src="{{MEDIA_URL}}{{ item.product.image }}"
+                                    alt=" {{ item.product.name }}">
+                            </div>
+                            <div class="col-sm">
+                                <p class="font-weight-bold">{{ item.product.price}} <i class="fas fa-euro-sign"></i> x
+                                    {{item.quantity}}</p>
+                            </div>
+                            <div class="quantity-form">
+                                <form method="post" action="{% url 'adjust_cart' item.product.id %}">
                                     {% csrf_token %}
-                                    <div class="form-group form-amend-quantity">
-                                        <label for="exampleInputAmount" class="sr-only">New Qty</label>
-                                        <div class="input-group">
-                                            <input name="quantity" type="number" min="0" max="999" class="form-control"
-                                                value="{{item.quantity}}">
+                                    <div class="input-group">
+                                        <div class="col-6">
+                                            <input name="quantity" id="quantityspinner" type="text" min="1" max="999"
+                                                class="form-control" placeholder="Quantity" value="1">
+                                        </div>
+                                        <div>
+                                            <span class="input-group-btn">
+                                                <button type="submit" class="btn btn-primary amend-btn"><span
+                                                        class="glyphicon glyphicon-edit"
+                                                        aria-hidden="true"></span>Change Quantity</button>
+                                            </span>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary amend-btn"><span
-                                            class="glyphicon glyphicon-edit" aria-hidden="true"></span>Amend</button>
                                 </form>
-                            </td>
-                            <td>{{ item.product.price}} <i class="fas fa-euro-sign"></i> * ({{item.quantity}})</td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
 
             <div class="col-md-4 col-sm-12">
@@ -109,7 +121,7 @@
                             <div class="input-group coupon-group">
                                 <input type="text" name="code" class="form-control input-code" placeholder="Promo code">
                                 <div class="input-group-append">
-                                    <button type="submit" class="btn btn-secondary redeem-btn">Redeem</button>
+                                    <button type="submit" class="btn btn-outline-info redeem-btn">Redeem</button>
                                 </div>
                             </div>
                         </form>
@@ -122,7 +134,9 @@
             </div>
         </div>
         {%else%}
-        <h1>Your cart is empty.</h1>
+        <div class="container">
+            <h1>Your cart is empty. </h1>
+        </div>
         {% endif %}
     </div>
 </div>
