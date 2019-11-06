@@ -41,8 +41,7 @@ def profile(request):
         'date', flat=True).distinct()]
     months_filtered = list(dict.fromkeys(months))
 
-    return render(request, 'profile.html', {'pagination_orders': pagination_orders, 'filter': filter_orders,
-                                            'months_filtered': months_filtered})
+    return render(request, 'profile.html', {'pagination_orders': pagination_orders, 'filter': filter_orders})
 
 
 def logout(request):
