@@ -16,3 +16,8 @@ def index(request):
 
     return render(request, "index.html", {"products": products, "product_reviews": product_reviews,
                                           'products_latest': products_latest, 'products_bestsellers': products_bestsellers})
+
+
+def contact_us(request):
+    '''Contact Us view'''
+    return render(request, 'contact.html')

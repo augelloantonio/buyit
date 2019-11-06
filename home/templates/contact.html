@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{%block title %}
+
+<title>Contact Us</title>
+{% endblock %}
+
+{%block head%}
+<!-- EmailJS Script-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.3.2/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        emailjs.init("user_96n5MVsQfZCvUmDKXU673");
+    })();
+</script>
+{%endblock%}
+
+
+{% block content %}
+<div class="container container-personal">
+    <div class="row">
+
+        <!--Left aside bar-->
+        <div class="col-xs-12 col-md-6">
+            <div class="contact-aside-body">
+                <h3 class="contact-heading uppercase text-center">For any queries regarding our products or your order
+                    don't exitate to contact us!</h3>
+            </div>
+            <div class="row">
+                <div class="contact-items-body">
+                    <div class="col-xs-12 col-sm-6 col-md-6 contact-phone-square ">
+                        <div class="contact-elements">
+                            <div class="contact-elements-content">
+                                <a class="contact-element-icon">
+                                    <i class="contact-elements-icon fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                                <a href="tel:+353 20 912 8500" class="element-content-text">
+                                    <p>+353 20 912 8500</p>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-6 contact-email-square">
+                        <div class=" contact-elements">
+                            <div class="contact-elements-content">
+                                <a class="contact-element-icon">
+                                    <i class="contact-elements-icon fa fa-envelope" aria-hidden="true"></i>
+                                </a>
+                                <a href="mailto:info@buyit.com" class="element-content-text">
+                                    <p>info@buyit.com</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.Left aside bar-->
+
+        <!--Contact Form - Right aside bar-->
+        <div class="col-xs-12 col-md-6">
+            <h3 class="text-center">Contact Us</h3>
+            <div class="row bg-color-contact">
+                <div class="center-form">
+                    <form onsubmit="return sendMail(this);" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required />
+                        <input type="text" name="emailaddress" class="form-control" id="emailaddress"
+                            placeholder="Email" required />
+                        <input type="text" name="order_id" class="form-control" id="order" placeholder="Order ID" />
+                        <textarea rows="5" name="enquiry" class="form-control" id="enquiry" placeholder="Enquiry"
+                            required></textarea>
+                        <button type="submit" class="btn btn-outline-primary send-email-btn">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--/.Contact Form-->
+
+    </div>
+</div>
+
+<!-- ./EmailJs Form-->
+
+{% endblock %}

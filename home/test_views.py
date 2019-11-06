@@ -29,3 +29,11 @@ class TestHomeView(TestCase):
         # check there is a status code of 200
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "index.html")
+
+    def test_get_contact_us_views(self):
+        '''Test contact us page view'''
+        page = self.client.get("/home/contactus", follow=True)
+
+        # check there is a status code of 200
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "contact.html")
