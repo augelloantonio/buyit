@@ -50,4 +50,4 @@ class EditUserForm(UserChangeForm):
 
     class Meta:
         model = User
-        fields = ['email', 'username', 'password']
+        fields = ['email', 'username']
