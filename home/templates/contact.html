@@ -61,6 +61,11 @@
         <!--Contact Form - Right aside bar-->
         <div class="col-xs-12 col-md-6">
             <h3 class="text-center">Contact Us</h3>
+
+            <!--Alert-->
+            <div id="email-alert"></div>
+            <!--./Alert-->
+
             <div class="row bg-color-contact">
                 <div class="center-form">
                     <form onsubmit="return sendMail(this);" method="POST">
@@ -77,10 +82,44 @@
             </div>
         </div>
         <!--/.Contact Form-->
+        <div class="col-12">
+            <div>
+                <h3 class="text-center">Store Opening Hours</h3>
+                <table class="mx-auto">
+                    <tr>
+                        <th>Monday</th>
+                        <td>9am - 5pm</td>
+                    </tr>
+                    <tr>
+                        <th>Tuesday</th>
+                        <td>9am - 5pm</td>
+                    </tr>
+                    <tr>
+                        <th>Wednesday</th>
+                        <td>9am - 5pm</td>
+                    </tr>
+                    <tr>
+                        <th>Thursday</th>
+                        <td>9am - 5pm</td>
+                    </tr>
+                    <tr>
+                        <th>Friday</th>
+                        <td>9am-5pm</td>
+                    </tr>
+                    <tr>
+                        <th>Saturday</th>
+                        <td>Closed</td>
+                    </tr>
+                    <tr>
+                        <th>Sunday</th>
+                        <td>Closed</td>
+                    </tr>
+                    <th>Closed Bank Holidays.</th>
+                    <th></th>
+                </table>
+            </div>
+        </div>
 
     </div>
 </div>
-
-<!-- ./EmailJs Form-->
-
 {% endblock %}
