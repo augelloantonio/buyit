@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from orders.models import OrderLineItem, Order
 from products.models import Product, Category
 from django.db.models import Count, Sum, Q
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from products.forms import ProductForm, CategoryForm
 from reviews.models import Review
@@ -69,9 +70,22 @@ def dashboard_orders(request):
     order_info = OrderLineItem.objects.all()
     product = Product.objects.all()
 
+    # Filter Orders
     filter_orders = OrdersFilter(request.GET, queryset=orders)
+    dashboard_order_list = filter_orders.qs
 
-    return render(request, "dashboardorders.html", {"order_info": order_info, "orders": orders,
+    # pagination to switch before filter order to work
+    paginator = Paginator(dashboard_order_list, 24)
+    page = request.GET.get('page')
+
+    try:
+        pagination_orders = paginator.page(page)
+    except PageNotAnInteger:
+        pagination_orders = paginator.page(1)
+    except EmptyPage:
+        pagination_orders = paginator.page(paginator.num_pages)
+
+    return render(request, "dashboardorders.html", {'pagination_orders': pagination_orders, "orders": orders,
                                                     'product': product, 'filter': filter_orders})
 
 

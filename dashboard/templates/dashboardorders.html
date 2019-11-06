@@ -36,7 +36,7 @@
     </div>
     <div class="container-fluid container-orders">
         <div class="row">
-            {% for order in filter.qs %}
+            {% for order in pagination_orders %}
             <div class="col-sm-12 col-md-4 col-lg-3 dashboard-card">
                 <div class="card shadow mb-4 h-100">
                     <!-- Card Header - Dropdown -->
@@ -66,6 +66,53 @@
             </div>
             {%endfor%}
         </div>
+        <!--pagination-->
+        <div class="pagination-container">
+            <nav aria-label="...">
+                <ul class="pagination">
+                    {% if pagination_orders.has_previous %}
+                    <li class="page-item">
+                        <span class="page-link"><a
+                                href="?page={{ pagination_orders.previous_page_number }}">Previous</a></span>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Previous</span>
+                    </li>
+                    {% endif%}
+
+
+                    {% if pagination_orders.number|add:'-4' > 1 %}
+                    <li><a href="?page={{ pagination_orders.number|add:'-5' }}">&hellip;</a></li>
+                    {% endif %}
+
+                    {% for i in pagination_orders.paginator.page_range %}
+                    {% if pagination_orders.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }}</span> <span
+                            class="sr-only">(current)</span></span></li>
+                    {% elif i > pagination_orders.number|add:'-5' and i < pagination_orders.number|add:'5' %}
+                    <li class="page-item"><a href="?page={{ i }}"><span class="page-link">{{ i }}</span></a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    {% if pagination_orders.paginator.num_pages > pagination_orders.number|add:'4' %}
+                    <li><a href="?page={{ pagination_orders.number|add:'5' }}">&hellip;</a></li>
+                    {% endif %}
+
+                    {% if pagination_orders.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ pagination_orders.next_page_number }}">Next</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        <!--./Pagination-->
     </div>
 </div>
 
