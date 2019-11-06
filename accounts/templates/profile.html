@@ -133,6 +133,7 @@
                         </ul>
                     </nav>
                 </div>
+                <!--./Pagination-->
             </div>
         </div>
         <div class="col-md-3 order-first order-md-2">
@@ -142,12 +143,14 @@
                     Filter Orders
                 </a>
             </p>
+            <!--Filter Form-->
             <div class="collapse" id="collapseExample">
                 <form method="GET">
                     {{ filter.form|as_bootstrap_inline }}
                     <button type="submit" class="btn btn-info">Filter</button>
                 </form>
             </div>
+            <!--./Filter Form-->
         </div>
     </div>
 </div>
