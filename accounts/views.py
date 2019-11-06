@@ -117,7 +117,6 @@ def register(request):
 def edit_profile(request):
     ''' view to edit a users profile '''
 
-    # if it is a post method
     if request.method == 'POST':
         # get an instance of the edit profile form
         form = EditUserForm(request.POST, instance=request.user)
@@ -173,35 +172,41 @@ def edit_profile(request):
                         return redirect(reverse('edit_profile'))
         # if the form is valid and nobody has the same email
         # address or username save the form and redirect back
-        # to the customer profile
+        # to the user profile
         if form.is_valid() and someone_has_this is False:
             form.save()
-            return redirect('customer_profile')
+            return redirect('profile')
         else:
             # otherwise display an error message
             messages.error(request,
                            'Invalid form please try again')
             # return to the edit profile page
             return redirect(reverse('edit_profile'))
-    # otherwise return an empty instance of the edit profile form
     else:
         form = EditUserForm(instance=request.user)
         return render(request, 'editprofile.html', {'form': form})
 
 
 def change_password(request):
+    '''Change User Password personal view'''
     if request.method == 'POST':
+        # get an instance of the edit password form
         form = PasswordChangeForm(request.user, request.POST)
+        # check if form is valid
         if form.is_valid():
+            # if form is valid update password
             user = form.save()
             update_session_auth_hash(request, user)
+            # get a message to advise the user that the password has been changed
             messages.success(request, _(
                 'Your password was successfully updated!'))
+            # redirect to user page
             return redirect('accounts:change_password')
         else:
+            # if error will advise the user of the error
             messages.error(request, _('Please correct the error below.'))
     else:
+        # if form is not valid will return on edit profile page
+        # and return the form
         form = PasswordChangeForm(request.user)
-    return render(request, 'editpassword.html', {
-        'form': form
-    })
+    return render(request, 'editpassword.html', {'form': form})
