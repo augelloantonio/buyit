@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.core.exceptions import ValidationError
 
 
@@ -38,3 +38,16 @@ class UserRegistrationForm(UserCreationForm):
             raise ValidationError("Passwords do not match")
 
         return password2
+
+
+class EditUserForm(UserChangeForm):
+    ''' Edit Cutomer Profile '''
+
+    # email field required
+    email = forms.CharField(required=True,
+                            widget=forms.EmailInput
+                            (attrs={'class': 'validate', }))
+
+    class Meta:
+        model = User
+        fields = ['email', 'username', 'password']

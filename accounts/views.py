@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404, reverse
 from django.contrib import messages, auth
+from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
-from .forms import UserLoginForm, UserRegistrationForm
+from .forms import UserLoginForm, UserRegistrationForm, EditUserForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from orders.models import Order, OrderLineItem
@@ -110,3 +111,97 @@ def register(request):
 
     args = {'user_form': user_form}
     return render(request, 'register.html', args)
+
+
+@login_required
+def edit_profile(request):
+    ''' view to edit a users profile '''
+
+    # if it is a post method
+    if request.method == 'POST':
+        # get an instance of the edit profile form
+        form = EditUserForm(request.POST, instance=request.user)
+        # set someone_has_this initially to false
+        someone_has_this = False
+        # if the email field or the username field
+        # or both fields were changed do the following
+        if "email" in form.changed_data or "username" in form.changed_data:
+            # if the email field was changed do the following
+            if "email" in form.changed_data:
+                # the email input from the form
+                form_email = request.POST['email']
+                # a filter of all users with the same email
+                # address as what was posted in the form
+                filter_emails = User.objects.filter(email=form_email)
+                # for all users with the same email
+                # address as what was posted in the form
+                for filter_email in filter_emails:
+                    # if the email address is associated
+                    # with another user id
+                    if filter_email.id != request.user.id:
+                        # set someone_has_email to True
+                        someone_has_this = True
+                        # display a message to say someone
+                        # has this email address
+                        messages.error(request,
+                                       'Somebody with this email address '
+                                       'is already registered please enter '
+                                       'a unique email address')
+                        # return to the edit profile page
+                        return redirect(reverse('edit_profile'))
+            # if the username field has been changed do the following
+            if "username" in form.changed_data:
+                # the username input from the form
+                form_username = request.POST['username']
+                # a filter of all users with the same
+                # username as what was posted in the form
+                filter_usernames = User.objects.filter(
+                    username=form_username)
+                # for all users with the same username as
+                # what was posted in the form
+                for filter_username in filter_usernames:
+                    # if the username is associated with another user id
+                    if filter_username.id != request.user.id:
+                        # set someone has this to True
+                        someone_has_this = True
+                        # otherwise display a message to say someone
+                        # has this username
+                        messages.error(request,
+                                       'Somebody already has this username '
+                                       'please enter a unique username')
+                        # return to the edit profile page
+                        return redirect(reverse('edit_profile'))
+        # if the form is valid and nobody has the same email
+        # address or username save the form and redirect back
+        # to the customer profile
+        if form.is_valid() and someone_has_this is False:
+            form.save()
+            return redirect('customer_profile')
+        else:
+            # otherwise display an error message
+            messages.error(request,
+                           'Invalid form please try again')
+            # return to the edit profile page
+            return redirect(reverse('edit_profile'))
+    # otherwise return an empty instance of the edit profile form
+    else:
+        form = EditUserForm(instance=request.user)
+        return render(request, 'editprofile.html', {'form': form})
+
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, _(
+                'Your password was successfully updated!'))
+            return redirect('accounts:change_password')
+        else:
+            messages.error(request, _('Please correct the error below.'))
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'editpassword.html', {
+        'form': form
+    })
