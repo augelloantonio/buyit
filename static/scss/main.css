@@ -52,6 +52,13 @@ button:focus {
           box-shadow: none;
 }
 
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 .container-index {
   width: 85%;
   margin: auto;
@@ -610,5 +617,151 @@ full-width-logo,
 
 input:focus {
   outline: none;
+}
+
+/*.....................................................Contact Form*/
+.contact-heading {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.center-form {
+  padding-top: 10px;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.form-control {
+  margin-bottom: 5px;
+  display: initial;
+}
+
+.send-email-btn {
+  float: right;
+}
+
+.element-content-text {
+  color: #dadad3;
+}
+
+a .element-content-text:hover {
+  color: #dadad3;
+}
+
+/*.....................................................Left Aside Bar*/
+.contact-items-body {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 25px;
+  padding: 5px;
+}
+
+.contact-elements {
+  text-align: center;
+}
+
+.contact-phone-square,
+.contact-email-square {
+  max-width: 48%;
+  background-color: #525252;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 5px;
+  margin: 3px;
+  color: white;
+}
+
+.contact-phone-square:hover {
+  background-color: #525252;
+  color: white;
+}
+
+.contact-email-square:hover {
+  background-color: #525252;
+  color: white;
+}
+
+.contact-element-icon {
+  text-transform: uppercase;
+  color: #dadad3;
+  font-size: 36px;
+}
+
+.contact-element-icon:hover {
+  color: white;
+}
+
+.contact-element-icon a {
+  font-weight: bold;
+}
+
+.contact-element-icon > .active > a,
+.contact-element-icon > .active > a:focus,
+.contact-element-icon > .active > a:hover {
+  color: white;
+  background: transparent;
+}
+
+.contact-body-text {
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  margin: 40px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.contact-form-input {
+  margin-bottom: 5px;
+}
+
+.links-list {
+  list-style: none;
+}
+
+.links-list-footer {
+  color: white;
+}
+
+.links,
+.contact-footer {
+  margin: 10px 0 10px 0;
+}
+
+.footer-social-links {
+  padding: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer-social-links li a i {
+  width: 32px;
+  height: 32px;
+  padding: 12px 0;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 7px;
+  color: #fafafa;
+  background: #8f8f8f;
+  transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.footer-social-links li a i:hover {
+  background: #e84610;
 }
 /*# sourceMappingURL=main.css.map */

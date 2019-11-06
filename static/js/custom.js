@@ -55,3 +55,23 @@ function searchToggle() {
         $("#input-search").addClass("hidden-input");
     }
 }
+
+
+//EmailJs 
+function sendMail(contactForm) {
+    emailjs.send("gmail", "buyit", {
+            "from_name": contactForm.name.value,
+            "from_email": contactForm.emailaddress.value,
+            "order": contactForm.order.value,
+            "enquiry": contactForm.enquiry.value
+        })
+        .then(
+            function (response) {
+                console.log("SUCCESS", response);
+            },
+            function (error) {
+                console.log("FAILED", error);
+            }
+        );
+    return false; // To block from loading a new page
+}
