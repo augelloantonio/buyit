@@ -137,8 +137,26 @@ class TestDashboardView(TestCase):
 class TestAddCategory(TestCase):
     '''Test Adding a category'''
 
-    def test_add_a_category(self):
-        '''Test add a category'''
+    def test_add_a_category_with_valid_form(self):
+        '''Test add a category with valid form'''
+        #  create a user
+        user = User.objects.create_user(username='username',
+                                        password='password',
+                                        is_superuser=True)
+
+        # login the user
+        self.client.login(username='username',
+                          password='password')
+        # post the new category
+        page = self.client.post("/dashboard/dashboardaddcategory", {'name':'category'}, follow=True)
+
+        # check the status code is 200
+        self.assertEqual(page.status_code, 200)
+        # check Template Used is checkout.html page
+        self.assertTemplateUsed(page, "dashboardproducts.html")
+
+    def test_add_a_category_with_invalid_form(self):
+        '''Test add a category with invalid form'''
         #  create a user
         user = User.objects.create_user(username='username',
                                         password='password',
@@ -148,9 +166,9 @@ class TestAddCategory(TestCase):
         self.client.login(username='username',
                           password='password')
 
-        page = self.client.post("/dashboard/dashboardaddcategory", {'name':'category'}, follow=True)
+        page = self.client.post("/dashboard/dashboardaddcategory", {'name':''}, follow=True)
 
         # check the status code is 200
         self.assertEqual(page.status_code, 200)
         # check Template Used is checkout.html page
-        self.assertTemplateUsed(page, "dashboardproducts.html")
+        self.assertTemplateUsed(page, "dashboardaddcategory.html")
