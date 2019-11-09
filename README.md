@@ -12,8 +12,7 @@ BuyIt-Platform is an e-commerce platform with full management of the commercial 
 With BuyIt it is possible to:
 - Sell Products
 - Manage Orders
-- Manage Earning
-- Use Voucher code
+- Manage Earnings
 - Manage Users
 
 ### Owner
@@ -26,7 +25,7 @@ There is no need to be expert in computer. BuyIt Platform is very easy to use an
 - Add a Voucher
 - Edit/Delete elements
 
-There is no need of an Hi Tech computer, BuyIt is a light, performant Platform, build for computer but full responsive.
+There is no need of an Hi Tech computer, BuyIt is a light, performant Platform, full responsive.
 This means that is is possible to have the full control of the Platform from a Mobile Phone or from a Tablet.
 
 The dashboard was build as Mobile First and the charts are full responsive, giving a nice and quick view about the business wherever the owner is, the only needed thing is an internet connection.
@@ -61,8 +60,8 @@ The starting design drafts were done with the use of the free tool [Pencil Proje
 
 The wireframe of the starting idea can be found divided for desktop and mobile devices at the following link:
 
-- [Desktop Devices](#)
-- [Mobile Devices](#)
+- [Desktop Devices](https://github.com/gello94/buyit/tree/master/moqups/desktop)
+- [Mobile Devices](https://github.com/gello94/buyit/tree/master/moqups/mobile-view)
 
 The final design has changed slightly from the starting idea, multiple changes were applied to the website following ideas and improvements and the features implemented while developing the Web App.
 
@@ -81,7 +80,7 @@ I would like as well to manage my details and info.
 
 In BuyIt User Profile section there are displayed all the orders that the user has made with all the info about.
 
-In is possible as well, by an extra navigation bar, to edi the User deatails and to change the password.
+It is possible as well, by an extra navigation bar, to edit the User deatails and to change the password.
 
 ##### 3. Business Owner with no computer skills:
 As a owner of a business I would like to have an online shop, but not having good computer skills will made difficult to understand and manage the business online without have someone that can manage it for me.
@@ -96,9 +95,61 @@ With BuyIt this can't be easier. In the Admin Dashboard is present a nice and ea
 The earning and orders Charts can be sets as Monthly View or Daily View, this one is set to show the last 30 days.
 
 ## Feature left to implement:
-- Send email from email.html template on order received and on order status change
+- Send email when an order status is update
+- Add quantity stock in product model
+- Modify max-quantity add to cart pending on quantity stock 
 
 All images taken from https://pixabay.com/images/search/earphones/
 
 Quantity snipper taken from https://bootsnipp.com/snippets/Max59
+
+
+## Technologies Used
+
+For this project I used:
+
+- [AWS Cloud9](https://aws.amazon.com/it/cloud9/)
+    - Used as Ide to develop the code.
+
+- [HTML5]( https://en.wikipedia.org/wiki/HTML5)
+    - The project uses **HTML5** to structure the content in line with modern semantic HTML5.
+
+- [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets#CSS_3)
+    - The project uses **CSS3** to style the html content.
+
+- [SCSS/SASS](https://sass-lang.com)
+    - The project uses **SCSS**.
+
+- [JavaScript](https://it.wikipedia.org/wiki/JavaScript)
+    - The project uses **JavaScript** to manipulate the frontend.
+
+- [JQuery](https://jquery.com)
+    - The project uses **JQuery** to control toggle features.
+
+- [Python](https://www.python.org)
+    - The project uses **Python** as developing language to build Travel Around and as a server side/back-end language.
+
+- [MongoDB](https://www.mongodb.com/)
+    - The project uses **MongoDB** to create and manage a database.
+
+- [JSON ](https://www.json.org/)
+    - The project uses **JSON** to manage my local collection.
+
+- [Flask](https://palletsprojects.com/p/flask/)
+    - The project uses **Flask Framework** to render the templates.
+
+- [Materialize 0.100.2](http://archives.materializecss.com/0.100.2/)
+    - The project uses **Materialize 0.100.2** to Layout the html content.
+
+- [FontAwesome](https://fontawesome.com/)
+    - The project uses **FontAwesome** to add icons for social media and contact forms.
+
+- [GoogleFonts](https://fonts.google.com/)
+    - The project uses **GoogleFonts** to add the font Roboto and Alfa Slab One importing same in my CSS.
+
+- [Google Images](https://www.google.com/imghp?hl=en)
+    - I used **Google Images** to find the icons for account, research done using the filter to find images with the permit to be used.
+
+- [Stackoverflow](https://stackoverflow.com)
+    - For the project I used **stackoverflow** community to help to build the app searching for scripts and explanations and to ask explanation about python.
 
