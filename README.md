@@ -109,47 +109,50 @@ For this project I used:
     - Used as Ide to develop the code.
 
 - [Python](https://www.python.org)
-    - The project uses **Python** as developing language to build Travel Around and as a server side/back-end language.
+    - The project use **Python** as developing language to build Travel Around and as a server side/back-end language.
 
 - [Django](https://www.djangoproject.com/)
-    - The project uses **Django** as Python Web Framework.
+    - The project use **Django** as Python Web Framework.
 
 - [Django Rest Framework](https://www.django-rest-framework.org/)
-    - The project uses **Django Rest Framework** to create the Dashboard Api and render the charts data.
+    - The project use **Django Rest Framework** to create the Dashboard Api and render the charts data.
 
 - [Heroku Postgres](https://www.heroku.com/postgres)
-    - The project uses **Heroku Postgres Free Service** as SQL Database Service.
+    - The project use **Heroku Postgres Free Service** as SQL Database Service.
 
 - [HTML5]( https://en.wikipedia.org/wiki/HTML5)
-    - The project uses **HTML5** to structure the content in line with modern semantic HTML5.
+    - The project use **HTML5** to structure the content in line with modern semantic HTML5.
 
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets#CSS_3)
-    - The project uses **CSS3** to style the html content.
+    - The project use **CSS3** to style the html content.
 
 - [SCSS/SASS](https://sass-lang.com)
-    - The project uses **SCSS**.
+    - The project use **SCSS**.
 
 - [JavaScript](https://it.wikipedia.org/wiki/JavaScript)
-    - The project uses **JavaScript** to manipulate the frontend.
+    - The project use **JavaScript** to manipulate the frontend.
 
 - [JQuery](https://jquery.com)
-    - The project uses **JQuery** to control toggle features.
+    - The project use **JQuery** to control toggle features.
 
 - [Chart.js](https://www.chartjs.org/)
-    - The project uses **Chart.js** to visualize the data.
+    - The project use **Chart.js** to visualize the data.
     
 - [Bootstrap](https://getbootstrap.com/)
-    - The project uses **Materialize 0.100.2** to Layout the html content.
+    - The project use **Materialize 0.100.2** to Layout the html content.
 
 - [FontAwesome](https://fontawesome.com/)
-    - The project uses **FontAwesome** to add icons for social media and contact forms.
+    - The project use **FontAwesome** to add icons for social media and contact forms.
 
 - [Stripe](https://stripe.com/)
-    - The project uses **Stripe** to manage epayments online.
+    - The project use **Stripe** to manage epayments online.
+
+- [Travis CI](https://travis-ci.org/)
+    - **Travis CI** was used as continuous testing developement tool.
 
 
 #### Python Libraries Used
-The full list of libraries used is present in my Requiremets.txt.
+The full list of libraries used is present in requirements.txt file.
 
 The following Python Libraries are installed and used in this project:
 - *django bootstrap forms* used for styling of forms
@@ -164,9 +167,109 @@ The following Python Libraries are installed and used in this project:
 - *django filter* to add filtering
 
 
-## Credits
-All images taken from https://pixabay.com/images/search/earphones/
+## Testing
+Because of the size of the testing section all the testing information are present in a separate file.
 
+[See Testing File](#)
+
+## Deployment
+The web site has been deployed on Heroku for hosting and on GitHub to share the full developement code.
+
+### Heroku
+This page has been deployed to ["Heroku"](https://buyit-platform.herokuapp.com/).
+
+- Created requirements.txt file with the code ```$ python freeze --local > requirements.txt```
+- Created the Procfile with the code ```$ echo web: gunicorn buyit.wsgi:application>Procfile```
+- Created a new Heroku App - unique name and EU Server
+- Added the Heroku Postgress Database as resource
+- Installed the package dj-database-url to allow connection to a database url
+- Installed the package psycopg2 for connecting to postgress databases
+- Installed the package gunicorn to connect the project to Heroku.
+- Setup the default database in settings.py to the postgres database
+- Migrated the project in order to use the new postgres datatbase
+- Created a superuser
+- Set up a AWS S3 bucket to serve the website
+- Installed django-storages and botoS3 in order to use django with AWS S3
+- Setup Django to connect with AWS
+- Setup config variables in Heroku
+- Disabled collectstatic in Heroku sto prevent uploading static files
+- Connected Github repository to Heroku App through 'Deployment Method' in Heroku - App Dashboard
+- Deploy Branch through Manual Deploy' in Heroku App Dashboard
+- Added the heroku address to valid hosts in settings.py
+
+
+### GitHub
+The code has been deployed to ["Github"](https://github.com/gello94/buyit).
+
+GitHub is used to host the code and publish the pages.
+
+A new repository was created in GitHub called: buyit.
+
+The repository has been pushed following these commands
+
+```
+>$git remote add origin https://github.com/gello94/buyit
+>$ git push -u origin master
+```
+
+After a final Git Add and Git commit
+
+```
+>$git add .
+>$git commit -m "final commit"
+```
+
+The pages were pushed to the GitHub repository
+
+```
+>$ git push -u origin master
+>$Username
+>$Password
+```
+
+### Run my project locally
+To run this project you can follow one of the follwing way:
+
+#### 1. Deployment through Cloud9
+- Create a blank workspace in your Cloud9 dashboard.
+- Get all files from github using 'git clone https://github.com/gello94/buyit command in the C9 CLI
+- Install Python dependencies with following the command: 'pip3 install -r requirements.txt'
+- Run app with following command: 'python3 manage.py runserver'.
+- Open up Link in browser of choice
+
+#### 2. Deployment through Heroku
+- Copy Github repository
+- Make sure Procfile and requirements.txt for dependencies are correct.
+- Create new heroku app and set environment variables.
+- Connect Github repository to Heroku App through 'Deployment Method' in Heroku - App Dashboard
+- Deploy Branch through Manual Deploy' in Heroku App Dashboard
+
+## Credits
+
+Thanks to CodeInstitute Slack Community helping me to find extra material to study to improve my knowledges to develop this web app. 
+
+A big Thanks to all the students, always positive and very motivational during this year, always ready to help me were a problem was encountered and for all the advices given.
+
+Thanks to the tutor Ali Ashik that has been always available to help me to understand and clarify areas of this project that were difficult to me.
+
+### Media
+
+- All images taken from https://pixabay.com/images/search/earphones/ with free licence to reuse.
+- The Logo used is make by me with Adobe Photoshop, all credits reserved.
+- The 404 Image is make by me with Adobe Photoshop, all credits reserved.
+
+
+## Extra Sources
+
+More info were taken from the following documentation files and Communities:
+
+- [Django - Documentation](https://docs.djangoproject.com/en/2.2/)
+- [Stackoverflow](https://stackoverflow.com/) - widely used during this project to find errors similar to mine
+- [PyPI](https://pypi.org/)
+- [Stripe - Documentation](https://stripe.com/docs)
+
+
+## Credits
 Quantity snipper taken from https://bootsnipp.com/snippets/Max59
 
 
