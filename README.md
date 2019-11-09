@@ -94,22 +94,31 @@ With BuyIt this can't be easier. In the Admin Dashboard is present a nice and ea
 
 The earning and orders Charts can be sets as Monthly View or Daily View, this one is set to show the last 30 days.
 
-## Feature left to implement:
+## Feature left to implement/ Planned future feature:
 - Send email when an order status is update
 - Add quantity stock in product model
 - Modify max-quantity add to cart pending on quantity stock 
-
-All images taken from https://pixabay.com/images/search/earphones/
-
-Quantity snipper taken from https://bootsnipp.com/snippets/Max59
+- Render rating as star system (for same [django-likert-field](https://pypi.org/project/django-likert-field/) library will be used)
 
 
 ## Technologies Used
 
 For this project I used:
 
-- [AWS Cloud9](https://aws.amazon.com/it/cloud9/)
+- [Visual Studio Code](https://code.visualstudio.com/)
     - Used as Ide to develop the code.
+
+- [Python](https://www.python.org)
+    - The project uses **Python** as developing language to build Travel Around and as a server side/back-end language.
+
+- [Django](https://www.djangoproject.com/)
+    - The project uses **Django** as Python Web Framework.
+
+- [Django Rest Framework](https://www.django-rest-framework.org/)
+    - The project uses **Django Rest Framework** to create the Dashboard Api and render the charts data.
+
+- [Heroku Postgres](https://www.heroku.com/postgres)
+    - The project uses **Heroku Postgres Free Service** as SQL Database Service.
 
 - [HTML5]( https://en.wikipedia.org/wiki/HTML5)
     - The project uses **HTML5** to structure the content in line with modern semantic HTML5.
@@ -126,30 +135,39 @@ For this project I used:
 - [JQuery](https://jquery.com)
     - The project uses **JQuery** to control toggle features.
 
-- [Python](https://www.python.org)
-    - The project uses **Python** as developing language to build Travel Around and as a server side/back-end language.
-
-- [MongoDB](https://www.mongodb.com/)
-    - The project uses **MongoDB** to create and manage a database.
-
-- [JSON ](https://www.json.org/)
-    - The project uses **JSON** to manage my local collection.
-
-- [Flask](https://palletsprojects.com/p/flask/)
-    - The project uses **Flask Framework** to render the templates.
-
-- [Materialize 0.100.2](http://archives.materializecss.com/0.100.2/)
+- [Chart.js](https://www.chartjs.org/)
+    - The project uses **Chart.js** to visualize the data.
+    
+- [Bootstrap](https://getbootstrap.com/)
     - The project uses **Materialize 0.100.2** to Layout the html content.
 
 - [FontAwesome](https://fontawesome.com/)
     - The project uses **FontAwesome** to add icons for social media and contact forms.
 
-- [GoogleFonts](https://fonts.google.com/)
-    - The project uses **GoogleFonts** to add the font Roboto and Alfa Slab One importing same in my CSS.
+- [Stripe](https://stripe.com/)
+    - The project uses **Stripe** to manage epayments online.
 
-- [Google Images](https://www.google.com/imghp?hl=en)
-    - I used **Google Images** to find the icons for account, research done using the filter to find images with the permit to be used.
 
-- [Stackoverflow](https://stackoverflow.com)
-    - For the project I used **stackoverflow** community to help to build the app searching for scripts and explanations and to ask explanation about python.
+#### Python Libraries Used
+The full list of libraries used is present in my Requiremets.txt.
+
+The following Python Libraries are installed and used in this project:
+- *django bootstrap forms* used for styling of forms
+- *pillow* needed for using images
+- *dj database url* to allow connection to database url
+- *psycopg2* to allow connection to postgress database
+- *django storages* and *botoS3* used to link media and static files on *AWS S3*
+- *gunicorn* to connect to heroku
+- *pycodestyle* to check the style of the python code is correct and show any styling errors
+- *coverage* to measure the code coverage in testing
+- *django widget tweaks* to be able to personalize rendered forms
+- *django filter* to add filtering
+
+
+## Credits
+All images taken from https://pixabay.com/images/search/earphones/
+
+Quantity snipper taken from https://bootsnipp.com/snippets/Max59
+
+
 
