@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_
 from django.contrib import messages, auth
 from django.contrib.auth.forms import PasswordChangeForm
 from django.urls import reverse
+from django.contrib.auth.models import User
 from .forms import UserLoginForm, UserRegistrationForm, EditUserForm
 from django.template.context_processors import csrf
 from django.contrib.auth.decorators import login_required
 from orders.models import Order, OrderLineItem
 from home.views import index
 from django.core.paginator import Paginator
-from django.contrib.auth import logout as django_logout
+from django.contrib.auth import logout as django_logout, update_session_auth_hash
 from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .filters import OrdersFilter
@@ -74,6 +75,8 @@ def login(request):
                 else:
                     user_form.add_error(
                         None, "Your username or password are incorrect")
+            else:
+                user_form = UserLoginForm()
         else:
             user_form = UserLoginForm()
 
@@ -186,6 +189,7 @@ def edit_profile(request):
         return render(request, 'editprofile.html', {'form': form})
 
 
+@login_required
 def change_password(request):
     '''Change User Password personal view'''
     if request.method == 'POST':
@@ -197,13 +201,13 @@ def change_password(request):
             user = form.save()
             update_session_auth_hash(request, user)
             # get a message to advise the user that the password has been changed
-            messages.success(request, _(
+            messages.success(request, (
                 'Your password was successfully updated!'))
             # redirect to user page
-            return redirect('accounts:change_password')
+            return redirect('profile')
         else:
             # if error will advise the user of the error
-            messages.error(request, _('Please correct the error below.'))
+            messages.error(request, ('Please correct the error below.'))
     else:
         # if form is not valid will return on edit profile page
         # and return the form
