@@ -177,6 +177,9 @@ def edit_profile(request):
         # to the user profile
         if form.is_valid() and someone_has_this is False:
             form.save()
+            messages.success(request,
+                             'Your profile info have been updated!'
+                             )
             return redirect('profile')
         else:
             # otherwise display an error message
