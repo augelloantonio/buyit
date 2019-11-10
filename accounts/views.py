@@ -144,10 +144,10 @@ def edit_profile(request):
                         someone_has_this = True
                         # display a message to say someone
                         # has this email address
-                        messages.alert(request,
-                                       'Somebody with this email address '
-                                       'is already registered please enter '
-                                       'a unique email address')
+                        messages.warning(request,
+                                         'Somebody with this email address '
+                                         'is already registered please enter '
+                                         'a unique email address')
                         # return to the edit profile page
                         return redirect(reverse('edit_profile'))
             # if the username field has been changed do the following
@@ -167,9 +167,9 @@ def edit_profile(request):
                         someone_has_this = True
                         # otherwise display a message to say someone
                         # has this username
-                        messages.alert(request,
-                                       'Somebody already has this username '
-                                       'please enter a unique username')
+                        messages.warning(request,
+                                         'Somebody already has this username '
+                                         'please enter a unique username')
                         # return to the edit profile page
                         return redirect(reverse('edit_profile'))
         # if the form is valid and nobody has the same email
@@ -183,8 +183,8 @@ def edit_profile(request):
             return redirect('profile')
         else:
             # otherwise display an error message
-            messages.alert(request,
-                           'Invalid form please try again')
+            messages.warning(request,
+                             'Invalid form please try again')
             # return to the edit profile page
             return redirect(reverse('edit_profile'))
     else:
@@ -210,7 +210,7 @@ def change_password(request):
             return redirect('profile')
         else:
             # if error will advise the user of the error
-            messages.alert(request, ('Please correct the error below.'))
+            messages.warning(request, ('Please correct the error below.'))
     else:
         # if form is not valid will return on edit profile page
         # and return the form
