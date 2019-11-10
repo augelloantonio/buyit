@@ -5,8 +5,6 @@ from .forms import ProductForm
 from reviews.models import Review
 from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import get_object_or_404
-from django.core.files.uploadedfile import SimpleUploadedFile
-
 
 class TestAllProductsViews(TestCase):
     '''Test all the products page'''
@@ -259,8 +257,8 @@ class TestProductInAdminDashboard(TestCase):
 class ToggleProductStockStatus(TestCase):
     ''' Test toggle stock status'''
 
-    def test_toggle_status(self):
-        ''' test toggle product stock status'''
+    def test_toggle_status_valid_form(self):
+        ''' test toggle product stock status with valid input'''
 
         # create a seuperuser
         user = User.objects.create_user(username='username',
@@ -283,6 +281,37 @@ class ToggleProductStockStatus(TestCase):
             "/dashboard/toggle_status/{0}".format(id), {'name': 'test product',
                                                         'price': '5.99',
                                                         'in_stock': False}, follow=True)
+        # check there is a status code of 200
+        self.assertEqual(page.status_code, 200)
+        # Check the page after deleting a product is the dashboard product
+        self.assertTemplateUsed(page, "dashboardproducts.html")
+        product = get_object_or_404(Product, pk=id)
+        self.assertEqual(product.in_stock, False)
+
+    def test_toggle_status_invalid_valid_form(self):
+        ''' test toggle product stock status with invalid input'''
+
+        # create a seuperuser
+        user = User.objects.create_user(username='username',
+                                        password='password',
+                                        is_superuser=True)
+        # login the user
+        self.client.login(username='username',
+                          password='password')
+
+        # create a product and save it
+        product = Product(name='test product',
+                          price='5.99',
+                          in_stock=True
+                          )
+        product.save()
+        id = product.id
+
+        # delete the product
+        page = self.client.post(
+            "/dashboard/toggle_status/{0}".format(id), {'name': '',
+                                                        'price': '5.99',
+                                                        'in_stock': ''}, follow=True)
         # check there is a status code of 200
         self.assertEqual(page.status_code, 200)
         # Check the page after deleting a product is the dashboard product
