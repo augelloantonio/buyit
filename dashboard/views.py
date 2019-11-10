@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from orders.models import OrderLineItem, Order
 from products.models import Product, Category
 from django.db.models import Count, Sum, Q
@@ -13,7 +13,7 @@ from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def dashboard(request):
     orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
@@ -64,7 +64,7 @@ def dashboard(request):
     return render(request, "dashboard.html", context)
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def dashboard_orders(request):
     orders = Order.objects.all().order_by('-id')
     order_info = OrderLineItem.objects.all()
@@ -89,7 +89,7 @@ def dashboard_orders(request):
                                                     'product': product, 'filter': filter_orders})
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def dashboard_order_details(request, id):
     orders = Order.objects.all()
     order_info = OrderLineItem.objects.all()
@@ -103,7 +103,7 @@ def dashboard_order_details(request, id):
                                                            "total_order_price": total_order_price, 'form': form})
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def dashboard_product(request):
     products = Product.objects.all()
     categories = Category.objects.all()
@@ -111,7 +111,7 @@ def dashboard_product(request):
     return render(request, "dashboardproducts.html", {"products": products, 'categories': categories})
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def add_a_category(request):
     if request.method == "POST":
         category_form = CategoryForm(request.POST, request.FILES)
@@ -123,7 +123,7 @@ def add_a_category(request):
     return render(request, "dashboardaddcategory.html", {'category_form': category_form})
 
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def users_info(request):
     users = User.objects.all()
     total_user = users.count()
