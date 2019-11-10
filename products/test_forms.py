@@ -1,7 +1,6 @@
 from django.test import TestCase
 from .forms import ProductForm, CategoryForm
 from .models import Category, Product
-import tempfile
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 
