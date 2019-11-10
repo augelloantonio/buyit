@@ -81,7 +81,7 @@
         <form role="form" method="POST" action="{% url 'change_order_status' order.id %}">
             {% csrf_token %} {{ form | as_bootstrap}}
             <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Button</button>
+                <button class="btn btn-outline-secondary" type="submit">Change Status</button>
             </div>
         </form>
     </div>
