@@ -5,6 +5,7 @@ from .forms import ProductForm
 from reviews.models import Review
 from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import get_object_or_404
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 
 class TestAllProductsViews(TestCase):
@@ -83,8 +84,8 @@ class TestProductInAdminDashboard(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, "dashboardaddproduct.html")
 
-    def test_add_a_product(self):
-        ''' test add a product'''
+    def test_add_a_product_invalid_form(self):
+        ''' test add a product with invalid form'''
 
         # create a seuperuser
         user = User.objects.create_user(username='username',
@@ -96,26 +97,25 @@ class TestProductInAdminDashboard(TestCase):
 
         # add a product and post it
         page = self.client.post("/dashboard/dashboardaddproduct",
-                                {'name': 'product test',
-                                 'price': '4',
-                                 'description': 'description',
-                                 'image': 'img.jpg',
-                                 'published_date': '2019-10-21 19:47:27.674081',
-                                 'in_stock': 'True',
-                                 }, follow=True)
-
+                                {'name': '',
+                                 'description': 'test description',
+                                 'price': 2.00,
+                                 'in_stock': True,
+                                 },
+                                follow = True)
         # check there is a status code of 200
         self.assertEqual(page.status_code, 200)
+        # check that the page used is dashboardaddproduct.html
         self.assertTemplateUsed(page, "dashboardaddproduct.html")
 
     def test_get_page_edit_a_product(self):
         '''Test edit a product'''
         # create a user
-        user = User.objects.create_user(username='username',
-                                        password='password',
-                                        is_superuser=True)
+        user=User.objects.create_user(username = 'username',
+                                        password = 'password',
+                                        is_superuser = True)
         # login user
-        self.client.login(username='username',
+        self.client.login(username = 'username',
                           password='password')
 
         # create a product
@@ -131,8 +131,8 @@ class TestProductInAdminDashboard(TestCase):
         # check the template used dashboardaddreview.html
         self.assertTemplateUsed(page, "dashboardaddproduct.html")
 
-    def test_to_post_edited_product(self):
-        ''' test edit a product'''
+    def test_edit_product_form_with_valid_form(self):
+        ''' test edit a product with valid form'''
 
         # create a seuperuser
         user = User.objects.create_user(username='username',
@@ -168,6 +168,41 @@ class TestProductInAdminDashboard(TestCase):
         # get the new product and check if the new name is the same of the product in database
         product = get_object_or_404(Product, pk=id)
         self.assertEqual("new name", product.name)
+
+    def test_edit_product_form_with_not_valid_form(self):
+        ''' test edit a product with invalid form'''
+
+        # create a seuperuser
+        user = User.objects.create_user(username='username',
+                                        password='password',
+                                        is_superuser=True)
+        # login the user
+        self.client.login(username='username',
+                          password='password')
+
+        # create a product
+        product = Product(name='test product',
+                          description='product description',
+                          price='5.99',
+                          image='img.jpg',
+                          in_stock=True,
+                          )
+        product.save()
+        id = product.id
+
+        # add a product and post it
+        page = self.client.post("/dashboard/dashboardeditproduct/{0}".format(id),
+                                {'name': '',
+                                 'description': 'product description',
+                                 'price': '5.99',
+                                 'image': 'img.jpg',
+                                 'in_stock': 'True',
+                                 },
+                                follow=True)
+
+        # check there is a status code of 200
+        self.assertEqual(page.status_code, 200)
+        self.assertTemplateUsed(page, "dashboardaddproduct.html")
 
     def test_confirm_delete_a_product_view(self):
         ''' test confirm delete a product view'''
@@ -254,5 +289,3 @@ class ToggleProductStockStatus(TestCase):
         self.assertTemplateUsed(page, "dashboardproducts.html")
         product = get_object_or_404(Product, pk=id)
         self.assertEqual(product.in_stock, False)
-
-    
