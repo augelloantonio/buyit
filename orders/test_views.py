@@ -329,8 +329,8 @@ class TestCheckoutView(TestCase):
 class OrderDashboardChangeStatus(TestCase):
     '''Test change order status'''
 
-    def test_change_order_status(self):
-        '''Test change order status '''
+    def test_change_order_status_with_valid_form(self):
+        '''Test change order status with valid form'''
 
         #  create a user
         user = User.objects.create_user(username='username',
@@ -364,7 +364,45 @@ class OrderDashboardChangeStatus(TestCase):
 
         # check the page status is ok
         self.assertEqual(page.status_code, 200)
-        # check Template Used is cart.html page
+        # check Template Used is dashboardordersdetails.html page
         self.assertTemplateUsed(page, "dashboardordersdetails.html")
         order = get_object_or_404(Order, pk=id)
         self.assertEqual(order.order_status, 'Delivered')
+
+    def test_change_order_status_with_invalid_form(self):
+        '''Test change order status with invalid form'''
+
+        #  create a user
+        user = User.objects.create_user(username='username',
+                                        password='password',
+                                        is_superuser=True)
+
+        # login the user
+        self.client.login(username='username',
+                          password='password')
+
+        # Create an order
+        order = Order(full_name='name',
+                      email_address='email@email.com',
+                      phone_number='0000',
+                      town_or_city='city',
+                      street_address1='street sddress 1',
+                      street_address2='street sddress 2',
+                      country='country',
+                      county='county',
+                      postcode='postcode',
+                      order_status='Order Received')
+
+        # add the user and the code to the order
+        order.user_id = user.id
+        order.save()
+
+        id = order.id
+
+        page = self.client.post("/dashboard/changeorderstatus/{0}".format(id),
+                                 follow=True)
+
+        # check the page status is ok
+        self.assertEqual(page.status_code, 200)
+        # check Template Used is dashboardordersdetails.html page
+        self.assertTemplateUsed(page, "dashboardordersdetails.html")
