@@ -14,7 +14,7 @@
             {{ message }} </div>
         {% endfor %}
         {% endif %}
-        <form method="post" action="{% url 'register' %}" class="accountform">
+        <form method="post" action="{% url 'edit_profile' %}" class="accountform">
             <fieldset class="form-group">
                 <legend>Edit Profile Info</legend>
                 {% csrf_token %}
