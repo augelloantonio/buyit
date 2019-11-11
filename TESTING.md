@@ -226,10 +226,9 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 #### Test add a voucher if user not logged
 - If logged in Logout
 - Go to All Products page
-- Select a product with price less than 49.99€
+- Select a product
 - Click on the "Add to Cart" icon
-- Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
+=- Click on the cart icon in the navication bar
 - Check you products in the cart
 - Add voucher code 'new'
 - Click on 'Redeem'
@@ -239,14 +238,109 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 #### Test add a voucher if user logged in
 - If logged in Logout
 - Go to All Products page
-- Select a product with price less than 49.99€
+- Select a product
 - Click on the "Add to Cart" icon
-- Check the quantity of products in the cart icon in the navigation bar
 - Click on the cart icon in the navication bar
 - Check you products in the cart
 - Add voucher code 'new'
 - Click on 'Redeem'
 - Check new total and success alert message
+
+
+### Checkout and Payment - Order App
+
+#### Test order a product
+- If logged in Logout
+- Go to All Products page
+- Select a product
+- Click on the "Add to Cart" icon
+- Check the quantity of products in the cart icon in the navigation bar
+- Click on the cart icon in the navication bar
+- Check you products in the cart
+- Click on 'Checkout'
+- Check your order summary
+- Fill the personal info form
+- Use the number card '4242424242424242'
+- Use '123' as cvv
+- Use a future date
+- Check alert message in your personal page after the redirect
+- Check the order details in your personal page
+
+
+#### Test order a product with invalid card
+- If logged in Logout
+- Go to All Products page
+- Select a product
+- Click on the "Add to Cart" icon
+- Check the quantity of products in the cart icon in the navigation bar
+- Click on the cart icon in the navication bar
+- Check you products in the cart
+- Click on 'Checkout'
+- Check your order summary
+- Fill the personal info form
+- Fill the card details form with invalid input eg. card number or invalid date
+- Check warning alert
+
+
+### Products App
+
+#### Filter by category
+- Go to All Products page
+- Click on 'Filter By Categories'
+- Check the product in that category
+
+### Review App
+
+#### Add a review if logged
+- Login
+- Click on one product to acceed to the Product Detail page
+- Click on "Add a Review"
+- Fill the review form
+- Check the new review on the product details page
+
+#### Add a review if logged but already reviewed a product
+- Login
+- Click on the product you have already reviewed
+- Click on "Add a Review"
+- Check the warning alert message
+
+#### Add a review if not logged in
+- Login
+- Click on the product you have already reviewed
+- Click on "Add a Review"
+- Check that the redirected page is the login page
+
+
+### Cross Web Testing
+
+#### Mobile Browsers
+* Chrome
+* Safari
+* Internet Samsung 
+
+#### Desktop Browsers
+* Chrome
+* Firefox
+* Edge
+
+#### Devices
+* Hp Laptop
+* Acer Laptop
+* Samsung S8
+* iPhone X
+* Vernee Thor
+* 42" Screen Desktop PC
+
+During the testing I used Chrome Developer tools to test the responsive design on different size and the features of the page on different width.
+
+Chrome Developer tools was used during the developing process to test HTML, CSS, JavaScript and jQuery.
+
+Javascript and jQuery testing was done by using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
+
+
+
+
+
 
 
 
