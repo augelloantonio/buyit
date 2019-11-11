@@ -26,7 +26,7 @@ There is no need to be expert in computer. BuyIt Platform is very easy to use an
 - Edit/Delete elements
 
 There is no need of an Hi Tech computer, BuyIt is a light, performant Platform, full responsive.
-This means that is is possible to have the full control of the Platform from a Mobile Phone or from a Tablet.
+This means that it is possible to have the full control of the Platform from a Mobile Phone or from a Tablet.
 
 The dashboard was build as Mobile First and the charts are full responsive, giving a nice and quick view about the business wherever the owner is, the only needed thing is an internet connection.
 
@@ -169,11 +169,10 @@ The following Python Libraries are installed and used in this project:
 The full list of libraries used is present in requirements.txt file.
 
 
-
 ## Testing
 Because of the size of the testing section all the testing information are present in a separate file.
 
-[See Testing File](#)
+[See Testing File](https://github.com/gello94/buyit/blob/master/TESTING.md)
 
 ## Deployment
 The web site has been deployed on Heroku for hosting and on GitHub to share the full developement code.
