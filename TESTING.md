@@ -25,9 +25,9 @@ I used Travis CI as continuous integration service testing the project on every 
 - Try to create a test account with not matching password and check error status
 - Try to miss values in field to see error fields
 - Register a new testing user with a valid email
-- Redirected now on personal page
+- Redirected now on the personal page
 - Check that 'Profile' and 'Logout' voices appear on navigation bar
-- Check personal email to check the registration welcoming email with welcome voucher code
+- Check the personal email to check the registration welcoming email with welcome voucher code
 
 
 #### Register a customer who is already logged in
@@ -70,7 +70,7 @@ I used Travis CI as continuous integration service testing the project on every 
 - Click on "Edit Personal Info"
 - Try to change the email using an existing email, for example use 'user1@testing.com'
 - Try to change the username using an existing username, for example use 'user1'
-- Try to add unique username/email
+- Try to add a unique username/email
 - Check success change name alert
 
 
@@ -78,8 +78,8 @@ I used Travis CI as continuous integration service testing the project on every 
 - Login
 - Go to the personal page
 - Click on "Edit Password"
-- Insert old password
-- Insert new valid password
+- Insert the old password
+- Insert the new valid password
 - Check success change name alert
 
 ### Dashboard App
@@ -92,7 +92,7 @@ Password: admin
 ```
 N.B.: This user will be deleted after the project assessment by CodeInstitute assessors.
 - Check the new voice on the navbar 'Dashboard'
-- Click on the Dashoard link
+- Click on the Dashboard link
 - Navigate in the Dashboard
 
 #### Test Data Visualization Views
@@ -184,26 +184,26 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 - Select a product quantity
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 
 #### Test Modify Quantity of Products
 - Go to All Products page
 - Select a product quantity
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Change Quantity number in the product details
 - Click on Amend
 - Check the updated quantity
 
-#### Test Renove Product from Cart
+#### Test Remove Product from Cart
 - Go to All Products page
 - Select a product quantity
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
+- Click on the cart icon in the navigation bar
 - Check you products in the cart
 - Click on "Remove"
 - Check that the product in not anymore in the cart
@@ -211,11 +211,11 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 
 #### Test Shipping Costs
 - Go to All Products page
-- Select a product with price less than 49.99€
+- Select a product with the price less than 49.99€
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Check the Shipping costs are 10.00€
 - Amend quantity of product to reach the cost > 49.99€
 - Check the Shipping Costs are 0.00€
@@ -228,8 +228,8 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 - Go to All Products page
 - Select a product
 - Click on the "Add to Cart" icon
-=- Click on the cart icon in the navication bar
-- Check you products in the cart
+=- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Add voucher code 'new'
 - Click on 'Redeem'
 - Check warning alert message
@@ -240,8 +240,8 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 - Go to All Products page
 - Select a product
 - Click on the "Add to Cart" icon
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Add voucher code 'new'
 - Click on 'Redeem'
 - Check new total and success alert message
@@ -255,8 +255,8 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 - Select a product
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Click on 'Checkout'
 - Check your order summary
 - Fill the personal info form
@@ -273,8 +273,8 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 - Select a product
 - Click on the "Add to Cart" icon
 - Check the quantity of products in the cart icon in the navigation bar
-- Click on the cart icon in the navication bar
-- Check you products in the cart
+- Click on the cart icon in the navigation bar
+- Check your products in the cart
 - Click on 'Checkout'
 - Check your order summary
 - Fill the personal info form
@@ -293,7 +293,7 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 
 #### Add a review if logged
 - Login
-- Click on one product to acceed to the Product Detail page
+- Click on one product to accede to the Product Detail page
 - Click on "Add a Review"
 - Fill the review form
 - Check the new review on the product details page
@@ -333,30 +333,10 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 
 During the testing I used Chrome Developer tools to test the responsive design on different size and the features of the page on different width.
 
-### Test Driven Developement
+### Test Driven Development
 
 Chrome Developer tools was used during the developing process to test HTML, CSS, JavaScript and jQuery.
 
 Javascript and jQuery testing was done by using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
 
 For JavaScript validation testing I used ["JSHint"](https://jshint.com/) with whom I checked the presence of unused variable and code errors.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
