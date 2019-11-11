@@ -99,7 +99,8 @@ The earning and orders Charts can be sets as Monthly View or Daily View, this on
 - Add quantity stock in product model
 - Modify max-quantity add to cart pending on quantity stock 
 - Render rating as star system (for same [django-likert-field](https://pypi.org/project/django-likert-field/) library will be used)
-
+- Add delete account option
+- Edit UI for confirm delete product btn
 
 ## Technologies Used
 
@@ -109,7 +110,7 @@ For this project I used:
     - Used as Ide to develop the code.
 
 - [Python](https://www.python.org)
-    - The project use **Python** as developing language to build Travel Around and as a server side/back-end language.
+    - The project use **Python** as developing language to build BuyIt Platform and as a server side/back-end language.
 
 - [Django](https://www.djangoproject.com/)
     - The project use **Django** as Python Web Framework.
@@ -152,7 +153,6 @@ For this project I used:
 
 
 #### Python Libraries Used
-The full list of libraries used is present in requirements.txt file.
 
 The following Python Libraries are installed and used in this project:
 - *django bootstrap forms* used for styling of forms
@@ -165,6 +165,9 @@ The following Python Libraries are installed and used in this project:
 - *coverage* to measure the code coverage in testing
 - *django widget tweaks* to be able to personalize rendered forms
 - *django filter* to add filtering
+
+The full list of libraries used is present in requirements.txt file.
+
 
 
 ## Testing
@@ -227,31 +230,6 @@ The pages were pushed to the GitHub repository
 >$Password
 ```
 
-### Run my project locally
-To run this project you can follow one of the follwing way:
-
-#### 1. Deployment through Cloud9
-- Create a blank workspace in your Cloud9 dashboard.
-- Get all files from github using 'git clone https://github.com/gello94/buyit command in the C9 CLI
-- Install Python dependencies with following the command: 'pip3 install -r requirements.txt'
-- Run app with following command: 'python3 manage.py runserver'.
-- Open up Link in browser of choice
-
-#### 2. Deployment through Heroku
-- Copy Github repository
-- Make sure Procfile and requirements.txt for dependencies are correct.
-- Create new heroku app and set environment variables.
-- Connect Github repository to Heroku App through 'Deployment Method' in Heroku - App Dashboard
-- Deploy Branch through Manual Deploy' in Heroku App Dashboard
-
-## Credits
-
-Thanks to CodeInstitute Slack Community helping me to find extra material to study to improve my knowledges to develop this web app. 
-
-A big Thanks to all the students, always positive and very motivational during this year, always ready to help me were a problem was encountered and for all the advices given.
-
-Thanks to the tutor Ali Ashik that has been always available to help me to understand and clarify areas of this project that were difficult to me.
-
 ### Media
 
 - All images taken from https://pixabay.com/images/search/earphones/ with free licence to reuse.
@@ -267,10 +245,16 @@ More info were taken from the following documentation files and Communities:
 - [Stackoverflow](https://stackoverflow.com/) - widely used during this project to find errors similar to mine
 - [PyPI](https://pypi.org/)
 - [Stripe - Documentation](https://stripe.com/docs)
+- [Bootsnipp - Quantity Spinner Snippet](https://bootsnipp.com/snippets/Max59)
 
 
 ## Credits
-Quantity snipper taken from https://bootsnipp.com/snippets/Max59
+
+Thanks to CodeInstitute Slack Community helping me to find extra material to study to improve my knowledges to develop this web app. 
+
+A big Thanks to all the students, always positive and very motivational during this year, always ready to help me were a problem was encountered and for all the advices given.
+
+Thanks to the tutor Ali Ashik that has been always available to help me to understand and clarify areas of this project that were difficult to me.
 
 
 
