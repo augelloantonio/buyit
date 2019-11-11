@@ -333,9 +333,13 @@ N.B.: This user will be deleted after the project assessment by CodeInstitute as
 
 During the testing I used Chrome Developer tools to test the responsive design on different size and the features of the page on different width.
 
+### Test Driven Developement
+
 Chrome Developer tools was used during the developing process to test HTML, CSS, JavaScript and jQuery.
 
 Javascript and jQuery testing was done by using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
+
+For JavaScript validation testing I used ["JSHint"](https://jshint.com/) with whom I checked the presence of unused variable and code errors.
 
 
 
