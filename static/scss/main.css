@@ -253,7 +253,6 @@ full-width-logo,
 }
 
 .filter-orders {
-  width: 100%;
   margin: auto;
   padding: 20px;
   margin-left: 20px;
@@ -266,6 +265,7 @@ full-width-logo,
 .dashboard-card {
   padding: 0.5rem;
   margin-bottom: 20px;
+  min-width: 220px;
 }
 
 @media (max-width: 756px) {
