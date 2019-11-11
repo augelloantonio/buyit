@@ -100,7 +100,6 @@ The earning and orders Charts can be sets as Monthly View or Daily View, this on
 - Modify max-quantity add to cart pending on quantity stock 
 - Render rating as star system (for same [django-likert-field](https://pypi.org/project/django-likert-field/) library will be used)
 - Add delete account option
-- Edit UI for confirm delete product button
 
 ## Technologies Used
 
