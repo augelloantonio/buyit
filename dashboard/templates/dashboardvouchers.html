@@ -1,22 +1,25 @@
 {% extends "dashboardbase.html" %} {% load staticfiles %} {%block title %}
 <title>Dashboard - Products</title>
 {% endblock %} {%block content%}
-<div class="container-personal">
+<div>
     <h3>Voucher List</h3>
     <div class="row">
         {% for voucher in vouchers %}
         <!-- Area Chart -->
-        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 dashboard-card">
+        <div class="col-sm-12 col-md-4 col-lg-3 dashboard-card">
             <div class="card shadow mb-4 h-100">
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-area">
-                        <p>Voucher: {{voucher.code}}</p>
-                        <p>Voucher Amount: {{voucher.amount}}<i class="fas fa-euro-sign"></i></p>
-                        <p>Voucher in active: {% if voucher.active == True %} Yes {% else %} No {% endif %}
-                        </p>
-                    </div>
                     <div class="row">
+                        <div class="col-12">
+                            <p class="h6">Voucher: </p>
+                            <p>{{voucher.code}}</p>
+                            <p class="h6">Amount: </p>
+                            <p>{{voucher.amount}}<i class="fas fa-euro-sign"></i></p>
+                            <p>{% if voucher.active == True %} Voucher Active {% else %} Voucher Not
+                                Active {% endif %}
+                            </p>
+                        </div>
                         <div class="col-6">
                             <a href="{% url 'edit_a_voucher' voucher.id %}"><button type="button"
                                     class="btn btn-success">Edit</button></a>
