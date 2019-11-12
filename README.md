@@ -5,6 +5,9 @@
 
 Build for Code-Institute as Full Stack Milestone Project.
 
+![Wireframe](https://github.com/gello94/buyit/blob/master/buyit_wireframe.jpg)
+
+
 ## UX
 
 BuyIt-Platform is an e-commerce platform with full management of the commercial business online by the owner.
