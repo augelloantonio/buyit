@@ -29,10 +29,8 @@ $(document).ready(function () {
     // Add style to total price if discount code is applied
     if ($("#new_total").is(":visible")) {
         $("#total").addClass("basic_price_lined");
-        console.log("visible");
     } else {
         $("#total").removeClass("basic_price_lined");
-        console.log("not visible");
     }
 
     // Auto Hide Messages
@@ -67,12 +65,10 @@ function sendMail(contactForm) {
         })
         .then(
             function (response) {
-                console.log("SUCCESS", response);
                 var alert = '<div class="alert alert-success" role="alert"> Your message has been sent.You will receive an answer as soon as possible.</div>'
                 document.getElementById("email-alert").innerHTML = alert;
             },
             function (error) {
-                console.log("FAILED", error);
                 var alert = '<div class="alert alert-danger" role="alert">Your message was not sent. Please check that all the details are correct.</div>'
                 document.getElementById("email-alert").innerHTML = alert;
             }
