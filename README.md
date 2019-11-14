@@ -267,6 +267,7 @@ More info were taken from the following documentation files and Communities:
 - [PyPI](https://pypi.org/)
 - [Stripe - Documentation](https://stripe.com/docs)
 - [Bootsnipp - Quantity Spinner Snippet](https://bootsnipp.com/snippets/Max59)
+- [Coupon in Django by Packt Video](https://www.youtube.com/watch?v=_dSCGMJcoe4)
 
 
 ## Credits
