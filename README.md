@@ -216,13 +216,6 @@ The repository has been pushed following these commands
 >$ git push -u origin master
 ```
 
-After a final Git Add and Git commit
-
-```
->$git add .
->$git commit -m "final commit"
-```
-
 The pages were pushed to the GitHub repository
 
 ```
