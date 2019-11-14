@@ -7,6 +7,8 @@ Build for Code-Institute as Full Stack Milestone Project.
 
 ![Wireframe](https://github.com/gello94/buyit/blob/master/buyit_wireframe.jpg)
 
+View full demo at - [BuyIt - Platform](https://buyit-platform.herokuapp.com/)
+
 
 ## UX
 
