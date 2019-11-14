@@ -340,3 +340,7 @@ Chrome Developer tools was used during the developing process to test HTML, CSS,
 Javascript and jQuery testing was done by using the ```console.log('function called')``` code in the function i wanted to check or by using the DOM.
 
 For JavaScript validation testing I used ["JSHint"](https://jshint.com/) with whom I checked the presence of unused variable and code errors.
+
+The HTML code was validated by [W3C HTML Validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fbuyit-platform.herokuapp.com%2F).
+
+The CSS was validated by [W3C CSS Validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fbuyit-platform.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it).
