@@ -1,0 +1,101 @@
+.navbar-global {
+    background-color: indigo;
+}
+
+.navbar-global .navbar-brand {
+    color: white;
+}
+
+.navbar-global .navbar-user>li>a {
+    color: white;
+}
+
+.navbar-primary {
+    background-color: #333;
+    bottom: 0px;
+    left: 0px;
+    position: relative;
+    top: 0px;
+    min-width: 220px;
+    z-index: 8;
+    overflow: hidden;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.collapsed {
+    min-width: 60px !important;
+}
+
+.navbar-primary.collapsed .glyphicon {
+    font-size: px;
+}
+
+.navbar-primary.collapsed .nav-label {
+    display: none;
+}
+
+
+.navbar-primary-menu,
+.navbar-primary-menu li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-primary-menu li a {
+    display: block;
+    padding: 10px 18px;
+    text-align: left;
+    border-bottom: solid 1px #444;
+    color: #ccc;
+}
+
+.navbar-primary-menu li a:hover {
+    background-color: #000;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-primary-menu li a .glyphicon {
+    margin-right: 6px;
+}
+
+.navbar-primary-menu li a:hover .glyphicon {
+    color: orchid;
+}
+
+
+.collapsed+.main-content {
+    margin-left: 60px;
+}
+
+.list-group-item {
+    font-size: 1.2rem;
+}
+
+.navbar-icon {
+    font-size: 1.5rem;
+    padding: 2px;
+    margin-right: 8px;
+}
+
+.sidebar-heading {
+    padding: 1rem !important;
+    text-align: center;
+    font-weight: 600;
+}
+
+#wrapper {
+    min-height: 100vh;
+}
+
+.sidebar-navbar {
+    right: 30px;
+    position: absolute !important;
+}
+
+#menu{
+    float: right;
+}

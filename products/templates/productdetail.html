@@ -1,85 +1,117 @@
-{% extends "base.html" %} {% load bootstrap_tags %} {% load staticfiles %} {% block content %}
+{% extends "base.html" %} 
+{% load bootstrap_tags %} 
+{% load static %} 
+{% block content %}
 <div class="container">
-    <div class="container-personal">
-
-        <!--Message-->
-        <div class="alert-personalpage">{% if messages %} {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}" role="alert">
-                {{ message }} </div>
-            {% endfor %} {% endif %}
-        </div>
-        <div class="row product-row">
-            <div class="col-md-6">
-                <img class="img-product-page card-img-top" src="{{ MEDIA_URL }}{{ product.image }}"
-                    alt=" {{ product.name }}">
-            </div>
-            <div class="col-md-6">
-                <div class="row product-description-row">
-                    <div class="col-12">
-                        <div class="product-header">
-                            <h3>{{ product.name }}</h3>
-                            {% if product.in_stock == False %}
-                            <p class="not-stock">Temporary not in stock</p>
-                            {%endif%}
-                            <div class="row ">
-                                <!-- Show averange rating-->
-                                {%for range in product_reviews%} {%if product.pk == range.product_id %}
-                                {% if range.avg_rating != Null %}
-                                <div class="col-6">
-                                    <p class="star_rating" value="{{range.avg_rating}}|floatformat:1">Rated:
-                                        {{range.avg_rating|floatformat:1}}/5
-                                    </p>
-                                </div>
-                                {% else %}
-                                <!-- If rating is null show 0 as default-->
-                                <div class="col-6">
-                                    <p>Rated: 0/5</p>
-                                </div>
-                                {% endif %} {% endif %} {% endfor %}
-                                <!-- Show number of reviews for this product-->
-                                <div class="col-6">
-                                    <p><a href="#view_reviews" class="in-page-review-link">Reviews: {{n_reviews}}</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <h4>Product Description</h4>
-                        <p>{{ product.description }}</p>
-                    </div>
-                    <div class="col-12">
-                        <p>Price: {{ product.price }} <i class="fas fa-euro-sign"></i></p>
-                    </div>
-                </div>
-                <!-- Quantity spinner-->
-                {% if product.in_stock == True %}
-                <div class="row">
-                    <div class="quantity-form col-12">
-                        <form method="post" action="{% url 'add_to_cart' product.id %}">
-                            {% csrf_token %}
-                            <div class="input-group">
-                                <div class="col-5">
-                                    <input name="quantity" id="quantityspinner" type="text" min="1" max="999"
-                                        class="form-control" placeholder="Quantity" value="1">
-                                </div>
-                                <div class="col-7">
-                                    <span class="input-group-btn">
-                                        <!-- Check if product is in stock, if not in stock disable the add to cart btn-->
-                                        <button class="btn btn-success text-uppercase" type="submit">add to
-                                            chart<i class="fas fa-shopping-cart add-to-cart-icon"></i></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                {%endif%}
-                <!-- ./ Quantity spinner-->
-            </div>
-        </div>
-        {% include 'reviews.html' %}
+  <div class="container-personal">
+    <!--Message-->
+    <div class="alert-personalpage">
+      {% if messages %} 
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %} 
+      {% endif %}
     </div>
+    <div class="row product-row">
+      <div class="col-md-6">
+        <img
+          class="img-product-page card-img-top"
+          src="{{ MEDIA_URL }}{{ product.image }}"
+          alt=" {{ product.name }}"
+        />
+      </div>
+      <div class="col-md-6">
+        <div class="row product-description-row">
+          <div class="col-12">
+            <div class="product-header">
+              <h3>{{ product.name }}</h3>
+              {% if product.in_stock == False %}
+              <p class="not-stock">Temporary not in stock</p>
+              {%endif%}
+              <div class="row">
+                <!-- Show averange rating-->
+                {%for range in product_reviews%} 
+                {%if product.pk == range.product_id %} 
+                {% if range.avg_rating != Null %}
+                <div class="col-6">
+                  <p
+                    class="star_rating"
+                    value="{{range.avg_rating}}|floatformat:1"
+                  >
+                    Rated: {{range.avg_rating|floatformat:1}}/5
+                  </p>
+                </div>
+                {% else %}
+                <!-- If rating is null show 0 as default-->
+                <div class="col-6">
+                  <p>Rated: 0/5</p>
+                </div>
+                {% endif %} 
+                {% endif %} 
+                {% endfor %}
+                <!-- Show number of reviews for this product-->
+                <div class="col-6">
+                  <p>
+                    <a href="#view_reviews" class="in-page-review-link"
+                      >Reviews: {{n_reviews}}</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <h4>Product Description</h4>
+            <p>{{ product.description }}</p>
+          </div>
+          <div class="col-12">
+            <p>Price: {{ product.price }} <i class="fas fa-euro-sign"></i></p>
+          </div>
+        </div>
+        <!-- Quantity spinner-->
+        {% if product.in_stock == True %}
+        <div class="row">
+          <div class="quantity-form col-12">
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <div class="input-group">
+                <div class="col-5">
+                  <input
+                    name="quantity"
+                    id="quantityspinner"
+                    type="text"
+                    min="1"
+                    max="999"
+                    class="form-control"
+                    placeholder="Quantity"
+                    value="1"
+                  />
+                </div>
+                <div class="col-7">
+                  <span class="input-group-btn">
+                    <!-- Check if product is in stock, if not in stock disable the add to cart btn-->
+                    <button
+                      class="btn btn-success text-uppercase"
+                      type="submit"
+                    >
+                      add to chart<i
+                        class="fas fa-shopping-cart add-to-cart-icon"
+                      ></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        {%endif%}
+        <!-- ./ Quantity spinner-->
+      </div>
+    </div>
+    {% include 'reviews.html' %}
+  </div>
 </div>
 
 {% endblock %}

@@ -1,0 +1,48 @@
+.input-group-btn-vertical .btn {
+    min-width: 1.5rem;
+}
+
+.bootstrap-touchspin-injected {
+    border-radius: 2px;
+    border: 0.8px solid lightgray;
+}
+
+.btn-link,
+.bootstrap-touchspin-down {
+    text-decoration: none !important;
+    color: black;
+}
+
+.add-to-cart-icon {
+    padding: 5px;
+}
+
+.in-page-review-link {
+    text-decoration: none;
+    color: black;
+}
+
+#view_reviews {
+    margin-top: 20px;
+}
+
+.img-product-page {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-style: inset;
+    max-height: 350px;
+}
+
+.not-stock {
+    color: red;
+}
+
+@media (min-width: 756px) {
+    .img-product-page {
+        margin-top: 40px;
+    }
+}
+
+.product-description-row {
+    margin-top: 20px;
+}
