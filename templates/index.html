@@ -8,21 +8,21 @@
       <div class="carousel-item active">
         <img
           class="logo-carousel"
-          src="{% static 'media/background/2.jpg' %}"
+          src="{{ MEDIA_URL }}images/img_banner1.jpg"
           alt="Logo Slide"
         />
       </div>
       <div class="carousel-item">
         <img
           class="logo-carousel"
-          src="{% static 'media/background/4.jpg' %}"
+          src="{{ MEDIA_URL }}images/img_banner2.jpg"
           alt="Logo Slide"
         />
       </div>
       <div class="carousel-item">
         <img
           class="logo-carousel"
-          src="{% static 'media/background/3.jpg' %}"
+          src="{{ MEDIA_URL }}images/img_banner3.jpg"
           alt="Logo Slide"
         />
       </div>
@@ -86,93 +86,86 @@
       >
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="row-carousel" style="display: -webkit-box">
-              {% for product in products %}
-              <!--card-->
-              <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
-                <div class="card h-100">
-                  <a href="{% url 'product_detail' product.id %}"
-                    ><img
-                      class="img-shop card-img-top"
-                      src="{{ MEDIA_URL }}{{ product.image }}"
-                      alt=" {{ product.name }}"
-                  /></a>
-                  <div class="card-body">
-                    <h4 class="card-title">
-                      <a href="{% url 'product_detail' product.id %}"
-                        >{{ product.name }}</a
-                      >
-                    </h4>
-                    <h5>
-                      {{ product.price }} <i class="fas fa-euro-sign"></i>
-                    </h5>
-                    <div></div>
-                    <p class="card-text">
-                      {{ product.description|truncatechars:50 }}
-                    </p>
-                    {% if product.in_stock == True %}
-                    <form
-                      method="post"
-                      action="{% url 'add_to_cart' product.id %}"
-                    >
-                      {% csrf_token %}
-                      <div class="input-group">
-                        <input
-                          name="quantity"
-                          type="number"
-                          min="1"
-                          max="999"
-                          class="form-control"
-                          placeholder="Quantity"
-                          value="1"
-                        />
-                        <span class="input-group-btn">
-                          <button class="btn btn-success" type="submit">
-                            <i class="fas fa-cart-plus"></i>
-                          </button>
-                        </span>
-                      </div>
-                    </form>
-                    {% else %}
-                    <h4>Temporary out of stock</h4>
-                    {% endif %}
+          {% for product in products %}
+          {% if forloop.counter0|divisibleby:3 %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="row-carousel">
+          {% endif %}
+        
+          <!-- Product Card -->
+          <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+              <a href="{% url 'product_detail' product.id %}">
+                <img
+                  class="img-shop card-img-top"
+                  src="{{ MEDIA_URL }}{{ product.image }}"
+                  alt="{{ product.name }}"
+                />
+              </a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+                </h4>
+                <h5>
+                  {{ product.price }} <i class="fas fa-euro-sign"></i>
+                </h5>
+                <p class="card-text">
+                  {{ product.description|truncatechars:50 }}
+                </p>
+                {% if product.in_stock %}
+                <form method="post" action="{% url 'add_to_cart' product.id %}">
+                  {% csrf_token %}
+                  <div class="input-group">
+                    <input
+                      name="quantity"
+                      type="number"
+                      min="1"
+                      max="999"
+                      class="form-control"
+                      placeholder="Quantity"
+                      value="1"
+                    />
+                    <span class="input-group-btn">
+                      <button class="btn btn-success" type="submit">
+                        <i class="fas fa-cart-plus"></i>
+                      </button>
+                    </span>
                   </div>
-                  <div class="card-footer">
-                    {%for range in product_reviews%} {%if product.pk ==
-                    range.product_id %} {% if range.avg_rating != Null %}
-                    <p
-                      class="star_rating"
-                      value="{{range.avg_rating|floatformat:2}}"
-                    >
-                      Rated: {{range.avg_rating|floatformat:1}}/5
-                    </p>
-                    {% else %}
-                    <p>Rated: 0/5</p>
-                    {% endif %} {% endfor %}
-                  </div>
-                </div>
+                </form>
+                {% else %}
+                <h4>Temporary out of stock</h4>
+                {% endif %}
               </div>
-              <!--./card-->
-              {% if forloop.counter|divisibleby:3 and not forloop.last %}
+              <div class="card-footer">
+                {% for range in product_reviews %}
+                {% if product.pk == range.product_id %}
+                <p class="star_rating">
+                  Rated: {{ range.avg_rating|default:"0.0"|floatformat:1 }}/5
+                </p>
+                {% endif %}
+                {% endfor %}
+              </div>
             </div>
           </div>
-          <div class="carousel-item">
-            <div class="row-carousel" style="display: -webkit-box">
-              {% endif %} {% endfor %}
+          <!-- ./Product Card -->
+        
+          {% if forloop.counter|divisibleby:3 or forloop.last %}
             </div>
           </div>
+          {% endif %}
+          {% endfor %}
         </div>
+        
         <!-- Left and right controls -->
         <div class="slider_bar">
           <ol class="carousel-indicators">
+            {% for product in products %}
             <li
               data-target="#latestcarousel2"
-              data-slide-to="0"
-              class="active"
+              data-slide-to="{{ forloop.counter0 }}"
+              class="{% if forloop.first %}active{% endif %}"
             ></li>
-            <li data-target="#latestcarousel2" data-slide-to="1"></li>
-            <li data-target="#latestcarousel2" data-slide-to="2"></li>
+            {% endfor %}
           </ol>
         </div>
         <!--/.Carousel Wrapper-->

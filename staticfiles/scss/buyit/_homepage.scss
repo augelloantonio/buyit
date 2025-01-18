@@ -6,7 +6,7 @@
 
 full-width-logo,
 .full-width-header {
-    height: 75vh;
+    height: 35vh;
     text-align: center;
     position: block;
     overflow: hidden
@@ -15,7 +15,7 @@ full-width-logo,
 .logo-carousel {
     width: 100%;
     object-fit: cover;
-    height: 75vh;
+    height: 35vh;
 }
 
 @keyframes jump {
@@ -47,14 +47,14 @@ full-width-logo,
 .jumbotron-container {
     margin: auto;
     position: relative;
-    height: 75vh;
+    height: 35vh;
     width: 100%;
 }
 
 .page-jumbotron {
     width: 100%;
-    height: 75vh;
-    padding: 8%;
+    height: 35vh;
+    padding: 0.5em;
     text-align: center;
     margin: auto;
     background: rgba(0, 0, 0, 0.7);
