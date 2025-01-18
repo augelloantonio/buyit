@@ -1,0 +1,63 @@
+$font-stack: Helvetica,
+sans-serif;
+$primary-color: #333;
+
+html,
+body {
+    position: relative;
+    min-height: 100%;
+}
+
+.container-personal {
+    width: 100%;
+    margin-top: 80px;
+    min-height: 100vh;
+}
+
+.container_pages {
+    margin-bottom: 20px;
+    height: 100vh;
+}
+
+#page-content-wrapper {
+    width: 100%;
+}
+
+.img-shop {
+    height: 200px;
+}
+
+footer {
+    bottom: 0;
+    color: #707070;
+    height: 2em;
+    left: 0;
+    position: relative;
+    font-size: small;
+    width: 100%;
+}
+
+button:focus {
+    outline: none;
+}
+
+.pagination-container {
+    float: right;
+}
+
+.main {
+    margin-top: 55px;
+}
+
+.btn.focus,
+.btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}

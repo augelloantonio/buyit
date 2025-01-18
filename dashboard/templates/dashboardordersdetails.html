@@ -1,89 +1,101 @@
-{% extends "dashboardbase.html" %} {% load bootstrap_tags %} {% load staticfiles %} {%block title %}
+{% extends "dashboardbase.html" %} 
+{% load bootstrap_tags %} 
+{% load static %}
+{%block title %}
 <title>Dashboard - Order Details</title>
-{% endblock %} {%block content%}
+{% endblock %} 
+{%block content%}
 
 <div class="container_pages">
-    <h4>Order Info</h4>
-    <table class="table table-sm table-bordered table-responsive table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Order ID</th>
-                <th scope="col">Total Order Cost</th>
-                <th scope="col">Order Date</th>
-                <th scope="col">Name</th>
-                <th scope="col">Phone Number</th>
-                <th scope="col">Email</th>
-                <th scole="col>">Code Used</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{order.id}}</td>
-                <td>{{total_order_price}}<i class="fas fa-euro-sign"></i></td>
-                <td>{{order.date}}</td>
-                <td>{{order.full_name}}</td>
-                <td>{{order.phone_number}}</td>
-                <td>{{order.email_address}}</td>
-                <td>{{order.voucher}}</td>
-            </tr>
-        </tbody>
-    </table>
+  <h4>Order Info</h4>
+  <table class="table table-sm table-bordered table-responsive table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Order ID</th>
+        <th scope="col">Total Order Cost</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Email</th>
+        <th scole="col>">Code Used</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{order.id}}</td>
+        <td>{{total_order_price}}<i class="fas fa-euro-sign"></i></td>
+        <td>{{order.date}}</td>
+        <td>{{order.full_name}}</td>
+        <td>{{order.phone_number}}</td>
+        <td>{{order.email_address}}</td>
+        <td>{{order.voucher}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h4>Product Info</h4>
-    <table class="table table-sm table-bordered table-responsive table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Product ID</th>
-                <th scope="col">Product Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price Each Product</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for orderitems in order_info.all %} {%if order.id == orderitems.order_id %}
-            <tr>
-                <td>{{orderitems.product.id}}</td>
-                <td>{{orderitems.product.name}}</td>
-                <td>{{orderitems.quantity}}</td>
-                <td>{{orderitems.product.price}}<i class="fas fa-euro-sign"></i></td>
-            </tr>
-            {%endif%} {% endfor %}
-        </tbody>
-    </table>
+  <h4>Product Info</h4>
+  <table class="table table-sm table-bordered table-responsive table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price Each Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for orderitems in order_info.all %} 
+      {%if order.id == orderitems.order_id %}
+      <tr>
+        <td>{{orderitems.product.id}}</td>
+        <td>{{orderitems.product.name}}</td>
+        <td>{{orderitems.quantity}}</td>
+        <td>{{orderitems.product.price}}<i class="fas fa-euro-sign"></i></td>
+      </tr>
+      {%endif%} 
+      {% endfor %}
+    </tbody>
+  </table>
 
+  <h4>Shipping Address</h4>
+  <table class="table table-sm table-bordered table-responsive table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Address 1</th>
+        <th scope="col">Address 2</th>
+        <th scope="col">County</th>
+        <th scope="col">City</th>
+        <th scope="col">Postcode</th>
+        <th scope="col">Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{order.street_address1}}</td>
+        <td>{{order.street_address2}}</td>
+        <td>{{order.county}}</td>
+        <td>{{order.town_or_city}}</td>
+        <td>{{order.postcode}}</td>
+        <td>{{order.country}}</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h4>Shipping Address </h4>
-    <table class="table table-sm table-bordered table-responsive table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Address 1</th>
-                <th scope="col">Address 2</th>
-                <th scope="col">County</th>
-                <th scope="col">City</th>
-                <th scope="col">Postcode</th>
-                <th scope="col">Country</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{order.street_address1}}</td>
-                <td>{{order.street_address2}}</td>
-                <td>{{order.county}}</td>
-                <td>{{order.town_or_city}}</td>
-                <td>{{order.postcode}}</td>
-                <td>{{order.country}}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <h4>Order Status: {{order.order_status}}</h4>
-    <div class="input-group">
-        <form role="form" method="POST" action="{% url 'change_order_status' order.id %}">
-            {% csrf_token %} {{ form | as_bootstrap}}
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Change Status</button>
-            </div>
-        </form>
-    </div>
+  <h4>Order Status: {{order.order_status}}</h4>
+  <div class="input-group">
+    <form
+      role="form"
+      method="POST"
+      action="{% url 'change_order_status' order.id %}"
+    >
+      {% csrf_token %} 
+      {{ form | as_bootstrap}}
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">
+          Change Status
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 {% endblock %}

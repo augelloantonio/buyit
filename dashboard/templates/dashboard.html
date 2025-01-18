@@ -1,321 +1,354 @@
-{% extends "dashboardbase.html" %}
-{% load staticfiles %}
-
-{%block title %}
+{% extends "dashboardbase.html" %} {% load static %} {%block title %}
 <title>Dashboard</title>
-{% endblock %}
-
-{%block content%}
+{% endblock %} {%block content%}
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+  <!-- Earnings & Orders row-->
+  <div class="row">
+    <!--Earning Row -->
+    <div class="col-sm-12 col-lg-6">
+      <h1>Earnings</h1>
 
-    <!-- Earnings & Orders row-->
-    <div class=row>
-        <!--Earning Row -->
-        <div class="col-sm-12 col-lg-6">
-            <h1>Earnings</h1>
-
-            <div class="row">
-                <!-- Earnings (Monthly) Card -->
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <div class="card border-left-primary shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings
-                                        (Today)
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                        {{today_orders_earning|floatformat:2}}<i class="fas fa-euro-sign"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="row">
+        <!-- Earnings (Monthly) Card -->
+        <div class="col-sm-12 col-md-6 mb-4">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-primary text-uppercase mb-1"
+                  >
+                    Earnings (Today)
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{today_orders_earning|floatformat:2}}<i
+                      class="fas fa-euro-sign"
+                    ></i>
+                  </div>
                 </div>
-
-                <!-- Total Earnings Card -->
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <div class="card border-left-success shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
-                                        (Ever)
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_orders_earning}}<i
-                                            class="fas fa-euro-sign"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
-
-            <!-- Earning Overview-->
-            <div class="row">
-
-                <!-- Area Chart -->
-                <div class="col-sm-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Choose view -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <div class="row row-btn-change-view">
-                                <div class="col-sm-12">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings</h6>
-                                </div>
-                                <div class="col-sm-12" style="margin-top:10px;">
-                                    <div class="input-group mb-3 chart-views-btn">
-                                        <div class="col-6">
-                                            <button id="montly_earning_data">Montlhy</button>
-                                        </div>
-                                        <div class="col-6">
-                                            <button id="daily_earning_data">Daily</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            {% include 'charts/chart.html' %}
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+          </div>
         </div>
 
-        <!--Orders Row -->
-        <div class="col-sm-12 col-lg-6">
-
-            <h1>Orders</h1>
-
-            <div class="row">
-
-                <!-- Totals Orders Card -->
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total Orders
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_orders}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <!-- Total Earnings Card -->
+        <div class="col-sm-12 col-md-6 mb-4">
+          <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-success text-uppercase mb-1"
+                  >
+                    Earnings (Ever)
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{total_orders_earning}}<i class="fas fa-euro-sign"></i>
+                  </div>
                 </div>
-
-                <!-- Total Product Sold Card -->
-                <div class="col-sm-12 col-md-6 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Product
-                                        Sold
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800 text-center">
-                                                {{total_product_sold}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
-
-            <!-- Orders Overview Chart-->
-            <div class="row">
-
-                <!-- Area Chart -->
-                <div class="col-sm-12">
-                    <div class="card shadow mb-4">
-
-                        <!-- Card Header - Choose view -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <div class="row row-btn-change-view">
-                                <div class="col-sm-12">
-                                    <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
-                                </div>
-                                <div class="col-sm-12" style="margin-top:10px;">
-                                    <div class="input-group mb-3 chart-views-btn">
-                                        <div class="col-6">
-                                            <button id="montly_orders_data">Montlhy</button>
-                                        </div>
-                                        <div class=" col-6">
-                                            <button id="daily_orders_data">Daily</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            {% include 'charts/chart_orders.html' %}
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Earning Overview-->
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-sm-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Choose view -->
+            <div
+              class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+            >
+              <div class="row row-btn-change-view">
+                <div class="col-sm-12">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings</h6>
+                </div>
+                <div class="col-sm-12" style="margin-top: 10px">
+                  <div class="input-group mb-3 chart-views-btn">
+                    <div class="col-6">
+                      <button id="montly_earning_data">Montlhy</button>
+                    </div>
+                    <div class="col-6">
+                      <button id="daily_earning_data">Daily</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">{% include 'charts/chart.html' %}</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Product & Reviews row-->
-    <div class=row>
-        <!--Products Row -->
-        <div class="col-sm-12 col-lg-6">
-            <h1>Products</h1>
+    <!--Orders Row -->
+    <div class="col-sm-12 col-lg-6">
+      <h1>Orders</h1>
 
-            <div class="row">
-                <!-- Totals Product Card -->
-                <div class="col-sm-12 col-md-4 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total
-                                        Products
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_products}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <div class="row">
+        <!-- Totals Orders Card -->
+        <div class="col-sm-12 col-md-6 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                  >
+                    Total Orders
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{total_orders}}
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <!-- Total Product In Stock Card -->
-                <div class="col-sm-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Product In
-                                        Stock
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-12">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <p>{{perc_stock_prod|floatformat:0}}%</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar"
-                                                    style="width: {{perc_stock_prod}}%"
-                                                    aria-valuenow="{{perc_stock_prod}}" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Total Product Sold Card -->
+        <div class="col-sm-12 col-md-6 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    Total Product Sold
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col">
+                      <div
+                        class="h5 mb-0 mr-3 font-weight-bold text-gray-800 text-center"
+                      >
+                        {{total_product_sold}}
+                      </div>
                     </div>
+                  </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                <!-- Total Product Not In Stock Card -->
-                <div class="col-sm-12 col-md-4 mb-4">
-                    <div class="card border-left-info shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Product Not
-                                        Stock
-                                    </div>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-12">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                                <p>{{perc_not_stock_prod|floatformat:0}}%</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar"
-                                                    style="width: {{perc_not_stock_prod}}%"
-                                                    aria-valuenow="{{perc_not_stock_prod}}" aria-valuemin="0"
-                                                    aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Product Overview Chart-->
-
-                <!-- Area Chart -->
+      <!-- Orders Overview Chart-->
+      <div class="row">
+        <!-- Area Chart -->
+        <div class="col-sm-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Choose view -->
+            <div
+              class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+            >
+              <div class="row row-btn-change-view">
                 <div class="col-sm-12">
-                    <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
-                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                            <h6 class="m-0 font-weight-bold text-primary">Most sold Products</h6>
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-" href="#" role="button" id="dropdownMenuLink" data-="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                    aria-labelledby="dropdownMenuLink">
-                                    <div class="dropdown-header">Dropdown Header:</div>
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card Body -->
-                        <div class="card-body">
-                            {% include 'charts/chart_products.html' %}
-                        </div>
-                    </div>
+                  <h6 class="m-0 font-weight-bold text-primary">Orders</h6>
                 </div>
+                <div class="col-sm-12" style="margin-top: 10px">
+                  <div class="input-group mb-3 chart-views-btn">
+                    <div class="col-6">
+                      <button id="montly_orders_data">Montlhy</button>
+                    </div>
+                    <div class="col-6">
+                      <button id="daily_orders_data">Daily</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              {% include 'charts/chart_orders.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product & Reviews row-->
+  <div class="row">
+    <!--Products Row -->
+    <div class="col-sm-12 col-lg-6">
+      <h1>Products</h1>
+
+      <div class="row">
+        <!-- Totals Product Card -->
+        <div class="col-sm-12 col-md-4 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                  >
+                    Total Products
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{total_products}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!--Reviews Row -->
-        <div class="col-sm-12 col-lg-6">
-            <h1>Reviews</h1>
-
-            <div class="row">
-                <!-- Totals review Card -->
-                <div class="col-sm-12 col-md-12 mb-4">
-                    <div class="card border-left-warning shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Customers
-                                        Reviews
-                                    </div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_reviews}}</div>
-                                </div>
-                            </div>
-                            {% include 'charts/chart_reviews.html' %}
-                        </div>
+        <!-- Total Product In Stock Card -->
+        <div class="col-sm-12 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    Product In Stock
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-12">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                        <p>{{perc_stock_prod|floatformat:0}}%</p>
+                      </div>
                     </div>
+                    <div class="col-12">
+                      <div class="progress progress-sm mr-2">
+                        <div
+                          class="progress-bar bg-info"
+                          role="progressbar"
+                          style="width: {{perc_stock_prod}}%"
+                          aria-valuenow="{{perc_stock_prod}}"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+
+        <!-- Total Product Not In Stock Card -->
+        <div class="col-sm-12 col-md-4 mb-4">
+          <div class="card border-left-info shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-info text-uppercase mb-1"
+                  >
+                    Product Not Stock
+                  </div>
+                  <div class="row no-gutters align-items-center">
+                    <div class="col-12">
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                        <p>{{perc_not_stock_prod|floatformat:0}}%</p>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="progress progress-sm mr-2">
+                        <div
+                          class="progress-bar bg-info"
+                          role="progressbar"
+                          style="width: {{perc_not_stock_prod}}%"
+                          aria-valuenow="{{perc_not_stock_prod}}"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Overview Chart-->
+
+        <!-- Area Chart -->
+        <div class="col-sm-12">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+              class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+            >
+              <h6 class="m-0 font-weight-bold text-primary">
+                Most sold Products
+              </h6>
+              <div class="dropdown no-arrow">
+                <a
+                  class="dropdown-"
+                  href="#"
+                  role="button"
+                  id="dropdownMenuLink"
+                  data-="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                  aria-labelledby="dropdownMenuLink"
+                >
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              {% include 'charts/chart_products.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!--Reviews Row -->
+    <div class="col-sm-12 col-lg-6">
+      <h1>Reviews</h1>
+
+      <div class="row">
+        <!-- Totals review Card -->
+        <div class="col-sm-12 col-md-12 mb-4">
+          <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                  <div
+                    class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                  >
+                    Customers Reviews
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    {{total_reviews}}
+                  </div>
+                </div>
+              </div>
+              {% include 'charts/chart_reviews.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- /.page container -->
 
-{% endblock %}
-
-{% block js %}
+{% endblock %} {% block js %}
 <!-- Chart Js script -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
 

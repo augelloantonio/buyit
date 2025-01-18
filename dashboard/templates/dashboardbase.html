@@ -1,121 +1,150 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="ecommerce platform" />
+    <meta name="author" content="Antonio Augello" />
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="ecommerce platform">
-    <meta name="author" content="Antonio Augello">
-
-    {%block title %}
-    {% endblock %}
+    {%block title %} {% endblock %}
 
     <!-- FontAwesome CSS -->
     <script type="text/javascript">
-        (function () {
-            var css = document.createElement('link');
-            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
-            css.rel = 'stylesheet';
-            css.type = 'text/css';
-            document.getElementsByTagName('head')[0].appendChild(css);
-        })();
+      (function () {
+        var css = document.createElement("link");
+        css.href = "https://use.fontawesome.com/releases/v5.1.0/css/all.css";
+        css.rel = "stylesheet";
+        css.type = "text/css";
+        document.getElementsByTagName("head")[0].appendChild(css);
+      })();
     </script>
 
-
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
 
     <!-- Personal CSS-->
-    <link href="{% static 'scss/main.css' %}" rel="stylesheet">
+    <link href="{% static 'scss/main.css' %}" rel="stylesheet" />
 
     {% block css %} {% endblock %}
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="d-flex" id="wrapper">
-
-        <!-- Sidebar -->
-        <div class="bg-dark border-right navbar-primary" id="sidebar-wrapper">
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action bg-dark"><span class="nav-label"></span> <span
-                        class="expand-collapse" id="menu"> <i id="menu-bar"
-                            class="fas fa-angle-right navbar-icon"></i></span></a>
-                <a href="{% url 'dashboard'%}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="fas fa-chart-line navbar-icon"></i><span class="nav-label">Dashboard</span></a>
-                <a href="{%url 'dashboard_orders'%}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="far fa-clipboard navbar-icon"></i><span class="nav-label">Orders</span></a>
-                <a href="{% url 'dashboard_product' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="far fa-list-alt navbar-icon"></i><span class="nav-label">Products</span></a>
-                <a href="{% url 'users' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="fas fa-users navbar-icon"></i><span class="nav-label">Users</span></a>
-                <a href="{% url 'add_a_product' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="far fa-plus-square navbar-icon"></i><span class="nav-label">Add a Product</span></a>
-                <a href="{% url 'add_a_category' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="fas fa-plus-circle navbar-icon"></i><span class="nav-label">Add a Category</span></a>
-                <a href="{% url 'voucher_view' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="fas fa-tags navbar-icon"></i><span class="nav-label">Voucher</span></a>
-                <a href="{% url 'add_new_voucher' %}" class="list-group-item list-group-item-action bg-dark"><i
-                        class="fas fa-plus-circle navbar-icon"></i><span class="nav-label">Add a Voucher</span></a>
-            </div>
+      <!-- Sidebar -->
+      <div class="bg-dark border-right navbar-primary" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+          <a class="list-group-item list-group-item-action bg-dark"
+            ><span class="nav-label"></span>
+            <span class="expand-collapse" id="menu">
+              <i id="menu-bar" class="fas fa-angle-right navbar-icon"></i></span
+          ></a>
+          <a
+            href="{% url 'dashboard'%}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="fas fa-chart-line navbar-icon"></i
+            ><span class="nav-label">Dashboard</span></a
+          >
+          <a
+            href="{%url 'dashboard_orders'%}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="far fa-clipboard navbar-icon"></i
+            ><span class="nav-label">Orders</span></a
+          >
+          <a
+            href="{% url 'dashboard_product' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="far fa-list-alt navbar-icon"></i
+            ><span class="nav-label">Products</span></a
+          >
+          <a
+            href="{% url 'users' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="fas fa-users navbar-icon"></i
+            ><span class="nav-label">Users</span></a
+          >
+          <a
+            href="{% url 'add_a_product' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="far fa-plus-square navbar-icon"></i
+            ><span class="nav-label">Add a Product</span></a
+          >
+          <a
+            href="{% url 'add_a_category' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="fas fa-plus-circle navbar-icon"></i
+            ><span class="nav-label">Add a Category</span></a
+          >
+          <a
+            href="{% url 'voucher_view' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="fas fa-tags navbar-icon"></i
+            ><span class="nav-label">Voucher</span></a
+          >
+          <a
+            href="{% url 'add_new_voucher' %}"
+            class="list-group-item list-group-item-action bg-dark"
+            ><i class="fas fa-plus-circle navbar-icon"></i
+            ><span class="nav-label">Add a Voucher</span></a
+          >
         </div>
-        <!-- /#sidebar-wrapper -->
+      </div>
+      <!-- /#sidebar-wrapper -->
 
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <nav
-                class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top dashboard-navbar bg-dark">
-                <div class="navbar sidebar-navbar" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link home-icon" href="{% url 'index'%}"><i
-                                    class="fas fa-home navbar-icon"></i> <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <div class="container-fluid">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
-        <!-- ./Page content-->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light border-bottom navbar-fixed-top dashboard-navbar bg-dark"
+        >
+          <div class="navbar sidebar-navbar" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link home-icon" href="{% url 'index'%}"
+                  ><i class="fas fa-home navbar-icon"></i>
+                  <span class="sr-only">(current)</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container-fluid">{% block content %} {% endblock %}</div>
+      </div>
+      <!-- ./Page content-->
     </div>
     <!-- /#wrapper -->
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    {% block js %}
-    {% endblock %}
+    {% block js %} {% endblock %}
 
     <!-- Personal jQuery script-->
     <script>
-        //collapse sidebar in dashboard
-        $(document).ready(function () {
-            $(".expand-collapse").click(function (e) {
-                $("#sidebar-wrapper").toggleClass("collapsed");
-            });
-
-            // If screen size < 960px use sidebar collepsed
-            if ($(window).width() < 960) {
-                $("#sidebar-wrapper").addClass("collapsed");
-            } else {
-                $("#sidebar-wrapper").removeClass("collapsed");
-                $('#menu-bar').toggleClass('fa-angle-right fa-angle-left');
-            }
-            $('#menu').click(function () {
-                $('#menu-bar').toggleClass('fa-angle-right fa-angle-left');
-            })
-
+      //collapse sidebar in dashboard
+      $(document).ready(function () {
+        $(".expand-collapse").click(function (e) {
+          $("#sidebar-wrapper").toggleClass("collapsed");
         });
+
+        // If screen size < 960px use sidebar collepsed
+        if ($(window).width() < 960) {
+          $("#sidebar-wrapper").addClass("collapsed");
+        } else {
+          $("#sidebar-wrapper").removeClass("collapsed");
+          $("#menu-bar").toggleClass("fa-angle-right fa-angle-left");
+        }
+        $("#menu").click(function () {
+          $("#menu-bar").toggleClass("fa-angle-right fa-angle-left");
+        });
+      });
     </script>
-
-
-</body>
-
+  </body>
 </html>

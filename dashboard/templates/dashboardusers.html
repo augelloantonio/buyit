@@ -1,63 +1,60 @@
-{% extends "dashboardbase.html" %}
-{% load staticfiles %}
-
-{%block title %}
+{% extends "dashboardbase.html" %} {% load static %} {%block title %}
 <title>Dashboard - Users</title>
-{% endblock %}
-
-{%block content%}
+{% endblock %} {%block content%}
 <div class="container-personal">
-    <!--User Row -->
-    <div class="col-sm-12">
-        <h1>Users</h1>
+  <!--User Row -->
+  <div class="col-sm-12">
+    <h1>Users</h1>
 
-        <div class="row">
-            <!-- Totals user Card -->
-            <div class="col-xl-3 col-md-6 mb-4 col-lg-3 col-xl-2 dashboard-card">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Total User
-                                </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{total_user}}</div>
-                            </div>
-                        </div>
-                    </div>
+    <div class="row">
+      <!-- Totals user Card -->
+      <div class="col-xl-3 col-md-6 mb-4 col-lg-3 col-xl-2 dashboard-card">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div
+                  class="text-xs font-weight-bold text-warning text-uppercase mb-1"
+                >
+                  Total User
                 </div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                  {{total_user}}
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-        <!-- Content Row -->
+      </div>
     </div>
+    <!-- Content Row -->
+  </div>
 
-    <h4>Users Info</h4>
-    <table class="table table-sm table-bordered table-responsive table-dark">
-        <thead>
-            <tr>
-                <th scope="col">User ID</th>
-                <th scope="col">Username</th>
-                <th scope="col">Email</th>
-                <th scope="col">Active</th>
-                <th scope="col">Date registered</th>
-                <th scope="col">Staff Member</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{user.id}}</td>
-                <td>{{user}}</td>
-                <td>{{user.email}}</td>
-                <td>{{user.is_active}}</td>
-                <td>{{user.date_joined}}</td>
-                <td>{{user.is_staff}}</td>
-
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
+  <h4>Users Info</h4>
+  <table class="table table-sm table-bordered table-responsive table-dark">
+    <thead>
+      <tr>
+        <th scope="col">User ID</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Active</th>
+        <th scope="col">Date registered</th>
+        <th scope="col">Staff Member</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+      <tr>
+        <td>{{user.id}}</td>
+        <td>{{user}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.is_active}}</td>
+        <td>{{user.date_joined}}</td>
+        <td>{{user.is_staff}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}

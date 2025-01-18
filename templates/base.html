@@ -1,172 +1,238 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="ecommerce platform">
-    <meta name="author" content="Antonio Augello">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="ecommerce platform" />
+    <meta name="author" content="Antonio Augello" />
 
     {%block title %} {% endblock %}
 
     <!-- FontAwesome CSS -->
     <!-- FontAwesome CSS -->
     <script type="text/javascript">
-        (function () {
-            var css = document.createElement('link');
-            css.href = 'https://use.fontawesome.com/releases/v5.1.0/css/all.css';
-            css.rel = 'stylesheet';
-            css.type = 'text/css';
-            document.getElementsByTagName('head')[0].appendChild(css);
-        })();
+      (function () {
+        var css = document.createElement("link");
+        css.href = "https://use.fontawesome.com/releases/v5.1.0/css/all.css";
+        css.rel = "stylesheet";
+        css.type = "text/css";
+        document.getElementsByTagName("head")[0].appendChild(css);
+      })();
     </script>
 
-
     <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-
+    <link
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
 
     <!-- Personal CSS-->
-    <link href="{% static 'scss/main.css' %}" rel="stylesheet">
+    <link href="{% static 'scss/main.css' %}" rel="stylesheet" />
 
     {%block head%} {%endblock%}
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!-- Navigation -->
-    <nav id="navbar" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                    <!-- Search Form-->
-                    <li class="nav-item active search-li">
-                        <form id="search-form" action="{% url 'search' %}" method="get" class="form-inline">
-                            <input id="input-search" name="q" class="input-search hidden-input" type="text"
-                                placeholder="Search Product" aria-label="Search" required>
-                            <button id="search-btn" class="btn search-btn" onclick="searchToggle();"><i
-                                    class="fas fa-search"></i></button>
-                        </form>
-                    </li>
-                    {% if user.is_superuser %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}"><i
-                                class="fa fa-user"></i>
-                            Dashboard</a></li>
-                    {% endif %} {% if user.is_authenticated %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'profile' %}"><i
-                                class="fa fa-user"></i>
-                            Profile</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'logout' %}"><i
-                                class="fas fa-sign-out-alt"></i>
-                            Log
-                            Out</a></li>
-                    {% else %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'register' %}"><i
-                                class="fa fa-user-plus"></i>
-                            Register</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}"><i
-                                class="fas fa-sign-in-alt"></i> Log
-                            In</a></li>
-                    {% endif %}
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'products' %}"><i
-                                class="fas fa-store"></i>
-                            All Products</a></li>
-                </ul>
-            </div>
-            <div class="cart-mobile">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'view_cart' %}"> <i class="fas fa-shopping-basket"></i> Cart
-                            {% if product_count > 0 %}
-                            <label class="badge badge-warning">{{ product_count }}</label> {% endif %}
-                        </a>
-                    </li>
-                </ul>
-            </div>
+    <nav
+      id="navbar"
+      class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
+    >
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'index' %}">BuyIt</a>
         </div>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <!-- Search Form-->
+            <li class="nav-item active search-li">
+              <form
+                id="search-form"
+                action="{% url 'search' %}"
+                method="get"
+                class="form-inline"
+              >
+                <input
+                  id="input-search"
+                  name="q"
+                  class="input-search hidden-input"
+                  type="text"
+                  placeholder="Search Product"
+                  aria-label="Search"
+                  required
+                />
+                <button
+                  id="search-btn"
+                  class="btn search-btn"
+                  onclick="searchToggle();"
+                >
+                  <i class="fas fa-search"></i>
+                </button>
+              </form>
+            </li>
+            {% if user.is_superuser %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'dashboard' %}"
+                ><i class="fa fa-user"></i> Dashboard</a
+              >
+            </li>
+            {% endif %} {% if user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'profile' %}"
+                ><i class="fa fa-user"></i> Profile</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'logout' %}"
+                ><i class="fas fa-sign-out-alt"></i> Log Out</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'register' %}"
+                ><i class="fa fa-user-plus"></i> Register</a
+              >
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'login' %}"
+                ><i class="fas fa-sign-in-alt"></i> Log In</a
+              >
+            </li>
+            {% endif %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'products' %}"
+                ><i class="fas fa-store"></i> All Products</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="cart-mobile">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'view_cart' %}">
+                  <i class="fas fa-shopping-basket"></i>
+                  Cart
+                  {% if product_count > 0 %}
+                  <span class="badge bg-warning">{{ product_count }}</span>
+                  {% endif %}
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+      </div>
     </nav>
     <!-- /End Navigation -->
-    <div class="main">
-        {% block content %} {% endblock %}
-    </div>
+    <div class="main">{% block content %} {% endblock %}</div>
     <!-- Footer -->
     <div class="mt-5 pt-5 footer bg-dark bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5 col-xs-12">
-                    <h2>Free Delivery</h2>
-                    <p class="pr-5 text-white-50">Take Advantage of our FREE Deliveries for orders over 49.99 <i
-                            class="fas fa-euro-sign"></i>. </p>
-                    <ul class="list-inline footer-social-links">
-                        <li><a href="#" target="_blank" class="mr-3"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="https://www.linkedin.com/in/antonio-augello-aba83911a/" target="_blank"><i
-                                    class="fab fa-linkedin"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-xs-12 links">
-                    <h4 class="mt-lg-0 mt-sm-3">Links</h4>
-                    <ul class="m-0 p-0 links-list">
-                        <li><a href="{% url 'contact_us'%}" class="links-list-footer">Contact Us</a></li>
-                        <li><a href="{% url 'products'%}" class="links-list-footer">All Product</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-xs-12 contact-footer">
-                    <h4 class="mt-lg-0 mt-sm-4 mb-sm-2">Contact Info</h4>
-                    <p class="mb-0">
-                        <i class="fas fa-map-marker mr-3"></i><span class="element-content-text">123, Some Address,
-                            Limerick, Ireland</span>
-                    </p>
-                    <p class="mb-0"><i class="fas fa-phone mr-3"></i><a href="tel:+353 20 912 8500"
-                            class="element-content-text">
-                            +353 20 912 8500
-                        </a></p>
-                    <p><i class="fas fa-envelope mr-3"></i><a href="mailto:info@buyit.com" class="element-content-text">
-                            info@buyit.com
-                        </a>
-                    </p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col copyright">
-                    <p><small class="text-white-50">BuyIt-Platform is a project build for CodeInstitute as Full Stack
-                            Milestone
-                            Project.</small></p>
-
-                    <p><small class="text-white-50">Antonio Augello Developer © 2019. All Rights
-                            Reserved.</small></p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-xs-12">
+            <h2>Free Delivery</h2>
+            <p class="pr-5 text-white-50">
+              Take Advantage of our FREE Deliveries for orders over 49.99
+              <i class="fas fa-euro-sign"></i>.
+            </p>
+            <ul class="list-inline footer-social-links">
+              <li>
+                <a href="#" target="_blank" class="mr-3"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/antonio-augello-aba83911a/"
+                  target="_blank"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-xs-12 links">
+            <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+            <ul class="m-0 p-0 links-list">
+              <li>
+                <a href="{% url 'contact_us'%}" class="links-list-footer"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="{% url 'products'%}" class="links-list-footer"
+                  >All Product</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-xs-12 contact-footer">
+            <h4 class="mt-lg-0 mt-sm-4 mb-sm-2">Contact Info</h4>
+            <p class="mb-0">
+              <i class="fas fa-map-marker mr-3"></i
+              ><span class="element-content-text"
+                >123, Some Address, Limerick, Ireland</span
+              >
+            </p>
+            <p class="mb-0">
+              <i class="fas fa-phone mr-3"></i
+              ><a href="tel:+353 20 912 8500" class="element-content-text">
+                +353 20 912 8500
+              </a>
+            </p>
+            <p>
+              <i class="fas fa-envelope mr-3"></i
+              ><a href="mailto:info@buyit.com" class="element-content-text">
+                info@buyit.com
+              </a>
+            </p>
+          </div>
         </div>
-    </div>
+        <hr />
+        <div class="row">
+          <div class="col copyright">
+            <p>
+              <small class="text-white-50"
+                >BuyIt-Platform is a project build for CodeInstitute as Full
+                Stack Milestone Project.</small
+              >
+            </p>
 
+            <p>
+              <small class="text-white-50"
+                >Antonio Augello Developer © 2019. All Rights Reserved.</small
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- ./End Footer-->
 
-
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.5/jquery.bootstrap-touchspin.min.js">
-    </script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.5/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- extra js block-->
     {% block script_js %} {% endblock %}
 
     <!-- Personal JS-->
     <script src="{% static 'js/custom.js' %}"></script>
-</body>
-
+  </body>
 </html>

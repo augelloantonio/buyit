@@ -1,0 +1,105 @@
+/*.....................................................Contact Form*/
+
+.contact-heading {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.center-form {
+    padding-top: 10px;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.form-control {
+    margin-bottom: 5px;
+    display: initial;
+}
+
+.send-email-btn {
+    float: right;
+}
+
+.element-content-text {
+    color: #dadad3;
+}
+
+a .element-content-text:hover {
+    color: #dadad3;
+}
+
+
+/*.....................................................Left Aside Bar*/
+
+.contact-items-body {
+    width: 100%;
+    display: flex;
+    padding-top: 25px;
+    padding: 5px;
+}
+
+.contact-elements {
+    text-align: center;
+}
+
+
+.contact-phone-square,
+.contact-email-square {
+    max-width: 48%;
+    background-color: #525252;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 5px;
+    margin: 3px;
+    color: white;
+}
+
+
+.contact-phone-square:hover {
+    background-color: #525252;
+    color: white;
+}
+
+.contact-email-square:hover {
+    background-color: #525252;
+    color: white;
+}
+
+.contact-element-icon {
+    text-transform: uppercase;
+    color: #dadad3;
+    font-size: 36px;
+}
+
+.contact-element-icon:hover {
+    color: white;
+}
+
+.contact-element-icon a {
+    font-weight: bold;
+}
+
+.contact-element-icon>.active>a,
+.contact-element-icon>.active>a:focus,
+.contact-element-icon>.active>a:hover {
+    color: white;
+    background: transparent;
+}
+
+
+.contact-body-text {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    margin: 40px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.contact-form-input {
+    margin-bottom: 5px;
+}
