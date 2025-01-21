@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, reverse
-
-# Create your views here.
-
+from utils import languageUtils
 
 def view_cart(request):
     """A View that renders the cart contents page"""
-    return render(request, "cart.html")
+    
+    translations = languageUtils.load_translations()
+
+    return render(request, "cart.html",{'translations':translations})
 
 
 def add_to_cart(request, id):

@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from .forms import AddNewVoucher
-
+from utils import languageUtils
 
 @require_POST
 def add_voucher(request):
@@ -48,7 +48,9 @@ def add_new_voucher(request):
             return redirect(voucher_view)
     else:
         form = AddNewVoucher()
-    return render(request, "dashboardaddavouchercode.html", {'form': form})
+        
+    translations = languageUtils.load_translations()
+    return render(request, "dashboardaddavouchercode.html", {'form': form, 'translations':translations})
 
 
 def edit_a_voucher(request, id):
@@ -61,12 +63,16 @@ def edit_a_voucher(request, id):
             return redirect(voucher_view)
     else:
         form = AddNewVoucher(instance=voucher)
-    return render(request, "dashboardaddavouchercode.html", {'form': form})
+        
+    translations = languageUtils.load_translations()
+    return render(request, "dashboardaddavouchercode.html", {'form': form, 'translations':translations})
 
 
 def voucher_view(request):
     vouchers = Voucher.objects.all()
-    return render(request, 'dashboardvouchers.html', {'vouchers': vouchers})
+    
+    translations = languageUtils.load_translations()
+    return render(request, 'dashboardvouchers.html', {'vouchers': vouchers, 'translations':translations})
 
 
 def delete_voucher(request, pk):

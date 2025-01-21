@@ -89,35 +89,35 @@
             {% if user.is_superuser %}
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'dashboard' %}"
-                ><i class="fa fa-user"></i> Dashboard</a
+                ><i class="fa fa-user"></i> {{ translations.dashboard }}</a
               >
             </li>
             {% endif %} {% if user.is_authenticated %}
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'profile' %}"
-                ><i class="fa fa-user"></i> Profile</a
+                ><i class="fa fa-user"></i> {{ translations.profile }}</a
               >
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'logout' %}"
-                ><i class="fas fa-sign-out-alt"></i> Log Out</a
+                ><i class="fas fa-sign-out-alt"></i> {{ translations.logout }}</a
               >
             </li>
             {% else %}
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'register' %}"
-                ><i class="fa fa-user-plus"></i> Register</a
+                ><i class="fa fa-user-plus"></i> {{translations.register}}</a
               >
             </li>
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'login' %}"
-                ><i class="fas fa-sign-in-alt"></i> Log In</a
+                ><i class="fas fa-sign-in-alt"></i> {{translations.login}}</a
               >
             </li>
             {% endif %}
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'products' %}"
-                ><i class="fas fa-store"></i> All Products</a
+                ><i class="fas fa-store"></i> {{translations.allProducts}}</a
               >
             </li>
           </ul>
@@ -127,7 +127,7 @@
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'view_cart' %}">
                   <i class="fas fa-shopping-basket"></i>
-                  Cart
+                  {{translations.chart}}
                   {% if product_count > 0 %}
                   <span class="badge bg-warning">{{ product_count }}</span>
                   {% endif %}
@@ -135,7 +135,21 @@
               </li>
             </ul>
           </div>
-          
+          <div class="langChange">
+            
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <select name="language" onchange="this.form.submit()">
+                {% for lang_code, lang_name in LANGUAGES %}
+                <option value="{{ lang_code }}" {% if lang_code == request.LANGUAGE_CODE %}selected{% endif %}>
+                  {{ lang_name }}
+                </option>
+                {% endfor %}
+              </select>
+            </form>
+            
+            
+          </div>
       </div>
     </nav>
     <!-- /End Navigation -->
@@ -166,22 +180,22 @@
             </ul>
           </div>
           <div class="col-lg-3 col-xs-12 links">
-            <h4 class="mt-lg-0 mt-sm-3">Links</h4>
+            <h4 class="mt-lg-0 mt-sm-3">{{translations.link}}</h4>
             <ul class="m-0 p-0 links-list">
               <li>
                 <a href="{% url 'contact_us'%}" class="links-list-footer"
-                  >Contact Us</a
+                  >{{translations.contactUs}}</a
                 >
               </li>
               <li>
                 <a href="{% url 'products'%}" class="links-list-footer"
-                  >All Product</a
+                  >{{translations.allProducts}}</a
                 >
               </li>
             </ul>
           </div>
           <div class="col-lg-4 col-xs-12 contact-footer">
-            <h4 class="mt-lg-0 mt-sm-4 mb-sm-2">Contact Info</h4>
+            <h4 class="mt-lg-0 mt-sm-4 mb-sm-2">{{translations.contact}}</h4>
             <p class="mb-0">
               <i class="fas fa-map-marker mr-3"></i
               ><span class="element-content-text"

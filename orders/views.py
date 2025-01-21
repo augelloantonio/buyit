@@ -10,7 +10,7 @@ from voucher.models import Voucher
 from decimal import Decimal
 import stripe
 import datetime
-
+from utils import languageUtils
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -98,8 +98,10 @@ def checkout(request):
     else:
         payment_form = MakePaymentForm()
         order_form = OrderForm()
+        
+    translations = languageUtils.load_translations()
 
-    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE})
+    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'translations':translations})
 
 
 @login_required

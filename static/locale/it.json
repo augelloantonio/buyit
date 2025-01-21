@@ -1,0 +1,34 @@
+{
+    "dashboard": "Dashboard",
+    "login": "Accedi",
+    "logout": "Esci",
+    "register": "Registrati",
+    "allProducts": "Tutti i prodotti",
+    "chart": "carrello",
+    "profile": "profilo",
+
+    "latest":"Ultimi arrivi",
+    "bestsellers":"Più venduti",
+    "ourProducts": "I nostri prodotti",
+    "seeAllProducts": "Vedi tutti i prodotti",
+
+
+
+    "new": "Nuovo",
+    "notAvailable": "Non disponibile",
+
+    "link": "Link utili",
+    "contact": "Contatti",
+    "contactUs": "Contattaci", 
+
+    "welcome_message": "Benvenuto nel mio sito!",
+    "goodbye_message": "Arrivederci!",
+
+    "footerInfo": "",
+
+    "product": {
+      "name": "Translated Product Name"
+    }
+  
+  }
+  

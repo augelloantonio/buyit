@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+from django.utils.translation import gettext_lazy as _
 try:
     import env
 except ImportError:
@@ -65,13 +66,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'buyit.urls'
@@ -89,7 +90,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'cart.contexts.cart_contents',
-                'voucher.contexts.voucher_contents'
+                'voucher.contexts.voucher_contents',
+                'buyit.context_processors.available_languages',
             ],
         },
     },
@@ -196,3 +198,25 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = os.getenv('EMAIL_ADDRESS')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_PORT = 587
+
+# TRANSLATIONS
+LANGUAGE_CODE = 'en'  # Default language
+
+USE_I18N = True  # Enable internationalization
+USE_L10N = True  # Enable localization
+USE_TZ = True  # Enable timezone support
+
+# Supported languages
+LANGUAGES = [
+    ('en', _('English')),
+    ('it', _('Italian')),
+    # Add more languages as needed
+]
+
+# Location of translation files
+LOCALE_PATHS = [
+    os.path.join('static', 'locale'),
+]
+
+# Session support
+SESSION_ENGINE = "django.contrib.sessions.backends.db"

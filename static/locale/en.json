@@ -1,0 +1,21 @@
+{
+  "dashboard": "Dashboard",
+  "login": "Login",
+  "logout": "Logout",
+  "register": "Register",
+  "allProducts": "All products",
+  "chart": "Cart",
+  "profile": "Profile",
+
+  "latest": "Latest products",
+  "bestsellers": "Best sellers",
+  "ourProducts": "Our products",
+  "seeAllProducts": "See all products",
+
+  "link": "Useful links",
+  "contact": "Contacts",
+  "contactUs": "Contact us",
+  
+  "welcome_message": "Welcome to my website!",
+  "goodbye_message": "Goodbye!"
+}

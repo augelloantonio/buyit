@@ -30,6 +30,9 @@ from home import urls as urls_home
 from api import urls as urls_api
 from search import urls as urls_search
 from home.views import index
+from django.conf.urls.i18n import i18n_patterns
+from django.urls import path
+from django.views.i18n import set_language
 
 urlpatterns = [
     path('', index, name='index'),
@@ -44,5 +47,7 @@ urlpatterns = [
     path('home/', include(urls_home)),
     path('api/', include(urls_api)),
     path('search/', include(urls_search)),
+    path('set_language/', set_language, name='set_language'),
     re_path(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
+    
 ]

@@ -1,6 +1,10 @@
-{% extends "base.html" %} {% load static %} {%block title %}
+{% extends "base.html" %} 
+{% load static %} 
+{%block title %}
 <title>Homepage</title>
-{% endblock %} {% block content %}
+{% endblock %} 
+{% block content %}
+
 <!-- Page Header-->
 <div class="full-width-header">
   <div id="carouselLogo" class="carousel slide" data-ride="carousel">
@@ -46,7 +50,7 @@
             class="btn btn-primary btn-lg advert-btn"
             href="{% url 'register'%}"
             role="button"
-            >Register Now</a
+            >{{translations.register}}</a
           >
         </div>
       </div>
@@ -75,103 +79,6 @@
     {% include 'bestsellers_carousel.html'%}
     <!-- ./Carousel bestsellers Product -->
 
-    <!-- Carousel Latest Product 2 -->
-    <div id="latest" class="col-lg-12">
-      <h2>Our Products</h2>
-      <a href="{% url 'products' %}">See all our products</a>
-      <div
-        id="latestcarousel2"
-        class="carousel slide my-4"
-        data-ride="carousel"
-      >
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          {% for product in products %}
-          {% if forloop.counter0|divisibleby:3 %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <div class="row-carousel">
-          {% endif %}
-        
-          <!-- Product Card -->
-          <div class="col-xs-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-              <a href="{% url 'product_detail' product.id %}">
-                <img
-                  class="img-shop card-img-top"
-                  src="{{ MEDIA_URL }}{{ product.image }}"
-                  alt="{{ product.name }}"
-                />
-              </a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
-                </h4>
-                <h5>
-                  {{ product.price }} <i class="fas fa-euro-sign"></i>
-                </h5>
-                <p class="card-text">
-                  {{ product.description|truncatechars:50 }}
-                </p>
-                {% if product.in_stock %}
-                <form method="post" action="{% url 'add_to_cart' product.id %}">
-                  {% csrf_token %}
-                  <div class="input-group">
-                    <input
-                      name="quantity"
-                      type="number"
-                      min="1"
-                      max="999"
-                      class="form-control"
-                      placeholder="Quantity"
-                      value="1"
-                    />
-                    <span class="input-group-btn">
-                      <button class="btn btn-success" type="submit">
-                        <i class="fas fa-cart-plus"></i>
-                      </button>
-                    </span>
-                  </div>
-                </form>
-                {% else %}
-                <h4>Temporary out of stock</h4>
-                {% endif %}
-              </div>
-              <div class="card-footer">
-                {% for range in product_reviews %}
-                {% if product.pk == range.product_id %}
-                <p class="star_rating">
-                  Rated: {{ range.avg_rating|default:"0.0"|floatformat:1 }}/5
-                </p>
-                {% endif %}
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-          <!-- ./Product Card -->
-        
-          {% if forloop.counter|divisibleby:3 or forloop.last %}
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-        
-        <!-- Left and right controls -->
-        <div class="slider_bar">
-          <ol class="carousel-indicators">
-            {% for product in products %}
-            <li
-              data-target="#latestcarousel2"
-              data-slide-to="{{ forloop.counter0 }}"
-              class="{% if forloop.first %}active{% endif %}"
-            ></li>
-            {% endfor %}
-          </ol>
-        </div>
-        <!--/.Carousel Wrapper-->
-      </div>
-    </div>
-    <!-- ./Carousel Latest Product 2 -->
   </div>
   <!-- /End first carousel-->
 </div>

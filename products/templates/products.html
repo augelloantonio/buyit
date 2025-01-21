@@ -55,10 +55,11 @@
                                     </div>
                                 </form>
                                 {% else %}
-                                <h4>Temporary out of stock</h4>
+                                <h4>{{translations.notAvailable}}</h4>
                                 {% endif %}
                             </div>
                         </div>
+                        <!-- REVIEWS 
                         <div class="card-footer">
                             {%for range in product_reviews%}
                             {%if product.pk == range.product_id %}
@@ -71,6 +72,7 @@
                             {% endif %}
                             {% endfor %}
                         </div>
+                        -->
                     </div>
                 </div>
                 <!--./card-->

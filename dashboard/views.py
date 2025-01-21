@@ -11,7 +11,7 @@ from django.db.models.functions import TruncMonth, TruncYear
 from datetime import date
 from orders.filters import OrdersFilter
 from orders.forms import OrderStatus
-
+from utils import languageUtils
 
 @user_passes_test(lambda u: u.is_superuser)
 def dashboard(request):
@@ -55,11 +55,13 @@ def dashboard(request):
         perc_stock_prod = 0
         perc_not_stock_prod = 0
 
+    translations = languageUtils.load_translations()
+
     context = {"orders": orders, "total_orders_earning": total_orders_earning,
                "total_orders": total_orders, "total_product_sold": total_product_sold, "today_orders_earning": today_orders_earning,
                "total_products": total_products, "total_products_in_stock": total_products_in_stock,
                "total_products_not_stock": total_products_not_stock, "total_reviews": total_reviews,
-               'dataset': dataset, 'perc_stock_prod': perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod, }
+               'dataset': dataset, 'perc_stock_prod': perc_stock_prod, 'perc_not_stock_prod': perc_not_stock_prod, 'translations':translations }
 
     return render(request, "dashboard.html", context)
 
@@ -99,8 +101,10 @@ def dashboard_order_details(request, id):
 
     form = OrderStatus(request.POST)
 
+    translations = languageUtils.load_translations()
+
     return render(request, "dashboardordersdetails.html", {"order_info": order_info, "orders": orders, 'order': order,
-                                                           "total_order_price": total_order_price, 'form': form})
+                                                           "total_order_price": total_order_price, 'form': form, 'translations':translations})
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -120,11 +124,17 @@ def add_a_category(request):
             return redirect(dashboard_product)
     else:
         category_form = CategoryForm()
-    return render(request, "dashboardaddcategory.html", {'category_form': category_form})
+        
+    translations = languageUtils.load_translations()
+
+    return render(request, "dashboardaddcategory.html", {'category_form': category_form, 'translations':translations})
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def users_info(request):
     users = User.objects.all()
     total_user = users.count()
-    return render(request, "dashboardusers.html", {'users': users, 'total_user': total_user})
+    
+    translations = languageUtils.load_translations()
+    
+    return render(request, "dashboardusers.html", {'users': users, 'total_user': total_user, 'translations':translations})

@@ -13,6 +13,7 @@ from django.contrib.auth import logout as django_logout, update_session_auth_has
 from django.core.mail import EmailMessage
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .filters import OrdersFilter
+from utils import languageUtils
 
 
 @login_required
@@ -41,8 +42,10 @@ def profile(request):
     months = [i.month for i in Order.objects.values_list(
         'date', flat=True).distinct()]
     months_filtered = list(dict.fromkeys(months))
+    
+    translations = languageUtils.load_translations()
 
-    return render(request, 'profile.html', {'pagination_orders': pagination_orders, 'filter': filter_orders})
+    return render(request, 'profile.html', {'pagination_orders': pagination_orders, 'filter': filter_orders, 'translations':translations})
 
 
 def logout(request):
@@ -80,7 +83,10 @@ def login(request):
         else:
             user_form = UserLoginForm()
 
-        args = {'user_form': user_form, 'next': request.GET.get('next', '')}
+        translations = languageUtils.load_translations()
+        
+        args = {'user_form': user_form, 'next': request.GET.get('next', ''), 'translations':translations}
+        
         return render(request, 'login.html', args)
 
 
@@ -111,7 +117,9 @@ def register(request):
         else:
             user_form = UserRegistrationForm()
 
-    args = {'user_form': user_form}
+    translations = languageUtils.load_translations()
+
+    args = {'user_form': user_form, 'translations':translations}
     return render(request, 'register.html', args)
 
 
@@ -189,7 +197,9 @@ def edit_profile(request):
             return redirect(reverse('edit_profile'))
     else:
         form = EditUserForm(instance=request.user)
-        return render(request, 'editprofile.html', {'form': form})
+        translations = languageUtils.load_translations()
+
+        return render(request, 'editprofile.html', {'form': form, 'translations':translations})
 
 
 @login_required
@@ -215,4 +225,6 @@ def change_password(request):
         # if form is not valid will return on edit profile page
         # and return the form
         form = PasswordChangeForm(request.user)
-    return render(request, 'editpassword.html', {'form': form})
+        
+    translations = languageUtils.load_translations()
+    return render(request, 'editpassword.html', {'form': form, 'translations':translations})

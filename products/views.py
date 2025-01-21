@@ -7,7 +7,7 @@ from home.views import index
 from dashboard.views import dashboard_product
 from reviews.models import Review
 from django.core.paginator import Paginator
-
+from utils import languageUtils
 
 def all_products(request, category_id=None):
 
@@ -22,9 +22,11 @@ def all_products(request, category_id=None):
     paginator = Paginator(products, 12)
     page = request.GET.get('page')
     pagination_products = paginator.get_page(page)
+    
+    translations = languageUtils.load_translations()
 
     return render(request, "products.html", {'pagination_products': pagination_products, "products": products, "product_reviews": product_reviews,
-                                             'categories': categories})
+                                             'categories': categories, 'translations':translations})
 
 
 def products_by_category(request, category_id=None):
@@ -47,9 +49,11 @@ def products_by_category(request, category_id=None):
         paginator = Paginator(products, 12)
         page = request.GET.get('page')
         pagination_products = paginator.get_page(page)
+        
+    translations = languageUtils.load_translations()
 
     return render(request, "products.html", {'pagination_products': pagination_products, "products": products, "product_reviews": product_reviews,
-                                             'categories': categories, 'product_category': product_category})
+                                             'categories': categories, 'product_category': product_category, 'translations':translations})
 
 
 def product_detail(request, pk):
@@ -72,10 +76,12 @@ def product_detail(request, pk):
     paginator = Paginator(review_list, 6)
     page = request.GET.get('page')
     pagination_reviews = paginator.get_page(page)
+    
+    translations = languageUtils.load_translations()
 
     return render(request, "productdetail.html", {'product': product, 'reviews': reviews,
                                                   'review_list': review_list, 'product_reviews': product_reviews,
-                                                  'n_reviews': n_reviews, 'pagination_reviews': pagination_reviews})
+                                                  'n_reviews': n_reviews, 'pagination_reviews': pagination_reviews, 'translations':translations})
 
 
 @login_required
@@ -89,7 +95,9 @@ def edit_a_product(request, id):
             return redirect(dashboard_product)
     else:
         form = ProductForm(instance=product)
-    return render(request, "dashboardaddproduct.html", {'form': form})
+        
+    translations = languageUtils.load_translations()
+    return render(request, "dashboardaddproduct.html", {'form': form, 'translations':translations})
 
 
 @login_required
@@ -102,7 +110,8 @@ def remove_product(request, pk):
 @login_required
 def confirm_delete_product(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, "confirmdeleteproduct.html", {"product": product})
+    translations = languageUtils.load_translations()
+    return render(request, "confirmdeleteproduct.html", {"product": product, 'translations':translations})
 
 
 def toggle_status(request, id):
@@ -121,5 +130,5 @@ def add_a_product(request):
             return redirect(dashboard_product)
     else:
         form = ProductForm()
-
-    return render(request, "dashboardaddproduct.html", {'form': form})
+    translations = languageUtils.load_translations()
+    return render(request, "dashboardaddproduct.html", {'form': form, 'translations':translations})

@@ -6,7 +6,7 @@ import datetime
 from .forms import ReviewForm
 from products.models import Product
 from .models import Review
-
+from utils import languageUtils
 
 @login_required
 def add_review(request, product_id):
@@ -33,4 +33,6 @@ def add_review(request, product_id):
             review.save()
             return HttpResponseRedirect(reverse('product_detail', args=(product.id,)))
 
-    return render(request, "addreview.html", {'form': form, 'product': product})
+    translations = languageUtils.load_translations()
+    
+    return render(request, "addreview.html", {'form': form, 'product': product, 'translations':translations})

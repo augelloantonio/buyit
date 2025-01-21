@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from products.models import Product, Category
 from django.db.models import Avg, F, Count
-
+from django.utils.translation import get_language
+from utils import languageUtils
 
 def index(request):
     products = Product.objects.all()
@@ -13,11 +14,18 @@ def index(request):
 
     # Order products by quantity sold
     products_bestsellers = products.order_by('-quantity_sold')
-
+    
+    translations = languageUtils.load_translations()
+    
+    selected_language = request.LANGUAGE_CODE  # Get the current language
+    
     return render(request, "index.html", {"products": products, "product_reviews": product_reviews,
-                                          'products_latest': products_latest, 'products_bestsellers': products_bestsellers})
+                                          'products_latest': products_latest, 'products_bestsellers': products_bestsellers, "translations": translations})
 
 
 def contact_us(request):
     '''Contact Us view'''
-    return render(request, 'contact.html')
+    
+    translations = languageUtils.load_translations()
+
+    return render(request, 'contact.html', {'translations', translations})
